@@ -13,6 +13,7 @@
         <mark key="]" line="5" column="0" />
         <mark key="." line="5" column="0" />
       </file>
+      <file name="$USER_HOME$/IdeaProjects/dropwizard-example/example.yml" timestamp="1466137652942" />
       <file name="$USER_HOME$/IdeaProjects/bzdbBeta/src/main/java/edu/bravozulu/database/Computers.java" timestamp="1465943834197">
         <mark key="[" line="12" column="21" />
         <mark key="]" line="12" column="21" />
@@ -24,8 +25,10 @@
         <mark key="^" line="26" column="16" />
         <mark key="." line="33" column="2" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/BzBay/pom.xml" timestamp="1466130244331">
-        <mark key="[" line="123" column="11" />
+      <file name="$USER_HOME$/IdeaProjects/BzBay/pom.xml" timestamp="1466144475013">
+        <mark key="[" line="55" column="21" />
+        <mark key="]" line="55" column="21" />
+        <mark key="." line="55" column="21" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/helloworldmark/src/main/java/com/markbonicillo/Saying.java" timestamp="1466097555799">
         <mark key="[" line="3" column="38" />
@@ -52,8 +55,8 @@
         <mark key="]" line="2" column="0" />
         <mark key="." line="2" column="0" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/BzBay/src/main/java/com/bravozulu/bzbayConfiguration.java" timestamp="1466122381686">
-        <mark key="[" line="3" column="0" />
+      <file name="$USER_HOME$/IdeaProjects/BzBay/src/main/java/com/bravozulu/bzbayConfiguration.java" timestamp="1466135739075">
+        <mark key="[" line="9" column="6" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/HelloWorld2/src/com/example/helloworld2/HelloWorld2.java" timestamp="1463177072702">
         <mark key="[" line="5" column="25" />
@@ -64,8 +67,11 @@
         <mark key="^" line="41" column="49" />
         <mark key="." line="41" column="49" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/BzBay/src/main/java/com/bravozulu/bzbayApplication.java" timestamp="1466122391793">
-        <mark key="[" line="4" column="38" />
+      <file name="$USER_HOME$/IdeaProjects/BzBay/bzbay.yml" timestamp="1466135587588">
+        <mark key="[" line="4" column="18" />
+      </file>
+      <file name="$USER_HOME$/IdeaProjects/BzBay/src/main/java/com/bravozulu/bzbayApplication.java" timestamp="1466135879282">
+        <mark key="[" line="23" column="66" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/helloworldmark/pom.xml" timestamp="1466102785383">
         <mark key="[" line="28" column="18" />
@@ -100,43 +106,43 @@
     <jumps />
     <registers>
       <register name="&quot;" type="4">
-        <text encoding="base64">ICA8Y3JlYXRlVGFibGUgdGFibGVOYW1lPSJXZWFyYWJsZVRlY2giPgogICAgICAgIAogICAgICAgIDxjb2x1bW4gbmFtZT0iYnJhbmQiIHR5cGU9InZhcmNoYXIoMjU1KSI+CiAgICAgICAgICAgIDxjb25zdHJhaW50cyBudWxsYWJsZT0iZmFsc2UiPjwvY29uc3RyYWludHM+CiAgICAgICAgPC9jb2x1bW4+CiAgICAgICAgPGNvbHVtbiBuYW1lPSJicmFuZCIgdHlwZT0idmFyY2hhcigyNTUpIj4KICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4KICAgICAgICA8L2NvbHVtbj4gICAKICAgICAgICAKICAgIDwvY3JlYXRlVGFibGU+</text>
+        <text encoding="base64">CgogICAgICAgIDxkZXBlbmRlbmN5PgogICAgICAgICAgICA8Z3JvdXBJZD5wc3FsPC9ncm91cElkPgogICAgICAgICAgICA8YXJ0aWZhY3RJZD5wc3FsLWNvbm5lY3Rvci1qYXZhPC9hcnRpZmFjdElkPgogICAgICAgICAgICA8dmVyc2lvbj45LjUuMzwvdmVyc2lvbj4KICAgICAgICA8L2RlcGVuZGVuY3k+</text>
       </register>
       <register name="-" type="4">
-        <text>defaultNumber: 42</text>
+        <text encoding="base64">PHZlcnNpb24+PC92ZXJzaW9uPg==</text>
       </register>
       <register name="0" type="2">
         <text encoding="base64">ICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4K</text>
       </register>
       <register name="1" type="4">
-        <text encoding="base64">ICA8Y3JlYXRlVGFibGUgdGFibGVOYW1lPSJXZWFyYWJsZVRlY2giPgogICAgICAgIAogICAgICAgIDxjb2x1bW4gbmFtZT0iYnJhbmQiIHR5cGU9InZhcmNoYXIoMjU1KSI+CiAgICAgICAgICAgIDxjb25zdHJhaW50cyBudWxsYWJsZT0iZmFsc2UiPjwvY29uc3RyYWludHM+CiAgICAgICAgPC9jb2x1bW4+CiAgICAgICAgPGNvbHVtbiBuYW1lPSJicmFuZCIgdHlwZT0idmFyY2hhcigyNTUpIj4KICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4KICAgICAgICA8L2NvbHVtbj4gICAKICAgICAgICAKICAgIDwvY3JlYXRlVGFibGU+</text>
+        <text encoding="base64">CgogICAgICAgIDxkZXBlbmRlbmN5PgogICAgICAgICAgICA8Z3JvdXBJZD5wc3FsPC9ncm91cElkPgogICAgICAgICAgICA8YXJ0aWZhY3RJZD5wc3FsLWNvbm5lY3Rvci1qYXZhPC9hcnRpZmFjdElkPgogICAgICAgICAgICA8dmVyc2lvbj45LjUuMzwvdmVyc2lvbj4KICAgICAgICA8L2RlcGVuZGVuY3k+</text>
       </register>
-      <register name="2" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4K</text>
+      <register name="2" type="4">
+        <text encoding="base64">PHZlcnNpb24+PC92ZXJzaW9uPg==</text>
       </register>
-      <register name="3" type="2">
-        <text encoding="base64">Cg==</text>
+      <register name="3" type="4">
+        <text />
       </register>
       <register name="4" type="4">
+        <text encoding="base64">ICA8Y3JlYXRlVGFibGUgdGFibGVOYW1lPSJXZWFyYWJsZVRlY2giPgogICAgICAgIAogICAgICAgIDxjb2x1bW4gbmFtZT0iYnJhbmQiIHR5cGU9InZhcmNoYXIoMjU1KSI+CiAgICAgICAgICAgIDxjb25zdHJhaW50cyBudWxsYWJsZT0iZmFsc2UiPjwvY29uc3RyYWludHM+CiAgICAgICAgPC9jb2x1bW4+CiAgICAgICAgPGNvbHVtbiBuYW1lPSJicmFuZCIgdHlwZT0idmFyY2hhcigyNTUpIj4KICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4KICAgICAgICA8L2NvbHVtbj4gICAKICAgICAgICAKICAgIDwvY3JlYXRlVGFibGU+</text>
+      </register>
+      <register name="5" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4K</text>
+      </register>
+      <register name="6" type="2">
+        <text encoding="base64">Cg==</text>
+      </register>
+      <register name="7" type="4">
         <text>xmlns=&quot;http://www.liquibase.org/xml/ns/dbchangelog&quot;
 xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
 xmlns:ext=&quot;http://www.liquibase.org/xml/ns/dbchangelog-ext&quot;
 xsi:schemaLocation=&quot;http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelo</text>
       </register>
-      <register name="5" type="2">
+      <register name="8" type="2">
         <text encoding="base64">PGRhdGFiYXNlQ2hhbmdlTG9nCg==</text>
       </register>
-      <register name="6" type="2">
+      <register name="9" type="2">
         <text encoding="base64">ICAgICAgICAgICAgLy8gbm90aGluZyB0byBkbyB5ZXQK</text>
-      </register>
-      <register name="7" type="4">
-        <text>defaultNumber: 42</text>
-      </register>
-      <register name="8" type="4">
-        <text encoding="base64">LCBAUXVlcnlQYXJhbSgibnVtYmVyIikgT3B0aW9uYWw8SW50ZWdlcj4gbnVtYmVy</text>
-      </register>
-      <register name="9" type="4">
-        <text encoding="base64">ICBudW1iZXIub3IoZGVmYXVsdE51bWJlcik=</text>
       </register>
       <register name=":" type="4">
         <text>w</text>
