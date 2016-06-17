@@ -14,6 +14,10 @@
           <option name="url" value="https://github.ccs.neu.edu/bonicillom/dropwizard-example.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://teambravozulu@bitbucket.org/BravoZulu2016/bzbay.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="$USER_HOME$/IdeaProjects" />
