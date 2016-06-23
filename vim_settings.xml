@@ -16,26 +16,20 @@
         <mark key="." line="5" column="0" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/bzbaydev/pom.xml" timestamp="1466146848537" />
-      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/test/java/com/mbon/resources/HelloYouResourceTest.java" timestamp="1466703542749">
-        <mark key="[" line="19" column="0" />
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/test/java/com/mbon/resources/HelloYouResourceTest.java" timestamp="1466706875230">
+        <mark key="[" line="20" column="6" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/hellousa/pom.xml" timestamp="1466699216228" />
-      <file name="$USER_HOME$/IdeaProjects/dropwizard-example/example.yml" timestamp="1466629032474" />
+      <file name="$USER_HOME$/IdeaProjects/dropwizard-example/example.yml" timestamp="1466706295272" />
       <file name="$USER_HOME$/IdeaProjects/bzdbBeta/src/main/java/edu/bravozulu/database/Computers.java" timestamp="1465943834197">
         <mark key="[" line="12" column="21" />
         <mark key="]" line="12" column="21" />
         <mark key="." line="12" column="21" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/bzdbBeta/src/main/java/edu/bravozulu/database/Item.java" timestamp="1465939995141">
-        <mark key="[" line="68" column="4" />
-        <mark key="]" line="33" column="2" />
-        <mark key="^" line="26" column="16" />
-        <mark key="." line="33" column="2" />
-      </file>
       <file name="$USER_HOME$/IdeaProjects/dropwizard-example/pom.xml" timestamp="1466629271323" />
-      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466704926567">
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466706478463">
         <mark key="v" line="1" column="0" />
-        <mark key="[" line="13" column="32" />
+        <mark key="[" line="19" column="32" />
         <mark key="]" line="1" column="0" />
         <mark key="." line="1" column="0" />
       </file>
@@ -45,8 +39,8 @@
         <mark key="]" line="9" column="0" />
         <mark key="." line="9" column="0" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/helloYouApplication.java" timestamp="1466701974532">
-        <mark key="[" line="2" column="0" />
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/helloYouApplication.java" timestamp="1466706486297">
+        <mark key="[" line="31" column="37" />
         <mark key="]" line="26" column="0" />
         <mark key="." line="26" column="0" />
       </file>
@@ -79,28 +73,20 @@
       <file name="$USER_HOME$/IdeaProjects/HelloWorld2/src/com/example/helloworld2/HelloWorld2.java" timestamp="1463177072702">
         <mark key="[" line="5" column="25" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/dropwizard-example/README.md" timestamp="1465198089841">
-        <mark key="[" line="45" column="12" />
-        <mark key="]" line="41" column="49" />
-        <mark key="^" line="41" column="49" />
-        <mark key="." line="41" column="49" />
-      </file>
       <file name="$USER_HOME$/IdeaProjects/BzBay/bzbay.yml" timestamp="1466135587588">
         <mark key="[" line="4" column="18" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/BzBay/src/main/java/com/bravozulu/bzbayApplication.java" timestamp="1466135879282">
         <mark key="[" line="23" column="66" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/helloworldmark/pom.xml" timestamp="1466102785383">
-        <mark key="[" line="28" column="18" />
-        <mark key="]" line="92" column="0" />
-        <mark key="^" line="46" column="11" />
-        <mark key="." line="92" column="0" />
-      </file>
       <file name="$USER_HOME$/IdeaProjects/helloworldmark/src/main/java/com/markbonicillo/HelloWorldApplication.java" timestamp="1466100006370">
         <mark key="[" line="29" column="23" />
         <mark key="]" line="24" column="0" />
         <mark key="." line="24" column="0" />
+      </file>
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/helloYouConfiguration.java" timestamp="1466705992166">
+        <mark key="]" line="8" column="0" />
+        <mark key="." line="8" column="0" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/helloworldmark/src/main/java/TemplateHealthCheck.java" timestamp="1465195153689">
         <mark key="[" line="2" column="3" />
@@ -121,40 +107,40 @@
     <jumps />
     <registers>
       <register name="&quot;" type="2">
-        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuYXV0aC5BdXRoOwo=</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="-" type="4">
-        <text>;</text>
+        <text>parameter</text>
       </register>
       <register name="0" type="2">
         <text encoding="base64">ICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4K</text>
       </register>
       <register name="1" type="2">
-        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuYXV0aC5BdXRoOwo=</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="2" type="2">
-        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuaGliZXJuYXRlLlVuaXRPZldvcms7Cg==</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="3" type="2">
-        <text encoding="base64">ICAgICAgICBBcnJheSBqID0gbmV3IEFycmF5TGlzdAo=</text>
+        <text encoding="base64">ICAgIC8vIFRPRE86IGltcGxlbWVudCBzZXJ2aWNlIGNvbmZpZ3VyYXRpb24K</text>
       </register>
-      <register name="4" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgICAgIAo=</text>
+      <register name="4" type="4">
+        <text>parameter</text>
       </register>
-      <register name="5" type="4">
-        <text>;</text>
+      <register name="5" type="2">
+        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuYXV0aC5BdXRoOwo=</text>
       </register>
       <register name="6" type="2">
-        <text encoding="base64">ICAgICAgICAvLyBUT0RPOiBpbXBsZW1lbnQgYXBwbGljYXRpb24K</text>
+        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuaGliZXJuYXRlLlVuaXRPZldvcms7Cg==</text>
       </register>
-      <register name="7" type="4">
-        <text encoding="base64">PGNoYW5nZVNldD4KICAgICAgICA8Y3JlYXRlQ29sdW1uPgoKICAgICAgICA8L2NyZWF0ZUNvbHVtbj4KICAgIDwvY2hhbmdlU2V0Pg==</text>
+      <register name="7" type="2">
+        <text encoding="base64">ICAgICAgICBBcnJheSBqID0gbmV3IEFycmF5TGlzdAo=</text>
       </register>
-      <register name="8" type="4">
-        <text encoding="base64">ICA8Y29uc3RyYWludHMgcHJpbWFyeUtleT0idHJ1ZSIgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4=</text>
+      <register name="8" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgICAgIAo=</text>
       </register>
       <register name="9" type="4">
-        <text encoding="base64">eG1sbnM9Imh0dHA6Ly93d3cubGlxdWliYXNlLm9yZy94bWwvbnMvZGJjaGFuZ2Vsb2ciCiAgICAgICAgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIKICAgICAgICB4c2k6c2NoZW1hTG9jYXRpb249Imh0dHA6Ly93d3cubGlxdWliYXNlLm9yZy94bWwvbnMvZGJjaGFuZ2Vsb2cKICAgICAgICAgaHR0cDovL3d3dy5saXF1aWJhc2Uub3JnL3htbC9ucy9kYmNoYW5nZWxvZy9kYmNoYW5nZWxvZy0zLjEueHNkIj4=</text>
+        <text>;</text>
       </register>
       <register name=":" type="4">
         <text>u</text>
