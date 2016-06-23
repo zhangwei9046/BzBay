@@ -16,6 +16,9 @@
         <mark key="." line="5" column="0" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/bzbaydev/pom.xml" timestamp="1466146848537" />
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/test/java/com/mbon/resources/HelloYouResourceTest.java" timestamp="1466703542749">
+        <mark key="[" line="19" column="0" />
+      </file>
       <file name="$USER_HOME$/IdeaProjects/hellousa/pom.xml" timestamp="1466699216228" />
       <file name="$USER_HOME$/IdeaProjects/dropwizard-example/example.yml" timestamp="1466629032474" />
       <file name="$USER_HOME$/IdeaProjects/bzdbBeta/src/main/java/edu/bravozulu/database/Computers.java" timestamp="1465943834197">
@@ -30,8 +33,9 @@
         <mark key="." line="33" column="2" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/dropwizard-example/pom.xml" timestamp="1466629271323" />
-      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466701775976">
-        <mark key="[" line="1" column="0" />
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466704926567">
+        <mark key="v" line="1" column="0" />
+        <mark key="[" line="13" column="32" />
         <mark key="]" line="1" column="0" />
         <mark key="." line="1" column="0" />
       </file>
@@ -51,6 +55,9 @@
       </file>
       <file name="/Dummy.txt" timestamp="1465947002491">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/pom.xml" timestamp="1466702870257">
+        <mark key="[" line="38" column="11" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/helloworldmark/src/main/java/com/markbonicillo/HelloWorldConfiguration.java" timestamp="1466099909654">
         <mark key="[" line="45" column="4" />
@@ -104,9 +111,6 @@
         <mark key="[" line="24" column="74" />
         <mark key="]" line="15" column="0" />
         <mark key="." line="15" column="0" />
-      </file>
-      <file name="/fragment.java" timestamp="1466127734410">
-        <mark key="[" line="0" column="0" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/helloworldmark/src/main/java/com/markbonicillo/HelloWorldResource.java" timestamp="1466099391157">
         <mark key="[" line="34" column="68" />
