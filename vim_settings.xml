@@ -23,7 +23,11 @@
         <mark key="." line="16" column="0" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/hellousa/pom.xml" timestamp="1466699216228" />
-      <file name="$USER_HOME$/IdeaProjects/HelloYou/config.yml" timestamp="1466708426799" />
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/config.yml" timestamp="1466709148243">
+        <mark key="[" line="2" column="10" />
+        <mark key="]" line="2" column="10" />
+        <mark key="." line="2" column="10" />
+      </file>
       <file name="$USER_HOME$/IdeaProjects/dropwizard-example/example.yml" timestamp="1466706295272" />
       <file name="$USER_HOME$/IdeaProjects/bzdbBeta/src/main/java/edu/bravozulu/database/Computers.java" timestamp="1465943834197">
         <mark key="[" line="12" column="21" />
@@ -31,11 +35,11 @@
         <mark key="." line="12" column="21" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/dropwizard-example/pom.xml" timestamp="1466629271323" />
-      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466706478463">
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466708966766">
         <mark key="v" line="1" column="0" />
-        <mark key="[" line="19" column="32" />
-        <mark key="]" line="1" column="0" />
-        <mark key="." line="1" column="0" />
+        <mark key="[" line="20" column="0" />
+        <mark key="]" line="20" column="0" />
+        <mark key="." line="20" column="0" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/BzBay/pom.xml" timestamp="1466629499790" />
       <file name="$USER_HOME$/IdeaProjects/helloworldmark/src/main/java/com/markbonicillo/Saying.java" timestamp="1466097555799">
@@ -112,11 +116,11 @@
       <jump line="18" column="13" filename="$USER_HOME$/IdeaProjects/HelloYou/src/test/java/com/mbon/resources/HelloYouResourceTest.java" />
     </jumps>
     <registers>
-      <register name="&quot;" type="2">
-        <text encoding="base64">LyoqLwo=</text>
+      <register name="&quot;" type="4">
+        <text>The greeting is %s!!!</text>
       </register>
       <register name="-" type="4">
-        <text>parameter</text>
+        <text>The greeting is %s!!!</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxhZGRSZXNvdXJjZVw+</text>
@@ -124,32 +128,32 @@
       <register name="0" type="2">
         <text encoding="base64">ICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4K</text>
       </register>
-      <register name="1" type="2">
-        <text encoding="base64">LyoqLwo=</text>
+      <register name="1" type="4">
+        <text>The greeting is %s!!!</text>
       </register>
       <register name="2" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">ICAgICAgICBpZih0cnVlKSB7CiAgICAgICAgICAgIHRocm93IG5ldyBOdWxsUG9pbnRlckV4Y2VwdGlvbigpOwogICAgICAgIH0K</text>
       </register>
       <register name="3" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">LyoqLwo=</text>
       </register>
       <register name="4" type="2">
-        <text encoding="base64">ICAgIC8vIFRPRE86IGltcGxlbWVudCBzZXJ2aWNlIGNvbmZpZ3VyYXRpb24K</text>
+        <text encoding="base64">Cg==</text>
       </register>
-      <register name="5" type="4">
-        <text>parameter</text>
+      <register name="5" type="2">
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="6" type="2">
-        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuYXV0aC5BdXRoOwo=</text>
+        <text encoding="base64">ICAgIC8vIFRPRE86IGltcGxlbWVudCBzZXJ2aWNlIGNvbmZpZ3VyYXRpb24K</text>
       </register>
-      <register name="7" type="2">
-        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuaGliZXJuYXRlLlVuaXRPZldvcms7Cg==</text>
+      <register name="7" type="4">
+        <text>parameter</text>
       </register>
       <register name="8" type="2">
-        <text encoding="base64">ICAgICAgICBBcnJheSBqID0gbmV3IEFycmF5TGlzdAo=</text>
+        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuYXV0aC5BdXRoOwo=</text>
       </register>
       <register name="9" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgICAgIAo=</text>
+        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuaGliZXJuYXRlLlVuaXRPZldvcms7Cg==</text>
       </register>
       <register name=":" type="4">
         <text>u</text>
