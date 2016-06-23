@@ -8,7 +8,7 @@
         <mark key="]" line="4" column="0" />
         <mark key="." line="4" column="0" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/dropwizard-example/src/main/java/com/example/helloworld/HelloWorldConfiguration.java" timestamp="1466150471191" />
+      <file name="$USER_HOME$/IdeaProjects/dropwizard-example/src/main/java/com/example/helloworld/HelloWorldConfiguration.java" timestamp="1466708123792" />
       <file name="$USER_HOME$/IdeaProjects/BzBay/config.yml" timestamp="1466623785681" />
       <file name="$USER_HOME$/IdeaProjects/helloworldmark/src/main/java/HelloWorldConfiguration.java" timestamp="1465182038801">
         <mark key="[" line="5" column="0" />
@@ -16,10 +16,14 @@
         <mark key="." line="5" column="0" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/bzbaydev/pom.xml" timestamp="1466146848537" />
-      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/test/java/com/mbon/resources/HelloYouResourceTest.java" timestamp="1466706875230">
-        <mark key="[" line="20" column="6" />
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/test/java/com/mbon/resources/HelloYouResourceTest.java" timestamp="1466707482631">
+        <mark key="[" line="15" column="7" />
+        <mark key="]" line="16" column="0" />
+        <mark key="^" line="14" column="3" />
+        <mark key="." line="16" column="0" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/hellousa/pom.xml" timestamp="1466699216228" />
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/config.yml" timestamp="1466708426799" />
       <file name="$USER_HOME$/IdeaProjects/dropwizard-example/example.yml" timestamp="1466706295272" />
       <file name="$USER_HOME$/IdeaProjects/bzdbBeta/src/main/java/edu/bravozulu/database/Computers.java" timestamp="1465943834197">
         <mark key="[" line="12" column="21" />
@@ -47,7 +51,7 @@
       <file name="/IntelliJ Default" timestamp="1465943554447">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/Dummy.txt" timestamp="1465947002491">
+      <file name="/Dummy.txt" timestamp="1466708065202">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/HelloYou/pom.xml" timestamp="1466702870257">
@@ -104,54 +108,64 @@
         <mark key="." line="34" column="68" />
       </file>
     </filemarks>
-    <jumps />
+    <jumps>
+      <jump line="18" column="13" filename="$USER_HOME$/IdeaProjects/HelloYou/src/test/java/com/mbon/resources/HelloYouResourceTest.java" />
+    </jumps>
     <registers>
       <register name="&quot;" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">LyoqLwo=</text>
       </register>
       <register name="-" type="4">
         <text>parameter</text>
+      </register>
+      <register name="/" type="4">
+        <text encoding="base64">XDxhZGRSZXNvdXJjZVw+</text>
       </register>
       <register name="0" type="2">
         <text encoding="base64">ICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4K</text>
       </register>
       <register name="1" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">LyoqLwo=</text>
       </register>
       <register name="2" type="2">
         <text encoding="base64">Cg==</text>
       </register>
       <register name="3" type="2">
+        <text encoding="base64">Cg==</text>
+      </register>
+      <register name="4" type="2">
         <text encoding="base64">ICAgIC8vIFRPRE86IGltcGxlbWVudCBzZXJ2aWNlIGNvbmZpZ3VyYXRpb24K</text>
       </register>
-      <register name="4" type="4">
+      <register name="5" type="4">
         <text>parameter</text>
       </register>
-      <register name="5" type="2">
+      <register name="6" type="2">
         <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuYXV0aC5BdXRoOwo=</text>
       </register>
-      <register name="6" type="2">
+      <register name="7" type="2">
         <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuaGliZXJuYXRlLlVuaXRPZldvcms7Cg==</text>
       </register>
-      <register name="7" type="2">
+      <register name="8" type="2">
         <text encoding="base64">ICAgICAgICBBcnJheSBqID0gbmV3IEFycmF5TGlzdAo=</text>
       </register>
-      <register name="8" type="2">
+      <register name="9" type="2">
         <text encoding="base64">ICAgICAgICAgICAgICAgIAo=</text>
-      </register>
-      <register name="9" type="4">
-        <text>;</text>
       </register>
       <register name=":" type="4">
         <text>u</text>
       </register>
     </registers>
     <search>
-      <last-dir>0</last-dir>
+      <last-search encoding="base64">XDxhZGRSZXNvdXJjZVw+</last-search>
+      <last-offset />
+      <last-pattern encoding="base64">XDxhZGRSZXNvdXJjZVw+</last-pattern>
+      <last-dir>-1</last-dir>
       <show-last>false</show-last>
     </search>
     <history>
-      <history-search />
+      <history-search>
+        <entry encoding="base64">XDxhZGRSZXNvdXJjZVw+</entry>
+      </history-search>
       <history-cmd>
         <entry>q</entry>
         <entry>wq</entry>
