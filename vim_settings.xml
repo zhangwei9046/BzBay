@@ -23,7 +23,8 @@
         <mark key="." line="16" column="0" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/hellousa/pom.xml" timestamp="1466699216228" />
-      <file name="$USER_HOME$/IdeaProjects/HelloYou/config.yml" timestamp="1466709148243">
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/config.yml" timestamp="1466709974412">
+        <mark key="'" line="2" column="10" />
         <mark key="[" line="2" column="10" />
         <mark key="]" line="2" column="10" />
         <mark key="." line="2" column="10" />
@@ -35,9 +36,9 @@
         <mark key="." line="12" column="21" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/dropwizard-example/pom.xml" timestamp="1466629271323" />
-      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466708966766">
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466709415602">
         <mark key="v" line="1" column="0" />
-        <mark key="[" line="20" column="0" />
+        <mark key="[" line="20" column="12" />
         <mark key="]" line="20" column="0" />
         <mark key="." line="20" column="0" />
       </file>
@@ -114,6 +115,7 @@
     </filemarks>
     <jumps>
       <jump line="18" column="13" filename="$USER_HOME$/IdeaProjects/HelloYou/src/test/java/com/mbon/resources/HelloYouResourceTest.java" />
+      <jump line="2" column="10" filename="$USER_HOME$/IdeaProjects/HelloYou/config.yml" />
     </jumps>
     <registers>
       <register name="&quot;" type="4">
