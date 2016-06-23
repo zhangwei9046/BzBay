@@ -30,11 +30,21 @@
         <mark key="." line="33" column="2" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/dropwizard-example/pom.xml" timestamp="1466629271323" />
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466701775976">
+        <mark key="[" line="1" column="0" />
+        <mark key="]" line="1" column="0" />
+        <mark key="." line="1" column="0" />
+      </file>
       <file name="$USER_HOME$/IdeaProjects/BzBay/pom.xml" timestamp="1466629499790" />
       <file name="$USER_HOME$/IdeaProjects/helloworldmark/src/main/java/com/markbonicillo/Saying.java" timestamp="1466097555799">
         <mark key="[" line="3" column="38" />
         <mark key="]" line="9" column="0" />
         <mark key="." line="9" column="0" />
+      </file>
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/helloYouApplication.java" timestamp="1466701974532">
+        <mark key="[" line="2" column="0" />
+        <mark key="]" line="26" column="0" />
+        <mark key="." line="26" column="0" />
       </file>
       <file name="/IntelliJ Default" timestamp="1465943554447">
         <mark key="[" line="0" column="0" />
@@ -106,41 +116,41 @@
     </filemarks>
     <jumps />
     <registers>
-      <register name="&quot;" type="4">
-        <text encoding="base64">PGNoYW5nZVNldD4KICAgICAgICA8Y3JlYXRlQ29sdW1uPgoKICAgICAgICA8L2NyZWF0ZUNvbHVtbj4KICAgIDwvY2hhbmdlU2V0Pg==</text>
+      <register name="&quot;" type="2">
+        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuYXV0aC5BdXRoOwo=</text>
       </register>
       <register name="-" type="4">
-        <text>import javax.validation.constraints.*;</text>
+        <text>;</text>
       </register>
       <register name="0" type="2">
         <text encoding="base64">ICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4K</text>
       </register>
-      <register name="1" type="4">
-        <text encoding="base64">PGNoYW5nZVNldD4KICAgICAgICA8Y3JlYXRlQ29sdW1uPgoKICAgICAgICA8L2NyZWF0ZUNvbHVtbj4KICAgIDwvY2hhbmdlU2V0Pg==</text>
+      <register name="1" type="2">
+        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuYXV0aC5BdXRoOwo=</text>
       </register>
-      <register name="2" type="4">
-        <text encoding="base64">ICA8Y29uc3RyYWludHMgcHJpbWFyeUtleT0idHJ1ZSIgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4=</text>
+      <register name="2" type="2">
+        <text encoding="base64">aW1wb3J0IGlvLmRyb3B3aXphcmQuaGliZXJuYXRlLlVuaXRPZldvcms7Cg==</text>
       </register>
-      <register name="3" type="4">
-        <text encoding="base64">eG1sbnM9Imh0dHA6Ly93d3cubGlxdWliYXNlLm9yZy94bWwvbnMvZGJjaGFuZ2Vsb2ciCiAgICAgICAgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIKICAgICAgICB4c2k6c2NoZW1hTG9jYXRpb249Imh0dHA6Ly93d3cubGlxdWliYXNlLm9yZy94bWwvbnMvZGJjaGFuZ2Vsb2cKICAgICAgICAgaHR0cDovL3d3dy5saXF1aWJhc2Uub3JnL3htbC9ucy9kYmNoYW5nZWxvZy9kYmNoYW5nZWxvZy0zLjEueHNkIj4=</text>
+      <register name="3" type="2">
+        <text encoding="base64">ICAgICAgICBBcnJheSBqID0gbmV3IEFycmF5TGlzdAo=</text>
       </register>
-      <register name="4" type="4">
-        <text encoding="base64">ICAgPGNvbnN0cmFpbnRzIHByaW1hcnlLZXk9InRydWUiIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4KICAgICAgICAgICAgICAgIDwvY29sdW1uPg==</text>
+      <register name="4" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgICAgIAo=</text>
       </register>
       <register name="5" type="4">
-        <text encoding="base64">ICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZm9yZWlnbktleT0iZmtfY2F0ZWdvcnkiCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlZmVyZW5jZWRUYWJsZU5hbWU9Ik11c2ljYWxJbnN0cnVtZW50cyIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVmZXJlbmNlZENvbHVtbk5hbWVzPSJjYXRlZ29yeSIKICAgICAgICAgICAgICAgICAgICA8L2NvbnN0cmFpbnRzPg==</text>
+        <text>;</text>
       </register>
-      <register name="6" type="4">
-        <text encoding="base64">ICA8Y29sdW1uIG5hbWU9InNpemUiIHR5cGU9InZhcmNoYXIoMjU1KSI+CiAgICAgICAgICAgIDxjb25zdHJhaW50cyBudWxsYWJsZT0iZmFsc2UiPjwvY29uc3RyYWludHM+CiAgICAgICAgPC9jb2x1bW4+</text>
+      <register name="6" type="2">
+        <text encoding="base64">ICAgICAgICAvLyBUT0RPOiBpbXBsZW1lbnQgYXBwbGljYXRpb24K</text>
       </register>
       <register name="7" type="4">
-        <text>import javax.validation.constraints.*;</text>
+        <text encoding="base64">PGNoYW5nZVNldD4KICAgICAgICA8Y3JlYXRlQ29sdW1uPgoKICAgICAgICA8L2NyZWF0ZUNvbHVtbj4KICAgIDwvY2hhbmdlU2V0Pg==</text>
       </register>
       <register name="8" type="4">
-        <text encoding="base64">ICAgICA8cGFzc3dvcmQ+MTwvcGFzc3dvcmQ+</text>
+        <text encoding="base64">ICA8Y29uc3RyYWludHMgcHJpbWFyeUtleT0idHJ1ZSIgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4=</text>
       </register>
       <register name="9" type="4">
-        <text encoding="base64">CgogICAgICAgIDxkZXBlbmRlbmN5PgogICAgICAgICAgICA8Z3JvdXBJZD5wc3FsPC9ncm91cElkPgogICAgICAgICAgICA8YXJ0aWZhY3RJZD5wc3FsLWNvbm5lY3Rvci1qYXZhPC9hcnRpZmFjdElkPgogICAgICAgICAgICA8dmVyc2lvbj45LjUuMzwvdmVyc2lvbj4KICAgICAgICA8L2RlcGVuZGVuY3k+</text>
+        <text encoding="base64">eG1sbnM9Imh0dHA6Ly93d3cubGlxdWliYXNlLm9yZy94bWwvbnMvZGJjaGFuZ2Vsb2ciCiAgICAgICAgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIKICAgICAgICB4c2k6c2NoZW1hTG9jYXRpb249Imh0dHA6Ly93d3cubGlxdWliYXNlLm9yZy94bWwvbnMvZGJjaGFuZ2Vsb2cKICAgICAgICAgaHR0cDovL3d3dy5saXF1aWJhc2Uub3JnL3htbC9ucy9kYmNoYW5nZWxvZy9kYmNoYW5nZWxvZy0zLjEueHNkIj4=</text>
       </register>
       <register name=":" type="4">
         <text>u</text>
@@ -164,6 +174,9 @@
     <shortcut-conflicts>
       <shortcut-conflict owner="vim">
         <text>ctrl pressed V</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed P</text>
       </shortcut-conflict>
     </shortcut-conflicts>
     <editor>

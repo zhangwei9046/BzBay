@@ -1,4 +1,5 @@
 <code_scheme name="Default (1)">
+  <option name="USE_EXTERNAL_ANNOTATIONS" value="true" />
   <option name="RIGHT_MARGIN" value="80" />
   <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
   <MarkdownNavigatorCodeStyleSettings>
