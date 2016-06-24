@@ -75,11 +75,6 @@
       <file name="$USER_HOME$/IdeaProjects/bzdbBeta/pom.xml" timestamp="1465940464690">
         <mark key="[" line="28" column="16" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/HelloWorld/src/main/java/com/example/helloworldApplication.java" timestamp="1466736430155">
-        <mark key="[" line="25" column="0" />
-        <mark key="]" line="25" column="0" />
-        <mark key="." line="25" column="0" />
-      </file>
       <file name="$USER_HOME$/IdeaProjects/dropwizard-example/src/main/java/com/example/helloworld/core/Template.java" timestamp="1466737300915">
         <mark key="[" line="6" column="0" />
       </file>
@@ -127,8 +122,8 @@
         <mark key="]" line="8" column="0" />
         <mark key="." line="8" column="0" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/HelloWorld/src/main/java/com/example/health/TemplateHealthCheck.java" timestamp="1466737920802">
-        <mark key="[" line="3" column="0" />
+      <file name="$USER_HOME$/IdeaProjects/HelloWorld/src/main/java/com/example/health/TemplateHealthCheck.java" timestamp="1466738176755">
+        <mark key="[" line="16" column="5" />
         <mark key="]" line="3" column="0" />
         <mark key="." line="3" column="0" />
       </file>
@@ -158,8 +153,8 @@
       <jump line="2" column="10" filename="$USER_HOME$/IdeaProjects/HelloYou/config.yml" />
     </jumps>
     <registers>
-      <register name="&quot;" type="2">
-        <text encoding="base64">aW1wb3J0IGNvbS5jb2RhaGFsZS5tZXRyaWNzLmhlYWx0aC5IZWFsdGhDaGVjazsK</text>
+      <register name="&quot;" type="4">
+        <text encoding="base64">ICAgZmluYWwgVGVtcGxhdGVIZWFsdGhDaGVjayBoZWFsdGhDaGVjayA9CiAgICAgICAgICAgICAgICBuZXcgVGVtcGxhdGVIZWFsdGhDaGVjayhjb25maWd1cmF0aW9uLmdldFRlbXBsYXRlKCkpOwoKICAgICAgICBlbnZpcm9ubWVudC5oZWFsdGhDaGVja3MoKS5yZWdpc3RlcigidGVtcGxhdGUiLCBoZWFsdGhDaGVjayk7</text>
       </register>
       <register name="-" type="4">
         <text />
@@ -170,34 +165,34 @@
       <register name="0" type="2">
         <text encoding="base64">ICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4K</text>
       </register>
-      <register name="1" type="2">
-        <text encoding="base64">aW1wb3J0IGNvbS5jb2RhaGFsZS5tZXRyaWNzLmhlYWx0aC5IZWFsdGhDaGVjazsK</text>
+      <register name="1" type="4">
+        <text encoding="base64">ICAgZmluYWwgVGVtcGxhdGVIZWFsdGhDaGVjayBoZWFsdGhDaGVjayA9CiAgICAgICAgICAgICAgICBuZXcgVGVtcGxhdGVIZWFsdGhDaGVjayhjb25maWd1cmF0aW9uLmdldFRlbXBsYXRlKCkpOwoKICAgICAgICBlbnZpcm9ubWVudC5oZWFsdGhDaGVja3MoKS5yZWdpc3RlcigidGVtcGxhdGUiLCBoZWFsdGhDaGVjayk7</text>
       </register>
       <register name="2" type="2">
+        <text encoding="base64">aW1wb3J0IGNvbS5jb2RhaGFsZS5tZXRyaWNzLmhlYWx0aC5IZWFsdGhDaGVjazsK</text>
+      </register>
+      <register name="3" type="2">
         <text encoding="base64">ICAgIHB1YmxpYyBUZW1wbGF0ZUhlYWx0aENoZWNrKFN0cmluZyB0ZW1wbGF0ZSkgewogICAgICAgIHRoaXMudGVtcGxhdGUgPSB0ZW1wbGF0ZTsKICAgIH0KCiAgICBAT3ZlcnJpZGUKICAgIHByb3RlY3RlZCBSZXN1bHQgY2hlY2soKSB0aHJvd3MgRXhjZXB0aW9uIHsKICAgICAgICBmaW5hbCBTdHJpbmcgc2F5aW5nID0gU3RyaW5nLmZvcm1hdCh0ZW1wbGF0ZSwgIlRFU1QiKTsKICAgICAgICBpZiAoIXNheWluZy5jb250YWlucygiVEVTVCIpKSB7CiAgICAgICAgICAgIHJldHVybiBSZXN1bHQudW5oZWFsdGh5KCJ0ZW1wbGF0ZSBkb2Vzbid0IGluY2x1ZGUgYSBuYW1lIik7CiAgICAgICAgfQogICAgICAgIHJldHVybiBSZXN1bHQuaGVhbHRoeSgpOwogICAgfQo=</text>
       </register>
-      <register name="3" type="4">
+      <register name="4" type="4">
         <text />
       </register>
-      <register name="4" type="4">
+      <register name="5" type="4">
         <text>import com.codahale.metrics.health.HealthCheck;
 import com.example.core.Template;
 import com.google.common.base.Optional;</text>
       </register>
-      <register name="5" type="2">
+      <register name="6" type="2">
         <text encoding="base64">ICAgICAgICAvLyBUT0RPOiBpbXBsZW1lbnQgYXBwbGljYXRpb24K</text>
       </register>
-      <register name="6" type="2">
+      <register name="7" type="2">
         <text encoding="base64">ICAgIC8vIFRPRE86IGltcGxlbWVudCBzZXJ2aWNlIGNvbmZpZ3VyYXRpb24K</text>
       </register>
-      <register name="7" type="2">
+      <register name="8" type="2">
         <text encoding="base64">ICAgICAgICA8ZHJvcHdpemFyZC52ZXJzaW9uPjEuMC4wLXJjMzwvZHJvcHdpemFyZC52ZXJzaW9uPgo=</text>
       </register>
-      <register name="8" type="4">
+      <register name="9" type="4">
         <text encoding="base64">IDxkcm9wd2l6YXJkLnZlcnNpb24+MS4wLjAtcmMzPC9kcm9wd2l6YXJkLnZlcnNpb24+CiAgICAgICAgPG1haW5DbGFzcz5jb20ubWFyay5IZWxsb1dvcmxkMkFwcGxpY2F0aW9uPC9tYWluQ2xhc3M+</text>
-      </register>
-      <register name="9" type="2">
-        <text encoding="base64">ICAgIC8vIFRPRE86IGltcGxlbWVudCBzZXJ2aWNlIGNvbmZpZ3VyYXRpb24K</text>
       </register>
       <register name=":" type="4">
         <text>u</text>
