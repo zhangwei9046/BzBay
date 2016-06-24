@@ -8,41 +8,35 @@
         <mark key="]" line="4" column="0" />
         <mark key="." line="4" column="0" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/dropwizard-example/src/main/java/com/example/helloworld/HelloWorldConfiguration.java" timestamp="1466708123792" />
-      <file name="$USER_HOME$/IdeaProjects/BzBay/config.yml" timestamp="1466623785681" />
       <file name="$USER_HOME$/IdeaProjects/helloworldmark/src/main/java/HelloWorldConfiguration.java" timestamp="1465182038801">
         <mark key="[" line="5" column="0" />
         <mark key="]" line="5" column="0" />
         <mark key="." line="5" column="0" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/bzbaydev/pom.xml" timestamp="1466146848537" />
       <file name="$USER_HOME$/IdeaProjects/HelloYou/src/test/java/com/mbon/resources/HelloYouResourceTest.java" timestamp="1466707482631">
         <mark key="[" line="15" column="7" />
         <mark key="]" line="16" column="0" />
         <mark key="^" line="14" column="3" />
         <mark key="." line="16" column="0" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/hellousa/pom.xml" timestamp="1466699216228" />
       <file name="$USER_HOME$/IdeaProjects/HelloYou/config.yml" timestamp="1466726811873">
         <mark key="'" line="2" column="10" />
         <mark key="[" line="4" column="17" />
         <mark key="]" line="2" column="10" />
         <mark key="." line="2" column="10" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/dropwizard-example/example.yml" timestamp="1466706295272" />
       <file name="$USER_HOME$/IdeaProjects/bzdbBeta/src/main/java/edu/bravozulu/database/Computers.java" timestamp="1465943834197">
         <mark key="[" line="12" column="21" />
         <mark key="]" line="12" column="21" />
         <mark key="." line="12" column="21" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/dropwizard-example/pom.xml" timestamp="1466629271323" />
       <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466727561490">
         <mark key="v" line="1" column="0" />
         <mark key="[" line="32" column="9" />
         <mark key="]" line="29" column="0" />
         <mark key="." line="29" column="0" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/BzBay/pom.xml" timestamp="1466629499790" />
+      <file name="$USER_HOME$/IdeaProjects/HelloWorld/src/main/java/com/helloworld/api/Saying.java" timestamp="1466729347094" />
       <file name="$USER_HOME$/IdeaProjects/helloworldmark/src/main/java/com/markbonicillo/Saying.java" timestamp="1466097555799">
         <mark key="[" line="3" column="38" />
         <mark key="]" line="9" column="0" />
@@ -86,6 +80,9 @@
         <mark key="]" line="8" column="0" />
         <mark key="." line="8" column="0" />
       </file>
+      <file name="$USER_HOME$/IdeaProjects/HelloWorld/src/main/java/com/helloworld/resources/helloworldresource.java" timestamp="1466730176915">
+        <mark key="[" line="5" column="16" />
+      </file>
       <file name="$USER_HOME$/IdeaProjects/BzBay/src/main/resources/migrations.xml" timestamp="1466632756482">
         <mark key="[" line="11" column="18" />
         <mark key="]" line="11" column="18" />
@@ -102,6 +99,9 @@
         <mark key="[" line="29" column="23" />
         <mark key="]" line="24" column="0" />
         <mark key="." line="24" column="0" />
+      </file>
+      <file name="$USER_HOME$/IdeaProjects/HelloWorld/src/main/java/com/helloworld/resources/HelloWorldResource.java" timestamp="1466730256087">
+        <mark key="[" line="14" column="32" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/helloYouConfiguration.java" timestamp="1466726792354">
         <mark key="[" line="12" column="39" />
