@@ -36,9 +36,9 @@
         <mark key="." line="12" column="21" />
       </file>
       <file name="$USER_HOME$/IdeaProjects/dropwizard-example/pom.xml" timestamp="1466629271323" />
-      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466717487036">
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/resources/HelloYouResource.java" timestamp="1466727561490">
         <mark key="v" line="1" column="0" />
-        <mark key="[" line="29" column="12" />
+        <mark key="[" line="32" column="9" />
         <mark key="]" line="29" column="0" />
         <mark key="." line="29" column="0" />
       </file>
@@ -48,9 +48,10 @@
         <mark key="]" line="9" column="0" />
         <mark key="." line="9" column="0" />
       </file>
-      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/helloYouApplication.java" timestamp="1466706486297">
-        <mark key="]" line="26" column="0" />
-        <mark key="." line="26" column="0" />
+      <file name="$USER_HOME$/IdeaProjects/HelloYou/src/main/java/com/mbon/helloYouApplication.java" timestamp="1466727643880">
+        <mark key="[" line="15" column="0" />
+        <mark key="]" line="15" column="0" />
+        <mark key="." line="15" column="0" />
       </file>
       <file name="/IntelliJ Default" timestamp="1465943554447">
         <mark key="[" line="0" column="0" />
@@ -123,8 +124,8 @@
       <jump line="2" column="10" filename="$USER_HOME$/IdeaProjects/HelloYou/config.yml" />
     </jumps>
     <registers>
-      <register name="&quot;" type="4">
-        <text encoding="base64">ICAgIEBPdmVycmlkZQogICAgcHVibGljIFN0cmluZyB0b1N0cmluZygpIHsKICAgICAgICByZXR1cm4gIlNheWluZ3siICsKICAgICAgICAgICAgICAgICJpZD0iICsgaWQgKwogICAgICAgICAgICAgICAgIiwgY29udGVudD0nIiArIGNvbnRlbnQgKyAnXCcnICsKICAgICAgICAgICAgICAgICd9JzsKICAgIH0=</text>
+      <register name="&quot;" type="2">
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="-" type="4">
         <text>The greeting is %s!!!</text>
@@ -135,32 +136,32 @@
       <register name="0" type="2">
         <text encoding="base64">ICAgICAgICAgICAgPGNvbnN0cmFpbnRzIG51bGxhYmxlPSJmYWxzZSI+PC9jb25zdHJhaW50cz4K</text>
       </register>
-      <register name="1" type="4">
-        <text encoding="base64">ICAgIEBPdmVycmlkZQogICAgcHVibGljIFN0cmluZyB0b1N0cmluZygpIHsKICAgICAgICByZXR1cm4gIlNheWluZ3siICsKICAgICAgICAgICAgICAgICJpZD0iICsgaWQgKwogICAgICAgICAgICAgICAgIiwgY29udGVudD0nIiArIGNvbnRlbnQgKyAnXCcnICsKICAgICAgICAgICAgICAgICd9JzsKICAgIH0=</text>
+      <register name="1" type="2">
+        <text encoding="base64">Cg==</text>
       </register>
-      <register name="2" type="4">
-        <text encoding="base64">CiAgICBAT3ZlcnJpZGUKICAgIHB1YmxpYyBTdHJpbmcgdG9TdHJpbmcoKSB7CiAgICAgICAgcmV0dXJuIE1vcmVPYmplY3RzLnRvU3RyaW5nSGVscGVyKHRoaXMpCiAgICAgICAgICAgICAgICAuYWRkKCJpZCIsIGlkKQogICAgICAgICAgICAgICAgLmFkZCgiY29udGVudCIsIGNvbnRlbnQpCiAgICAgICAgICAgICAgICAudG9TdHJpbmcoKTsKICAgIH0=</text>
+      <register name="2" type="2">
+        <text encoding="base64">ICAK</text>
       </register>
       <register name="3" type="4">
+        <text encoding="base64">ICBAT3ZlcnJpZGUKICAgIHB1YmxpYyBTdHJpbmcgZ2V0TmFtZSgpIHsKICAgICAgICByZXR1cm4gImhlbGxvWW91IjsKICAgIH0=</text>
+      </register>
+      <register name="4" type="4">
+        <text encoding="base64">ICAgIEBPdmVycmlkZQogICAgcHVibGljIFN0cmluZyB0b1N0cmluZygpIHsKICAgICAgICByZXR1cm4gIlNheWluZ3siICsKICAgICAgICAgICAgICAgICJpZD0iICsgaWQgKwogICAgICAgICAgICAgICAgIiwgY29udGVudD0nIiArIGNvbnRlbnQgKyAnXCcnICsKICAgICAgICAgICAgICAgICd9JzsKICAgIH0=</text>
+      </register>
+      <register name="5" type="4">
+        <text encoding="base64">CiAgICBAT3ZlcnJpZGUKICAgIHB1YmxpYyBTdHJpbmcgdG9TdHJpbmcoKSB7CiAgICAgICAgcmV0dXJuIE1vcmVPYmplY3RzLnRvU3RyaW5nSGVscGVyKHRoaXMpCiAgICAgICAgICAgICAgICAuYWRkKCJpZCIsIGlkKQogICAgICAgICAgICAgICAgLmFkZCgiY29udGVudCIsIGNvbnRlbnQpCiAgICAgICAgICAgICAgICAudG9TdHJpbmcoKTsKICAgIH0=</text>
+      </register>
+      <register name="6" type="4">
         <text>The greeting is %s!!!</text>
       </register>
-      <register name="4" type="2">
+      <register name="7" type="2">
         <text encoding="base64">ICAgICAgICBpZih0cnVlKSB7CiAgICAgICAgICAgIHRocm93IG5ldyBOdWxsUG9pbnRlckV4Y2VwdGlvbigpOwogICAgICAgIH0K</text>
       </register>
-      <register name="5" type="2">
+      <register name="8" type="2">
         <text encoding="base64">LyoqLwo=</text>
       </register>
-      <register name="6" type="2">
+      <register name="9" type="2">
         <text encoding="base64">Cg==</text>
-      </register>
-      <register name="7" type="2">
-        <text encoding="base64">Cg==</text>
-      </register>
-      <register name="8" type="2">
-        <text encoding="base64">ICAgIC8vIFRPRE86IGltcGxlbWVudCBzZXJ2aWNlIGNvbmZpZ3VyYXRpb24K</text>
-      </register>
-      <register name="9" type="4">
-        <text>parameter</text>
       </register>
       <register name=":" type="4">
         <text>u</text>
