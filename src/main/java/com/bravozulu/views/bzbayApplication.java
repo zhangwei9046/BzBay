@@ -1,5 +1,6 @@
-package com.bravozulu;
+package com.bravozulu.views;
 
+import com.bravozulu.resources.UserResource;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.Application;
@@ -31,7 +32,7 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
     @Override
     public void run(final bzbayConfiguration configuration,
                     final Environment environment) {
-        // TODO: implement application
+        environment.jersey().register(new UserResource());
     }
 
 }
