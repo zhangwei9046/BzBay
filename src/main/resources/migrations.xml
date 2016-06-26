@@ -29,7 +29,7 @@
         <comment>A script to create review table</comment>
     </changeSet>
     <changeSet id="2" author="ying">
-        <createTable tableName="bigHistory">
+        <createTable tableName="bitHistory">
             <column name="bidId" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
