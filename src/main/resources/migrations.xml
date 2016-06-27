@@ -8,7 +8,7 @@
 
     <changeSet id="1" author="ying">
         <createTable tableName="user">
-            <column name="userId" type="bigint">
+            <column name="userId" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="username" type="varchar(255)">
@@ -39,7 +39,7 @@
     </changeSet>
     <changeSet id="2" author="ying">
         <createTable tableName="item">
-            <column name="itemId" type="bigint">
+            <column name="itemId" type="bigint"  autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
@@ -100,7 +100,7 @@
     </changeSet>
     <changeSet id="4" author="ying">
         <createTable tableName="bitHistory">
-            <column name="bidId" type="bigint">
+            <column name="bidId" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="itemId" type="bigint">
