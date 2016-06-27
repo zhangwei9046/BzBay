@@ -7,28 +7,98 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet id="1" author="ying">
+        <createTable tableName="user">
+            <column name="userId" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="firstName" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastName" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(255)">
+            </column>
+            <column name="state" type="varchar(255)">
+            </column>
+            <column name="address" type="varchar(255)">
+            </column>
+            <column name="isAdmin" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="ying">
+        <createTable tableName="item">
+            <column name="itemId" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="available" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sellerId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_sellerId"
+                             referencedTableName="user"
+                             referencedColumnNames="userId"/>
+            </column>
+            <column name="buyerId" type="bigint">
+            </column>
+            <column name="model" type="varchar(255)"></column>
+            <column name="shipping" type="varchar(255)"></column>
+            <column name="category" type="varchar(255)"></column>
+            <column name="condition" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type = "varchar(255)"></column>
+            <column name="description" type="varchar(255)"></column>
+            <column name="initialPrice" type="float">
+                <constraints nullable="false"/>
+            </column>
+            <column name="finalPrice" type="float"></column>
+            <column name="startDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="endDate" type="datetime"></column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="ying">
         <createTable tableName="review">
             <column name="reviewId" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="senderId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_user_userId"
+                <constraints nullable="false" foreignKeyName="fk_user_senderId"
                              referencedTableName="user"
                              referencedColumnNames="userId"/>
             </column>
             <column name="receiverId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_user_userId"
+                <constraints nullable="false" foreignKeyName="fk_user_receiverId"
                              referencedTableName="user"
                              referencedColumnNames="userId"/>
             </column>
             <column name="content" type="varchar(2048)">
                 <constraints nullable="false"/>
             </column>
-            <column name="like" type="boolean"/>
+            <column name="score" type="smallint"/>
+            <column name="date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
         <comment>A script to create review table</comment>
     </changeSet>
-    <changeSet id="2" author="ying">
+    <changeSet id="4" author="ying">
         <createTable tableName="bitHistory">
             <column name="bidId" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>

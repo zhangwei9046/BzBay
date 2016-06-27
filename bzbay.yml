@@ -1,6 +1,6 @@
 # Database settings.
 database:
-  driverClass: org.postgresql.jdbc.Driver
+  driverClass: org.postgresql.Driver
   user: root
   password: password
   url: jdbc:postgresql://localhost:5432/test
