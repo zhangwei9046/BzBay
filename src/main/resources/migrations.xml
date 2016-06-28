@@ -121,4 +121,21 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="5" author="mark">
+        <createTable tableName="musicInstrument">
+            <column name="itemId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemId"
+                             referencedTableName="item"
+                             referencedColumnNames="itemId"/>
+            </column>
+            <column name="brand" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="classification" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
 </databaseChangeLog>
