@@ -21,4 +21,7 @@ public class UserDAO extends AbstractDAO<User> {
     public List<User> findAll() {
         return list(namedQuery("com.bravozulu.core.User.findAll"));
     }
+
+    public void delete(long id) {}
+
 }
