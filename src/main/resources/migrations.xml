@@ -163,5 +163,22 @@
             </column>
         </createTable>
     </changeSet>
-
+    <changeSet id="8" author="mark">
+        <createTable tableName="computerTabletSmartphone">
+            <column name="itemId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemId"
+                             referencedTableName="item"
+                             referencedColumnNames="itemId"/>
+            </column>
+            <column name="size" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="storage" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cpu" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
