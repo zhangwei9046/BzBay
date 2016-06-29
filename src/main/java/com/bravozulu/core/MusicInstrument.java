@@ -2,12 +2,6 @@ package com.bravozulu.core;
 
 import javax.persistence.Column;
 
-/*import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.sql.Timestamp;
-*/
-
 /**
  * Represents a MusicInstrument which is a subclass of Item
  *
@@ -20,8 +14,6 @@ public class MusicInstrument extends Item {
     private String brand;
     @Column(name = "classification", nullable = false)
     private String classification;
-    @Column(name = "itemId", nullable = false)
-    private long itemId;
 
     /**
      * Constructor for MusicInstrument
@@ -29,12 +21,10 @@ public class MusicInstrument extends Item {
      * @param classification the classification of the instrument based on
      *                       Western classification (i.e. string, woodwind,
      *                       brass, percussion)
-     * @param itemId the item identification
      */
-    public MusicInstrument(String brand, String classification, long itemId) {
+    public MusicInstrument(String brand, String classification) {
         this.brand = brand;
         this.classification = classification;
-        this.itemId = itemId;
     }
 
     /**
@@ -47,7 +37,7 @@ public class MusicInstrument extends Item {
 
     /**
      * Sets the brand
-     * @param brand void
+     * @param brand the bran
      */
     public void setBrand(String brand) {
         this.brand = brand;
@@ -63,29 +53,12 @@ public class MusicInstrument extends Item {
 
     /**
      * Sets the classification
-     * @param classification void
+     * @param classification the classification
      */
     public void setClassification(String classification) {
         this.classification = classification;
     }
 
-    /**
-     * Returns the itemId
-     * @return itemId
-     */
-    @Override
-    public long getItemId() {
-        return itemId;
-    }
-
-    /**
-     * Sets the itemId
-     * @param itemId void
-     */
-    @Override
-    public void setItemId(long itemId) {
-        this.itemId = itemId;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -95,7 +68,6 @@ public class MusicInstrument extends Item {
 
         MusicInstrument that = (MusicInstrument) o;
 
-        if (itemId != that.itemId) return false;
         if (!brand.equals(that.brand)) return false;
         return classification.equals(that.classification);
 
@@ -106,7 +78,6 @@ public class MusicInstrument extends Item {
         int result = super.hashCode();
         result = 31 * result + brand.hashCode();
         result = 31 * result + classification.hashCode();
-        result = 31 * result + (int) (itemId ^ (itemId >>> 32));
         return result;
     }
 
@@ -115,7 +86,6 @@ public class MusicInstrument extends Item {
         return "MusicInstrument{" +
                 "brand='" + brand + '\'' +
                 ", classification='" + classification + '\'' +
-                ", itemId=" + itemId +
                 '}';
     }
 }

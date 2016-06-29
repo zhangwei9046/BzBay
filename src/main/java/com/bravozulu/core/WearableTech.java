@@ -13,19 +13,14 @@ public class WearableTech {
     @Column(name = "size", nullable = false)
     private String size;
 
-    @Column(name = "itemId", nullable = false)
-    private long itemId;
-
     /**
      * Constructor for WearableTech
      * @param brand the brand of the item
      * @param size the size of the item
-     * @param itemId the item identification
      */
-    public WearableTech(String brand, String size, long itemId) {
+    public WearableTech(String brand, String size) {
         this.brand = brand;
         this.size = size;
-        this.itemId = itemId;
     }
 
     /**
@@ -60,22 +55,6 @@ public class WearableTech {
         this.size = size;
     }
 
-    /**
-     * Returns the itemId
-     * @return returns itemId
-     */
-    public long getItemId() {
-        return itemId;
-    }
-
-    /**
-     * Sets the itemId
-     * @param itemId the itemId
-     */
-    public void setItemId(long itemId) {
-        this.itemId = itemId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -83,7 +62,6 @@ public class WearableTech {
 
         WearableTech that = (WearableTech) o;
 
-        if (itemId != that.itemId) return false;
         if (!brand.equals(that.brand)) return false;
         return size.equals(that.size);
 
@@ -93,7 +71,6 @@ public class WearableTech {
     public int hashCode() {
         int result = brand.hashCode();
         result = 31 * result + size.hashCode();
-        result = 31 * result + (int) (itemId ^ (itemId >>> 32));
         return result;
     }
 
@@ -102,7 +79,6 @@ public class WearableTech {
         return "WearableTech{" +
                 "brand='" + brand + '\'' +
                 ", size='" + size + '\'' +
-                ", itemId=" + itemId +
                 '}';
     }
 }
