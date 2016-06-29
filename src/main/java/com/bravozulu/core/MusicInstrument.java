@@ -29,10 +29,12 @@ public class MusicInstrument extends Item {
      * @param classification the classification of the instrument based on
      *                       Western classification (i.e. string, woodwind,
      *                       brass, percussion)
+     * @param itemId the item identification
      */
-    public MusicInstrument(String brand, String classification) {
+    public MusicInstrument(String brand, String classification, long itemId) {
         this.brand = brand;
         this.classification = classification;
+        this.itemId = itemId;
     }
 
     /**

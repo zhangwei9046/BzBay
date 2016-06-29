@@ -136,6 +136,21 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="6" author="mark">
+        <createTable tableName="wearableTech">
+            <column name="itemId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemId"
+                             referencedTableName="item"
+                             referencedColumnNames="itemId"/>
+            </column>
+            <column name="brand" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 
 
 </databaseChangeLog>
