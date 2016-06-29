@@ -151,6 +151,17 @@
             </column>
         </createTable>
     </changeSet>
-
+    <changeSet id="7" author="mark">
+        <createTable tableName="gamesMovieMusic">
+            <column name="itemId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemId"
+                             referencedTableName="item"
+                             referencedColumnNames="itemId"/>
+            </column>
+            <column name="releaseDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>
