@@ -2,7 +2,7 @@
 database:
   driverClass: org.postgresql.Driver
   user: root
-  password: password1
+  password: password
   url: jdbc:postgresql://localhost:5432/test
 
 #  use the simple server factory if you only want to run on a single port

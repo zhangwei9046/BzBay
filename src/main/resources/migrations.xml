@@ -136,6 +136,4 @@
             </column>
         </createTable>
     </changeSet>
-
-
 </databaseChangeLog>

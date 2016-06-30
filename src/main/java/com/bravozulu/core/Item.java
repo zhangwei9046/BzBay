@@ -1,14 +1,15 @@
 package com.bravozulu.core;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
  * Created by ying on 6/27/16.
  */
+
+@Entity
+@Table(name="item")
+
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
