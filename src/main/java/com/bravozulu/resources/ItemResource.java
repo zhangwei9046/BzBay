@@ -11,6 +11,7 @@ import io.dropwizard.hibernate.UnitOfWork;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.Optional;
 
 @Path("/item")
 @Produces(MediaType.APPLICATION_JSON)
@@ -36,6 +37,19 @@ public class ItemResource {
         return itemDAO.create(item);
     }
 
+
+    /**
+     * Returns the item given an item's identification
+     * @param itemId the item id
+     * @return the item in JSON format
+     */
+    @GET @Path("/{itemId}")
+    @UnitOfWork
+    @Produces("application/json")
+    public Optional<Item> findItemById(@PathParam("itemId") long itemId) {
+        return this.itemDAO.findById(itemId);
+    }
+
     /**
      *
      * @return
@@ -59,11 +73,11 @@ public class ItemResource {
 
     /**
      * Deletes the item
-     * @param item
+     * @param id the item's id
      */
     @DELETE
     @UnitOfWork
-    public void delete(Item item) {
-        this.itemDAO.deleteItem(item);
+    public void delete(long id) {
+        this.itemDAO.deleteItem(id);
     }
 }
