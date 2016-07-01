@@ -9,6 +9,12 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name="item")
+@NamedQueries(value = {
+        @NamedQuery(
+                name = "com.bravozulu.core.Item.findAll",
+                query = "SELECT u FROM User u"
+        )
+})
 
 public class Item {
     @Id
