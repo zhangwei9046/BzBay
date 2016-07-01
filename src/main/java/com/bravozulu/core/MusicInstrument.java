@@ -1,6 +1,8 @@
 package com.bravozulu.core;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Represents a MusicInstrument which is a subclass of Item
@@ -9,6 +11,8 @@ import javax.persistence.Column;
  *
  */
 
+@Entity
+@Table(name="MusicInstrument")
 public class MusicInstrument extends Item {
     @Column(name = "brand", nullable = false)
     private String brand;
