@@ -26,7 +26,7 @@ public class ItemResource {
     }
 
     /**
-     *
+     * Creates and adds item
      * @param item
      * @return
      */
@@ -47,7 +47,7 @@ public class ItemResource {
     }
 
     /**
-     *
+     * Updates an item based on some characteristic
      * @param item
      * @return
      */
@@ -58,7 +58,7 @@ public class ItemResource {
     }
 
     /**
-     *
+     * Deletes the item
      * @param item
      */
     @DELETE
