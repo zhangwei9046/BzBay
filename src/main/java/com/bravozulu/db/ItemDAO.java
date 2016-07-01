@@ -21,10 +21,12 @@ public class ItemDAO extends AbstractDAO<Item>{
     public Item create(Item item) {return this.persist(item);}
 
     /**
-     *
-     * @return
+     * Returns a list of all items in the database
+     * @return returns list of all items
      */
-    public List<Item> findAll(){};
+    public List<Item> findAll(){
+        return list(namedQuery("com.bravozulu.core.Item.findAll"));
+    }
 
     /**
      *
@@ -36,6 +38,8 @@ public class ItemDAO extends AbstractDAO<Item>{
      *
      * @param item
      */
-    public void deleteItem(Item item) {};
+    public void deleteItem(Item item) {
+        // delete the item on the database and orint message
+    };
 
 }
