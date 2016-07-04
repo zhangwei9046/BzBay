@@ -10,18 +10,18 @@ import javax.persistence.*;
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.User.findAll",
-                query = "SELECT u FROM User u"
+                query = "SELECT u.userId FROM User u"
         )
 })
 
 public class User {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "user_id_seq_name")
-    @SequenceGenerator(name = "user_id_seq_name",
-            sequenceName = "user_id_seq",
-            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+//            generator = "user_id_seq_name")
+//    @SequenceGenerator(name = "user_id_seq_name",
+//            sequenceName = "user_id_seq",
+//            allocationSize = 1)
     private long userId;
 
     @Column(name = "username", nullable = false)

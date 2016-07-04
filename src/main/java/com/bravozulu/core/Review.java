@@ -3,11 +3,11 @@ package com.bravozulu.core;
 /**
  * Created by ying on 6/25/16.
  */
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Timestamp;
 
+@Entity
+@Table(name="review")
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +22,20 @@ public class Review {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @Column(name = "like", nullable = false)
-    private boolean like;
+    @Column(name = "score", nullable = false)
+    private boolean score;
 
-    public Review(long senderId, long receiverId, String content, boolean like) {
+    @Column(name = "date", nullable = false)
+    private Timestamp date;
+
+    public Review(long senderId, long receiverId, String content, boolean score) {
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.content = content;
-        this.like = like;
+        this.score = score;
+    }
+
+    public Review() {
     }
 
     public long getReviewId() {
@@ -64,36 +70,11 @@ public class Review {
         this.content = content;
     }
 
-    public boolean isLike() {
-        return like;
+    public boolean isScore() {
+        return score;
     }
 
-    public void setLike(boolean like) {
-        this.like = like;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Review review = (Review) o;
-
-        if (reviewId != review.reviewId) return false;
-        if (senderId != review.senderId) return false;
-        if (receiverId != review.receiverId) return false;
-        if (like != review.like) return false;
-        return content.equals(review.content);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (reviewId ^ (reviewId >>> 32));
-        result = 31 * result + (int) (senderId ^ (senderId >>> 32));
-        result = 31 * result + (int) (receiverId ^ (receiverId >>> 32));
-        result = 31 * result + content.hashCode();
-        result = 31 * result + (like ? 1 : 0);
-        return result;
+    public void setScore(boolean score) {
+        this.score = score;
     }
 }

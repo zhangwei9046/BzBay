@@ -3,12 +3,11 @@ package com.bravozulu.core;
 /**
  * Created by ying on 6/25/16.
  */
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
+@Table(name="bidHistory")
 public class BidHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

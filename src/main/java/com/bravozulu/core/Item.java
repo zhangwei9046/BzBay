@@ -24,9 +24,6 @@ public class Item {
     @Column(name = "sellerId", nullable = false)
     private long sellerId;
 
-    @Column(name = "buyerId")
-    private long buyerId;
-
     @Column(name = "model")
     private String model;
 
@@ -87,14 +84,6 @@ public class Item {
 
     public void setSellerId(long sellerId) {
         this.sellerId = sellerId;
-    }
-
-    public long getBuyerId() {
-        return buyerId;
-    }
-
-    public void setBuyerId(long buyerId) {
-        this.buyerId = buyerId;
     }
 
     public String getModel() {
@@ -187,7 +176,6 @@ public class Item {
         if (itemId != item.itemId) return false;
         if (available != item.available) return false;
         if (sellerId != item.sellerId) return false;
-        if (buyerId != item.buyerId) return false;
         if (Double.compare(item.initialPrice, initialPrice) != 0) return false;
         if (Double.compare(item.finalPrice, finalPrice) != 0) return false;
         if (!name.equals(item.name)) return false;
@@ -197,8 +185,8 @@ public class Item {
         if (!condition.equals(item.condition)) return false;
         if (!url.equals(item.url)) return false;
         if (!description.equals(item.description)) return false;
-        if (!startDate.equals(item.startDate)) return false;
-        return endDate.equals(item.endDate);
+        if (startDate != null ? !startDate.equals(item.startDate) : item.startDate != null) return false;
+        return endDate != null ? endDate.equals(item.endDate) : item.endDate == null;
 
     }
 
@@ -210,7 +198,6 @@ public class Item {
         result = 31 * result + name.hashCode();
         result = 31 * result + (available ? 1 : 0);
         result = 31 * result + (int) (sellerId ^ (sellerId >>> 32));
-        result = 31 * result + (int) (buyerId ^ (buyerId >>> 32));
         result = 31 * result + model.hashCode();
         result = 31 * result + shipping.hashCode();
         result = 31 * result + category.hashCode();
@@ -221,29 +208,10 @@ public class Item {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(finalPrice);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + startDate.hashCode();
-        result = 31 * result + endDate.hashCode();
+        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
+        result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "itemId=" + itemId +
-                ", name='" + name + '\'' +
-                ", available=" + available +
-                ", sellerId=" + sellerId +
-                ", buyerId=" + buyerId +
-                ", model='" + model + '\'' +
-                ", shipping='" + shipping + '\'' +
-                ", category='" + category + '\'' +
-                ", condition='" + condition + '\'' +
-                ", url='" + url + '\'' +
-                ", description='" + description + '\'' +
-                ", initialPrice=" + initialPrice +
-                ", finalPrice=" + finalPrice +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                '}';
-    }
+
 }

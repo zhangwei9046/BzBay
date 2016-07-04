@@ -53,8 +53,6 @@
                              referencedTableName="user"
                              referencedColumnNames="userId"/>
             </column>
-            <column name="buyerId" type="bigint">
-            </column>
             <column name="model" type="varchar(255)"></column>
             <column name="shipping" type="varchar(255)"></column>
             <column name="category" type="varchar(255)"></column>
