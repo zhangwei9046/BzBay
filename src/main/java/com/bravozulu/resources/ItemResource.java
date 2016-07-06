@@ -63,12 +63,11 @@ public class ItemResource {
     /**
      * Updates an item based on some characteristic
      * @param item
-     * @return
      */
     @PUT
     @UnitOfWork
-    public Item update(Item item) {
-        return this.itemDAO.updateItem(item);
+    public void update(Item item) {
+        this.itemDAO.updateItem(item);
     }
 
     /**
