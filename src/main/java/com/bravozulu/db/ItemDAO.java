@@ -5,9 +5,11 @@ import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
 import java.util.List;
 import java.util.Optional;
+import org.hibernate.Session;
 
 /**
- * Created by bonicma on 7/1/16.
+ * Implementation of the the ItemDAO
+ * Created by Mark on 7/1/16.
  */
 public class ItemDAO extends AbstractDAO<Item>{
     public ItemDAO (SessionFactory factory) {
@@ -39,17 +41,38 @@ public class ItemDAO extends AbstractDAO<Item>{
     }
 
     /**
-     *
-     * @param item
+     * Updates the name of the item in the database
+     * @param item the item
      */
-    public Item updateItem(Item item){ return item;};
+    public void updateItem(Item item){
+        long itemId = item.getItemId();
+        Session session = this.currentSession();
+
+        // Create a temp item object to access change data in 'item'
+        Item tempItem = (Item) session.get(Item.class, itemId);
+        // update the item's name with the name form 'item'
+        String updatedName = item.getName();
+        tempItem.setName(updatedName);
+        session.update(tempItem);
+
+        // Produce feedback message and close session
+        System.out.println("Item sucessfully updated.");
+        session.close();
+    }
 
     /**
-     *
-     * @param id
+     * Deletes the item from the database
+     * @param id the item's id
      */
     public void deleteItem(Long id) {
-        // delete the item on the database and print message
-    };
+        Session session = this.currentSession();
 
+        // Get the item and delete
+        Item itemTobeDeleted = (Item) session.get(Item.class, id);
+        session.delete(itemTobeDeleted);
+
+        // Produce feedback message and close session
+        System.out.print("Item successfully deleted.");
+        session.close();
+    }
 }
