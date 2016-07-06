@@ -28,8 +28,8 @@ public class ItemResource {
 
     /**
      * Creates and adds item
-     * @param item
-     * @return
+     * @param item the item
+     * @return the item
      */
     @POST
     @UnitOfWork
@@ -51,8 +51,8 @@ public class ItemResource {
     }
 
     /**
-     *
-     * @return
+     * Returns list of all items
+     * @return list of all items
      */
     @GET
     @UnitOfWork
@@ -61,8 +61,8 @@ public class ItemResource {
     }
 
     /**
-     * Updates an item based on some characteristic
-     * @param item
+     * Updates the item's name
+     * @param item the item to be updated
      */
     @PUT
     @UnitOfWork
