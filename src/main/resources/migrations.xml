@@ -181,4 +181,43 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="9" author="melody">
+        <createTable tableName="transaction">
+            <column name="transactionId" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="itemId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemId"
+                             referencedTableName="item"
+                             referencedColumnNames="itemId"/>
+            </column>
+            <column name="userId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_userId"
+                             referencedTableName="user"
+                             referencedColumnNames="userId"/>
+            </column>
+            <column name="price" type="float"> //not sure
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="10" author="melody">
+        <createTable tableName="creditcard">
+            <column name="creditCardNum" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="userId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_userId"
+                             referencedTableName="user"
+                             referencedColumnNames="userId"/>
+            </column>
+            <column name="expDate" type="varchar(255)">
+            </column>
+        </createTable>
+    </changeSet>
+
+
 </databaseChangeLog>
