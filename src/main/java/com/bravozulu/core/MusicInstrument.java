@@ -1,8 +1,6 @@
 package com.bravozulu.core;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Represents a MusicInstrument which is a subclass of Item
@@ -13,6 +11,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="MusicInstrument")
+@NamedQueries(value = {
+        @NamedQuery(
+                name = "com.bravozulu.core.MusicInstrument.findAll",
+                query = "SELECT u FROM User u"
+        )
+})
+
 public class MusicInstrument extends Item {
     @Column(name = "brand", nullable = false)
     private String brand;

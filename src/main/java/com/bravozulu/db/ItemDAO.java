@@ -65,16 +65,11 @@ public class ItemDAO extends AbstractDAO<Item>{
      * @param id the item's id
      */
     public void deleteItem(Long id) {
-<<<<<<< HEAD
         Session session = this.currentSession();
 
         // Get the item and delete
         Item itemTobeDeleted = (Item) session.get(Item.class, id);
         session.delete(itemTobeDeleted);
-=======
-        // delete the item on the database and print message
-    }
->>>>>>> origin/master
 
         // Produce feedback message and close session
         System.out.print("Item successfully deleted.");
