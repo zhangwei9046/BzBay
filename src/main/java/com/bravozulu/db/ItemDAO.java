@@ -50,6 +50,6 @@ public class ItemDAO extends AbstractDAO<Item>{
      */
     public void deleteItem(Long id) {
         // delete the item on the database and print message
-    };
+    }
 
 }
