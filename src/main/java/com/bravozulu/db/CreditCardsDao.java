@@ -2,7 +2,7 @@ package com.bravozulu.db;
 /**
  * Created by Melody on 7/1/16.
  */
-import com.bravozulu.core.User;
+import com.bravozulu.core.CreditCards;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
 

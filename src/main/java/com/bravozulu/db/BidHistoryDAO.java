@@ -13,7 +13,7 @@ public class BidHistoryDAO extends AbstractDAO<BidHistory>{
     public BidHistoryDAO(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
-    public Optional<Bithistory> findBybidId(long id) {
+    public Optional<BidHistory> findBybidId(long id) {
         return Optional.ofNullable(get(id));
     }
     public void deleteBidHistory(long id) {}
