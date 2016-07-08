@@ -3,11 +3,9 @@ package com.bravozulu.resources;
 import com.bravozulu.core.User;
 import com.bravozulu.db.UserDAO;
 import io.dropwizard.hibernate.UnitOfWork;
+import io.dropwizard.jersey.params.LongParam;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -20,15 +18,42 @@ public class UserResource {
         this.userDAO = userDAO;
     }
 
+    //This method works
     @GET
     @UnitOfWork
     public List<User> findAllUsers() {
         return userDAO.findAll();
     }
 
+    //This method works
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public User create(User user) {
+    public User createUser(User user) {
         return userDAO.create(user);
+    }
+
+    //This method works
+    @GET
+    @Path("/{userId}")
+    @UnitOfWork
+    public User getUserById(@PathParam("userId") LongParam userId) {
+        return userDAO.findById(userId.get()).orElseThrow(() -> new NotFoundException("No such user."));
+    }
+
+    //This method works
+    @PUT
+    @Path("/{userId}")
+    @UnitOfWork
+    public User updateUser(@PathParam("userId") LongParam userId, User user) {
+        return userDAO.update(userId.get(), user);
+    }
+
+    //This method works
+    @DELETE
+    @Path("/{userId}")
+    @UnitOfWork
+    public void deleteUser(@PathParam("userId") LongParam userId) {
+        userDAO.delete(userId.get());
     }
 }

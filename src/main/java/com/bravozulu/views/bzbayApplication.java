@@ -1,5 +1,6 @@
 package com.bravozulu.views;
 
+//import com.bravozulu.auth.BzbayAuthenticator;
 import com.bravozulu.core.User;
 import com.bravozulu.db.UserDAO;
 import com.bravozulu.resources.UserResource;
@@ -45,6 +46,17 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
                     final Environment environment) {
         final UserDAO userDAO = new UserDAO(hibernate.getSessionFactory());
         environment.jersey().register(new UserResource(userDAO));
+
+//        //Authentication
+//        environment.jersey().register(new AuthDynamicFeature(
+//                new BasicCredentialAuthFilter.Builder<User>()
+//                        .setAuthenticator(new BzbayAuthenticator())
+//                        .setAuthorizer(new BzbayAuthorizer())
+//                        .setRealm("SUPER SECRET STUFF")
+//                        .buildAuthFilter()));
+//        environment.jersey().register(RolesAllowedDynamicFeature.class);
+//        //If you want to use @Auth to inject a custom Principal type into your resource
+//        environment.jersey().register(new AuthValueFactoryProvider.Binder<>(User.class));
     }
 
 }

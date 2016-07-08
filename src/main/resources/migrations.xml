@@ -7,17 +7,17 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet id="1" author="ying">
-        <createTable tableName="user">
-            <column name="userId" type="bigint" autoIncrement="true">
+        <createTable tableName="users">
+            <column name="userid" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="username" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="firstName" type="varchar(255)">
+            <column name="firstname" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="lastName" type="varchar(255)">
+            <column name="lastname" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="password" type="varchar(255)">
@@ -32,7 +32,7 @@
             </column>
             <column name="address" type="varchar(255)">
             </column>
-            <column name="isAdmin" type="boolean">
+            <column name="isadmin" type="boolean">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -49,9 +49,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="sellerId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_user_sellerId"
-                             referencedTableName="user"
-                             referencedColumnNames="userId"/>
+                <constraints nullable="false" foreignKeyName="fk_users_sellerId"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
             </column>
             <column name="model" type="varchar(255)"></column>
             <column name="shipping" type="varchar(255)"></column>
@@ -65,39 +65,39 @@
                 <constraints nullable="false"/>
             </column>
             <column name="finalPrice" type="float"></column>
-            <column name="startDate" type="datetime">
+            <column name="startDate" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="endDate" type="datetime"></column>
+            <column name="endDate" type="timestamp"></column>
         </createTable>
     </changeSet>
     <changeSet id="3" author="ying">
-        <createTable tableName="review">
+        <createTable tableName="reviews">
             <column name="reviewId" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="senderId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_user_senderId"
-                             referencedTableName="user"
-                             referencedColumnNames="userId"/>
+                <constraints nullable="false" foreignKeyName="fk_users_senderId"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
             </column>
             <column name="receiverId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_user_receiverId"
-                             referencedTableName="user"
-                             referencedColumnNames="userId"/>
+                <constraints nullable="false" foreignKeyName="fk_users_receiverId"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
             </column>
             <column name="content" type="varchar(2048)">
                 <constraints nullable="false"/>
             </column>
             <column name="score" type="smallint"/>
-            <column name="date" type="datetime">
+            <column name="date" type="timestamp">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <comment>A script to create review table</comment>
+        <comment>A script to create reviews table</comment>
     </changeSet>
     <changeSet id="4" author="ying">
-        <createTable tableName="bitHistory">
+        <createTable tableName="bidHistory">
             <column name="bidId" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -107,14 +107,14 @@
                              referencedColumnNames="itemId"/>
             </column>
             <column name="userId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_user_userId"
-                             referencedTableName="user"
-                             referencedColumnNames="userId"/>
+                <constraints nullable="false" foreignKeyName="fk_users_userId"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
             </column>
             <column name="price" type="float"> //not sure
                 <constraints nullable="false"/>
             </column>
-            <column name="time" type="datetime">
+            <column name="time" type="timestamp">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -156,7 +156,7 @@
                              referencedTableName="item"
                              referencedColumnNames="itemId"/>
             </column>
-            <column name="releaseDate" type="datetime">
+            <column name="releaseDate" type="timestamp">
                 <constraints nullable="false"/>
             </column>
         </createTable>

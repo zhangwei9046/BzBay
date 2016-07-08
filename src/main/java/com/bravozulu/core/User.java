@@ -4,13 +4,14 @@ package com.bravozulu.core;
  * Created by ying on 6/25/16.
  */
 import javax.persistence.*;
+import java.security.Principal;
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.User.findAll",
-                query = "SELECT u.userId FROM User u"
+                query = "SELECT u FROM User u"
         )
 })
 
@@ -19,18 +20,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE,
 //            generator = "user_id_seq_name")
-//    @SequenceGenerator(name = "user_id_seq_name",
-//            sequenceName = "user_id_seq",
-//            allocationSize = 1)
+    @SequenceGenerator(name = "users_userId_seq_name",
+            sequenceName = "users_userId_seq",
+            allocationSize = 1)
     private long userId;
 
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "firstName", nullable = false)
+    @Column(name = "firstname", nullable = false)
     private String firstName;
 
-    @Column(name = "lastName", nullable = false)
+    @Column(name = "lastname", nullable = false)
     private String lastName;
 
     @Column(name = "password", nullable = false)
@@ -48,7 +49,7 @@ public class User {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "isAdmin", nullable = false)
+    @Column(name = "isadmin", nullable = false)
     private boolean isAdmin;
 
     public User() {}
@@ -58,6 +59,11 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+//    @Override
+//    public String getName() {
+//        return username;
+//    }
 
     public long getUserId() {
         return userId;
@@ -138,4 +144,5 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }

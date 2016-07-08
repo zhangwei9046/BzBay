@@ -7,7 +7,14 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name="review")
+@Table(name="reviews")
+@NamedQueries(value = {
+        @NamedQuery(
+                name = "com.bravozulu.core.User.findAll",
+                query = "SELECT r FROM Reviews r"
+        )
+})
+
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,6 +4,7 @@ import com.bravozulu.core.User;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
 
+import javax.ws.rs.NotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,10 +20,16 @@ public class UserDAO extends AbstractDAO<User> {
     public User create(User user) { return persist(user); }
 
     public List<User> findAll() {
-        
         return list(namedQuery("com.bravozulu.core.User.findAll"));
     }
 
-    public void delete(long id) {}
+    public void delete(Long userId) {
+        User userObj = findById(userId).orElseThrow(() -> new NotFoundException("No such user."));
+        currentSession().delete(userObj);
+    }
 
+    public User update(Long userId, User user) {
+        user.setUserId(userId);
+        return persist(user);
+    }
 }
