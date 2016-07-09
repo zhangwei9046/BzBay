@@ -73,15 +73,15 @@
     </changeSet>
     <changeSet id="3" author="ying">
         <createTable tableName="reviews">
-            <column name="reviewId" type="bigint" autoIncrement="true">
+            <column name="reviewid" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="senderId" type="bigint">
+            <column name="senderid" type="bigint">
                 <constraints nullable="false" foreignKeyName="fk_users_senderId"
                              referencedTableName="users"
                              referencedColumnNames="userid"/>
             </column>
-            <column name="receiverId" type="bigint">
+            <column name="receiverid" type="bigint">
                 <constraints nullable="false" foreignKeyName="fk_users_receiverId"
                              referencedTableName="users"
                              referencedColumnNames="userid"/>

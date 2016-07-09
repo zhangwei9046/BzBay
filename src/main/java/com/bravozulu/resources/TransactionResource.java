@@ -35,6 +35,7 @@ public class TransactionResource {
     @UnitOfWork
     public Transactions create(Transactions trans) {
         //return this.transactionDAO.create(trans);
+        return trans;
     }
 
     /**
@@ -46,6 +47,7 @@ public class TransactionResource {
     @UnitOfWork
     public Transactions findItemById(@PathParam("itemId") long itemId) {
         // return this.transactionDAO.findById(itemId);
+        return null;
     }
 
     /**
@@ -56,6 +58,7 @@ public class TransactionResource {
     @UnitOfWork
     public List<Transactions> findAllItems() {
         // return this.transactionDAO.findAll();
+        return null;
     }
 
     /**

@@ -54,12 +54,12 @@ public class CreditCards {
 
         if(creditCardNum != creditCard.creditCardNum) return false;
         if(userId != creditCard.userId) return false;
-        return (expDate.equals(creditCard.expDate);
+        return (expDate.equals(creditCard.expDate));
     }
 
     @Override
     public int hashCode() {
-        int result;
+        int result = 0;
         result = 31 * result + creditCardNum.hashCode();
         result = 31 * result + (int) (userId ^ (userId >>> 32));
         result = 31 * result + expDate.hashCode();

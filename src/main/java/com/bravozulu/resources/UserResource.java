@@ -41,6 +41,13 @@ public class UserResource {
         return userDAO.findById(userId.get()).orElseThrow(() -> new NotFoundException("No such user."));
     }
 
+    @GET
+    @Path("/username={username}")
+    @UnitOfWork
+    public User getUserByUsername(@PathParam("username") String username) {
+        return userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
+    }
+
     //This method works
     @PUT
     @Path("/{userId}")
@@ -56,4 +63,5 @@ public class UserResource {
     public void deleteUser(@PathParam("userId") LongParam userId) {
         userDAO.delete(userId.get());
     }
+
 }

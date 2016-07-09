@@ -1,6 +1,7 @@
 package com.bravozulu.db;
 
 import com.bravozulu.core.BidHistory;
+import com.bravozulu.core.Transactions;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
 

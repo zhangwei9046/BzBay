@@ -1,30 +1,73 @@
 package com.bravozulu.resources;
 
 import com.bravozulu.core.Review;
-import com.bravozulu.db.ReviewsDAO;
+import com.bravozulu.core.User;
+import com.bravozulu.db.ReviewDAO;
+import com.bravozulu.db.UserDAO;
 import io.dropwizard.hibernate.UnitOfWork;
+import io.dropwizard.jersey.params.LongParam;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
  * Created by ying on 7/5/16.
  */
-@Path("/reviews")
+
 @Produces(MediaType.APPLICATION_JSON)
 public class ReviewResource {
-    private final ReviewsDAO reviewsDAO;
+    private final ReviewDAO reviewDAO;
+    private final UserDAO userDAO;
 
-    public ReviewResource(ReviewsDAO reviewsDAO) {
-        this.reviewsDAO = reviewsDAO;
+    public ReviewResource(ReviewDAO reviewsDAO, UserDAO userDAO) {
+        this.reviewDAO = reviewsDAO;
+        this.userDAO = userDAO;
     }
 
     @GET
+    @Path("/review")
     @UnitOfWork
-    public List<Review> findAllUsers() {
-        return reviewsDAO.findAll();
+    public List<Review> findAllReviews() {
+        return reviewDAO.findAll();
+    }
+
+    @POST
+    @Path("/review")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @UnitOfWork
+    public Review createReview(Review review) {
+        return reviewDAO.create(review);
+    }
+
+    @PUT
+    @Path("/review/{reviewId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @UnitOfWork
+    public Review updateReview(@PathParam("reviewId") LongParam reviewId, Review review) {
+        return reviewDAO.update(reviewId.get(), review);
+    }
+
+    @DELETE
+    @Path("/review/{reviewId}")
+    @UnitOfWork
+    public void deleteReview(@PathParam("reviewId") LongParam reviewId) {
+        reviewDAO.delete(reviewId.get());
+    }
+
+    @GET
+    @Path("/user/sendername={username}/review")
+    @UnitOfWork
+    public List<Review> findReviewsForSender(@PathParam("username") String username) {
+        User user = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
+        return reviewDAO.findBySenderId(user.getUserId());
+    }
+
+    @GET
+    @Path("/user/receivername={username}/review")
+    @UnitOfWork
+    public List<Review> findReviewsForReceiver(@PathParam("username") String username) {
+        User user = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
+        return reviewDAO.findByReceiverId(user.getUserId());
     }
 }

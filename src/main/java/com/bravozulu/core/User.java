@@ -12,6 +12,10 @@ import java.security.Principal;
         @NamedQuery(
                 name = "com.bravozulu.core.User.findAll",
                 query = "SELECT u FROM User u"
+        ),
+        @NamedQuery(
+                name = "com.bravozulu.core.User.findByUsername",
+                query = "SELECT u FROM User u WHERE u.username = :username"
         )
 })
 

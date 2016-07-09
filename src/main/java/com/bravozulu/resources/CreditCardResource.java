@@ -36,6 +36,7 @@ public class CreditCardResource {
     @UnitOfWork
     public CreditCards create(CreditCards creditCard) {
         // return this.ccDAO.create(creditCard);
+        return null;
     }
 
     /**
@@ -43,7 +44,7 @@ public class CreditCardResource {
      * @param id
      * @return
      */
-    @GET @Path("/id")
+    @GET @Path("/{id}")
     @UnitOfWork
     public Optional<CreditCards> findbyId(@PathParam("id") String id) {
         return this.ccDAO.findByuserId(id);
@@ -57,6 +58,7 @@ public class CreditCardResource {
     @UnitOfWork
     public List<CreditCards> findAll() {
         //return this.ccDAO.findAll();
+        return null;
     }
 
     /**

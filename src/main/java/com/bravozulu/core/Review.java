@@ -11,7 +11,15 @@ import java.sql.Timestamp;
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.User.findAll",
-                query = "SELECT r FROM Reviews r"
+                query = "SELECT r FROM Review r"
+        ),
+        @NamedQuery(
+                name = "com.bravozulu.core.User.findBySenderId",
+                query = "SELECT r FROM Review r WHERE r.senderId = :senderId"
+        ),
+        @NamedQuery(
+                name = "com.bravozulu.core.User.findByReceiverId",
+                query = "SELECT r FROM Review r WHERE r.receiverId = :receiverId"
         )
 })
 

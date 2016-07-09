@@ -35,6 +35,7 @@ public class BidHistoryResource {
     @UnitOfWork
     public BidHistory create(BidHistory bHist)  {
         //return this.bdDAO.create(bHist);
+        return null;
     }
 
     /**
@@ -56,6 +57,7 @@ public class BidHistoryResource {
     @UnitOfWork
     public List<BidHistory> findAll() {
         // return this.bdDAO.findAllItems;
+        return null;
     }
 
     /**
