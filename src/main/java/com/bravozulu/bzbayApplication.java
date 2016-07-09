@@ -1,9 +1,10 @@
-package com.bravozulu.views;
+package com.bravozulu;
 
 //import com.bravozulu.auth.BzbayAuthenticator;
 import com.bravozulu.core.User;
 import com.bravozulu.db.UserDAO;
 import com.bravozulu.resources.UserResource;
+import com.bravozulu.views.bzbayConfiguration;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;

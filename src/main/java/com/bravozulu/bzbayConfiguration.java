@@ -1,4 +1,4 @@
-package com.bravozulu.views;
+package com.bravozulu;
 
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
