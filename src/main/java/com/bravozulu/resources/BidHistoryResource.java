@@ -18,7 +18,7 @@ import java.util.Optional;
  * Created by Melody on 7/7/16.
  */
 
-@Path("/bid")
+@Path("/bidhistory")
 @Produces(MediaType.APPLICATION_JSON)
 public class BidHistoryResource {
     private final BidHistoryDao bidhistoryDao;
