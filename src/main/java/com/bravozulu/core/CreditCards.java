@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.CreditCards.findAll",
-                query = "SELECT u0 FROM CreditCards u0"
+                query = "SELECT u FROM CreditCards u"
         )
 })
 
@@ -27,12 +27,15 @@ public class CreditCards {
     private String expDate;
 
     public CreditCards(){}
-
+    public CreditCards(String creditCardNum) {
+        this.creditCardNum = creditCardNum;
+    }
     public CreditCards(String creditCardNum, long userId, String expDate) {
         this.creditCardNum = creditCardNum;
         this.userId = userId;
         this.expDate = expDate;
     }
+
     public String getcreditCardNum() {
         return creditCardNum;
     }

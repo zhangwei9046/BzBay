@@ -1,5 +1,6 @@
 package com.bravozulu.db;
 
+import com.bravozulu.core.CreditCards;
 import com.bravozulu.core.Transactions;
 import com.bravozulu.core.User;
 import com.google.common.base.Preconditions;
@@ -24,7 +25,9 @@ public class TransactionsDao extends AbstractDAO<Transactions>{
         return Optional.ofNullable(get(id));
     }
 
-  //findAll
+    public List<Transactions> findAll() {
+        return list(namedQuery("com.bravozulu.core.Transactions.findAll"));
+    }
 
     public void delete(Long transactionId) {
         Transactions trans = findBytransactionId(transactionId).orElseThrow(() -> new NotFoundException("No such transactins."));

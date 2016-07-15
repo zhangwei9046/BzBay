@@ -3,14 +3,18 @@ package com.bravozulu.core;
 /**
  * Created by Melody on 7/1/16.
  */
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 
-// entity?
+@Entity
+@Table(name="transaction")
+@NamedQueries(value = {
+        @NamedQuery(
+                name = "com.bravozulu.core.Transactions.findAll",
+                query = "SELECT u FROM Transactions u"
+        )
+})
 
 public class Transactions {
     @Id

@@ -25,13 +25,13 @@ public class TransactionResource {
         this.transactionDAO = transactionDAO;
     }
 
-    /* findAll
+
     @GET
     @UnitOfWork
     public List<Transactions> findAllTransactions() {
         return transactionDAO.findAll();
     }
-*/
+
     @POST
     @UnitOfWork
     public Transactions createTransaction(Transactions trans) {

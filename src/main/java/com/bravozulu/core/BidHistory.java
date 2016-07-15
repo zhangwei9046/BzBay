@@ -5,9 +5,15 @@ package com.bravozulu.core;
  */
 import javax.persistence.*;
 import java.sql.Timestamp;
-
 @Entity
-@Table(name="bidHistory")
+@Table(name="bidhistory")
+@NamedQueries(value = {
+        @NamedQuery(
+                name = "com.bravozulu.core.BidHistory.findAll",
+                query = "SELECT u FROM BidHistory u"
+        )
+})
+
 public class BidHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
