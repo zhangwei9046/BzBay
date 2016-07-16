@@ -39,9 +39,8 @@ public class TransactionResource {
 
     }
 
-    //get byid
     @GET
-    @Path("/{transactionId}")
+    @Path("/transactionId={transactionId}")
     @UnitOfWork
     public Transactions getTransactionById(@PathParam("transactionId") LongParam transactionId) {
         return transactionDAO.findBytransactionId(transactionId.get()).orElseThrow(() -> new NotFoundException("No such transaction."));

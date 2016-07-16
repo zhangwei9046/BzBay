@@ -43,7 +43,7 @@ public class BidHistoryResource {
 
     //get byid
     @GET
-    @Path("/{bidId}")
+    @Path("/bidId={bidId}")
     @UnitOfWork
     public BidHistory getBidById(@PathParam("bidId") LongParam bidId) {
         return bidhistoryDao.findBybidId(bidId.get()).orElseThrow(() -> new NotFoundException("No such Bid."));
