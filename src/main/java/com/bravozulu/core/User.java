@@ -19,7 +19,7 @@ import java.security.Principal;
         )
 })
 
-public class User {
+public class User implements Principal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE,
@@ -57,6 +57,11 @@ public class User {
     private boolean isAdmin;
 
     public User() {}
+
+    public User(String username, boolean isAdmin) {
+        this.username = username;
+        this.isAdmin = isAdmin;
+    }
 
     public User(String username, String firstName, String lastName) {
         this.username = username;
