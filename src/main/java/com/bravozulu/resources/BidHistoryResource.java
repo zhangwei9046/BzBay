@@ -1,9 +1,13 @@
 package com.bravozulu.resources;
 
 import com.bravozulu.core.BidHistory;
+import com.bravozulu.core.Transactions;
+import com.bravozulu.core.User;
 import com.bravozulu.db.BidHistoryDAO;
+import com.bravozulu.db.TransactionsDao;
 
 import io.dropwizard.hibernate.UnitOfWork;
+import io.dropwizard.jersey.params.LongParam;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -11,72 +15,48 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by bonicma on 7/6/16.
+ * Created by Melody on 7/7/16.
  */
+
 @Path("/bidhistory")
 @Produces(MediaType.APPLICATION_JSON)
 public class BidHistoryResource {
-    private BidHistoryDAO bdDAO;
+    private final BidHistoryDao bidhistoryDao;
 
-    /**
-     *
-     * @param bdDAO
-     */
-    public BidHistoryResource(BidHistoryDAO bdDAO) {
-        this.bdDAO = bdDAO;
+    public BidHistoryResource(BidHistoryDao bidhistoryDao) {
+        this.bidhistoryDao = bidhistoryDao;
     }
 
-    /**
-     *
-     * @param bHist
-     * @return
-     */
-    @POST
-    @UnitOfWork
-    public BidHistory create(BidHistory bHist)  {
-        //return this.bdDAO.create(bHist);
-        return null;
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     */
-    @GET @Path("/{id}")
-    @UnitOfWork
-    public Optional<BidHistory> findById(@PathParam("id") long id) {
-        return this.bdDAO.findBybidId(id);
-    }
-
-    /**
-     *
-     * @return
-     */
+    /* findAll
     @GET
     @UnitOfWork
-    public List<BidHistory> findAll() {
-        // return this.bdDAO.findAllItems;
-        return null;
+    public List<Transactions> findAllTransactions() {
+        return transactionDAO.findAll();
     }
-
-    /**
-     *
-     * @param bdhistory
-     */
-    @PUT
+*/
+    @POST
     @UnitOfWork
-    public void update(BidHistory bdhistory) {
-        // this.bdDAO.update(bdhistory);
+    public BidHistory createBidHistory(BidHistory bid) {
+        return BidHistoryDAO.create(bid);
+
     }
 
-    /**
-     *
-     * @param id
-     */
+    //get byid
+    @GET
+    @Path("/bidId={bidId}")
+    @UnitOfWork
+    public BidHistory getBidById(@PathParam("bidId") LongParam bidId) {
+        return bidhistoryDao.findBybidId(bidId.get()).orElseThrow(() -> new NotFoundException("No such Bid."));
+
+    }
+
     @DELETE
+    @Path("/{bidId}")
     @UnitOfWork
-    public void delete(long id) {
-        this.bdDAO.deleteBidHistory(id);
+    public void deleteBidHistory(@PathParam("bidId") LongParam bidId) {
+        bidhistoryDao.delete(bidId.get());
     }
+
+
+}
 }

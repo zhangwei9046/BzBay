@@ -12,73 +12,44 @@ import java.util.Optional;
 
 
 /**
- * Created by bonicma on 7/6/16.
+ * Created by Melody on 7/9/16.
  */
 @Path("/creditcard")
 @Produces(MediaType.APPLICATION_JSON)
 public class CreditCardResource {
     private CreditCardsDao ccDAO;
 
-    /**
-     *
-     * @param ccDAO
-     */
+
     public CreditCardResource(CreditCardsDao ccDAO) {
         this.ccDAO = ccDAO;
     }
 
-    /**
-     *
-     * @param creditCard
-     * @return
-     */
+
     @PUT
     @UnitOfWork
-    public CreditCards create(CreditCards creditCard) {
-        // return this.ccDAO.create(creditCard);
-        return null;
+    public CreditCards createCard(CreditCards creditCard) {
+        return ccDAO.create(creditCard);
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
-    @GET @Path("/{id}")
+    @GET
+    @Path("/{id}")
     @UnitOfWork
-    public Optional<CreditCards> findbyId(@PathParam("id") String id) {
-        return this.ccDAO.findByuserId(id);
+    public Optional<CreditCards> getByCardNum(@PathParam("id") String id) {
+        return this.ccDAO.findByCardNum(id);
     }
 
-    /**
-     *
-     * @return
-     */
+
     @GET
     @UnitOfWork
     public List<CreditCards> findAll() {
-        //return this.ccDAO.findAll();
-        return null;
+        return this.ccDAO.findAll();
     }
 
-    /**
-     *
-     * @param ccard
-     */
-    @PUT
-    @UnitOfWork
-    public void update(CreditCards ccard) {
-        // this.ccDAO.update(ccard);
-    }
 
-    /**
-     *
-     * @param id
-     */
     @DELETE
     @UnitOfWork
-    public void delete(String id) {
-        // this.ccDAO.delete(id);
+    public void deleteCard(String cardNum) {
+        ccDAO.delete(cardNum);
     }
 
 }

@@ -1,10 +1,15 @@
 package com.bravozulu.db;
 
-import com.bravozulu.core.BidHistory;
+import com.bravozulu.core.CreditCards;
 import com.bravozulu.core.Transactions;
+import com.bravozulu.core.User;
+import com.google.common.base.Preconditions;
 import io.dropwizard.hibernate.AbstractDAO;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
+import javax.ws.rs.NotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -14,8 +19,24 @@ public class TransactionsDao extends AbstractDAO<Transactions>{
     public TransactionsDao(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
+    public Transactions create(Transactions transaction) { return persist(transaction); }
+
     public Optional<Transactions> findBytransactionId(long id) {
         return Optional.ofNullable(get(id));
     }
-    public void deleteTransaction(long id) {}
+
+    public List<Transactions> findAll() {
+        return list(namedQuery("com.bravozulu.core.Transactions.findAll"));
+    }
+
+    public void delete(Long transactionId) {
+        Transactions trans = findBytransactionId(transactionId).orElseThrow(() -> new NotFoundException("No such transactins."));
+        currentSession().delete(trans);
+    }
+
+
+    public Transactions update(Transactions transaction,Long transactionId,) {
+        transaction.settransactionId(transactionId);
+        return persist(transaction);
+    }
 }
