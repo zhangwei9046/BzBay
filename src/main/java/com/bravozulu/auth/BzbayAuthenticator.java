@@ -16,8 +16,6 @@ import javax.ws.rs.NotFoundException;
 public class BzbayAuthenticator implements Authenticator<BasicCredentials, User>{
     private final UserDAO userDAO;
 
-    public BzbayAuthenticator() { this.userDAO = null; }
-
     public BzbayAuthenticator(UserDAO userDAO) {
         this.userDAO = userDAO;
     }

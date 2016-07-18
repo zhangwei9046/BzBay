@@ -5,6 +5,7 @@ import com.bravozulu.db.UserDAO;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -60,6 +61,8 @@ public class UserResource {
     @DELETE
     @Path("/{userId}")
     @UnitOfWork
+    //Need to check admin for all methods.
+    @RolesAllowed("Admin")
     public void deleteUser(@PathParam("userId") LongParam userId) {
         userDAO.delete(userId.get());
     }

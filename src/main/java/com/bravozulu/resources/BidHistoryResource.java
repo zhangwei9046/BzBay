@@ -21,9 +21,9 @@ import java.util.Optional;
 @Path("/bidhistory")
 @Produces(MediaType.APPLICATION_JSON)
 public class BidHistoryResource {
-    private final BidHistoryDao bidhistoryDao;
+    private final BidHistoryDAO bidhistoryDao;
 
-    public BidHistoryResource(BidHistoryDao bidhistoryDao) {
+    public BidHistoryResource(BidHistoryDAO bidhistoryDao) {
         this.bidhistoryDao = bidhistoryDao;
     }
 
@@ -37,7 +37,7 @@ public class BidHistoryResource {
     @POST
     @UnitOfWork
     public BidHistory createBidHistory(BidHistory bid) {
-        return BidHistoryDAO.create(bid);
+        return bidhistoryDao.create(bid);
 
     }
 
@@ -58,5 +58,4 @@ public class BidHistoryResource {
     }
 
 
-}
 }

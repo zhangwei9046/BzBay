@@ -35,7 +35,7 @@ public class TransactionsDao extends AbstractDAO<Transactions>{
     }
 
 
-    public Transactions update(Transactions transaction,Long transactionId,) {
+    public Transactions update(Transactions transaction,Long transactionId) {
         transaction.settransactionId(transactionId);
         return persist(transaction);
     }

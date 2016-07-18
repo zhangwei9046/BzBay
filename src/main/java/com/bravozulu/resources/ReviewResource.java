@@ -4,6 +4,7 @@ import com.bravozulu.core.Review;
 import com.bravozulu.core.User;
 import com.bravozulu.db.ReviewDAO;
 import com.bravozulu.db.UserDAO;
+import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 
@@ -36,7 +37,7 @@ public class ReviewResource {
     @Path("/review")
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public Review createReview(Review review) {
+    public Review createReview(@Auth User user, Review review) {
         return reviewDAO.create(review);
     }
 

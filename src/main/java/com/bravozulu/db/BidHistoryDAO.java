@@ -33,8 +33,9 @@ public class BidHistoryDAO extends AbstractDAO<BidHistory>{
     }
 
 
-    public BidHistory update(BidHistory bid,Long bidId,) {
-        bid.setBidId(bidId);
-        return persist(bidId);
+    public BidHistory update(BidHistory bid,Long bidId) {
+//        bid.setBidId(bidId);
+//        return persist(bidId);
+        return null;
     }
 }

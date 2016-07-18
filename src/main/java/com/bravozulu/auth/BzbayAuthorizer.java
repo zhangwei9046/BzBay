@@ -8,7 +8,7 @@ import io.dropwizard.auth.Authorizer;
  */
 public class BzbayAuthorizer implements Authorizer<User> {
 
-//    public BzbayAuthorizer() {}
+    public BzbayAuthorizer() {}
 
     public boolean authorize(User user, String s) {
         return user.isAdmin();

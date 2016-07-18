@@ -69,10 +69,10 @@ public class User implements Principal {
         this.lastName = lastName;
     }
 
-//    @Override
-//    public String getName() {
-//        return username;
-//    }
+    @Override
+    public String getName() {
+        return username;
+    }
 
     public long getUserId() {
         return userId;
