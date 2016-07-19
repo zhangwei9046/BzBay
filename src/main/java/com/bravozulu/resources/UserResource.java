@@ -2,6 +2,7 @@ package com.bravozulu.resources;
 
 import com.bravozulu.core.User;
 import com.bravozulu.db.UserDAO;
+import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 
@@ -22,6 +23,7 @@ public class UserResource {
     //This method works
     @GET
     @UnitOfWork
+    @RolesAllowed("Admin")
     public List<User> findAllUsers() {
         return userDAO.findAll();
     }
@@ -53,7 +55,7 @@ public class UserResource {
     @PUT
     @Path("/{userId}")
     @UnitOfWork
-    public User updateUser(@PathParam("userId") LongParam userId, User user) {
+    public User updateUser(@PathParam("userId") LongParam userId, @Auth User user) {
         return userDAO.update(userId.get(), user);
     }
 

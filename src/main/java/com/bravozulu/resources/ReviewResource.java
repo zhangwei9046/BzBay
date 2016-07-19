@@ -45,21 +45,21 @@ public class ReviewResource {
     @Path("/review/{reviewId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public Review updateReview(@PathParam("reviewId") LongParam reviewId, Review review) {
+    public Review updateReview(@Auth User user, @PathParam("reviewId") LongParam reviewId, Review review) {
         return reviewDAO.update(reviewId.get(), review);
     }
 
     @DELETE
     @Path("/review/{reviewId}")
     @UnitOfWork
-    public void deleteReview(@PathParam("reviewId") LongParam reviewId) {
+    public void deleteReview(@Auth User user, @PathParam("reviewId") LongParam reviewId) {
         reviewDAO.delete(reviewId.get());
     }
 
     @GET
     @Path("/user/sendername={username}/review")
     @UnitOfWork
-    public List<Review> findReviewsForSender(@PathParam("username") String username) {
+    public List<Review> findReviewsForSender(@Auth User user, @PathParam("username") String username) {
         User user = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
         return reviewDAO.findBySenderId(user.getUserId());
     }
@@ -67,7 +67,7 @@ public class ReviewResource {
     @GET
     @Path("/user/receivername={username}/review")
     @UnitOfWork
-    public List<Review> findReviewsForReceiver(@PathParam("username") String username) {
+    public List<Review> findReviewsForReceiver(@Auth User user, @PathParam("username") String username) {
         User user = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
         return reviewDAO.findByReceiverId(user.getUserId());
     }
