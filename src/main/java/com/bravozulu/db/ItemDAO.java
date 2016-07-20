@@ -1,11 +1,13 @@
 package com.bravozulu.db;
 
 import com.bravozulu.core.Item;
+import com.google.common.base.Preconditions;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
 import java.util.List;
 import java.util.Optional;
 import org.hibernate.Session;
+import org.hibernate.Query;
 
 /**
  * Implementation of the the ItemDAO
@@ -30,6 +32,22 @@ public class ItemDAO extends AbstractDAO<Item>{
      */
     public Optional<Item> findById(long id) {
         return Optional.ofNullable(this.get(id));
+    }
+
+    /**
+     * Returns an Item given the name of the item
+     * @param name the name to search for
+     * @return an Item; if there is no item to return, return empty
+     */
+    public Optional<Item> findByName(String name) {
+        /*return Optional.ofNullable(uniqueResult(namedQuery("com.bravozulu" +
+                ".core.Item" +
+                ".findByName").setParameter("name", name));*/
+        Query query = Preconditions.checkNotNull(namedQuery("com.bravozulu" +
+                ".core.Item.findByName"));
+        query.setParameter("name", name);
+        List<Item> items = list(query);
+        return items.size() == 0 ? Optional.empty() : Optional.of(items.get(0));
     }
 
     /**
