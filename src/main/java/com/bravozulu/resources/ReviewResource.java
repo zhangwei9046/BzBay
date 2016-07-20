@@ -60,15 +60,15 @@ public class ReviewResource {
     @Path("/user/sendername={username}/review")
     @UnitOfWork
     public List<Review> findReviewsForSender(@Auth User user, @PathParam("username") String username) {
-        User user = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
-        return reviewDAO.findBySenderId(user.getUserId());
+        User userObj = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
+        return reviewDAO.findBySenderId(userObj.getUserId());
     }
 
     @GET
     @Path("/user/receivername={username}/review")
     @UnitOfWork
     public List<Review> findReviewsForReceiver(@Auth User user, @PathParam("username") String username) {
-        User user = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
-        return reviewDAO.findByReceiverId(user.getUserId());
+        User userObj = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
+        return reviewDAO.findByReceiverId(userObj.getUserId());
     }
 }

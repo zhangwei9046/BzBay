@@ -3,11 +3,12 @@ package com.bravozulu.core;
 /**
  * Created by ying on 6/25/16.
  */
+
 import javax.persistence.*;
 import java.security.Principal;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.User.findAll",
@@ -56,7 +57,8 @@ public class User implements Principal {
     @Column(name = "isadmin", nullable = false)
     private boolean isAdmin;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String username, boolean isAdmin) {
         this.username = username;
@@ -68,6 +70,22 @@ public class User implements Principal {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    public User(Long userId, String username, String firstName, String lastName, String password, String email,
+                String city, String state, String address, boolean isAdmin) {
+        this.userId = userId;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.city = city;
+        this.state = state;
+        this.address = address;
+        this.isAdmin = isAdmin;
+    }
+
+
 
     @Override
     public String getName() {
