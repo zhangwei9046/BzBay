@@ -6,8 +6,9 @@ import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
 import java.util.List;
 import java.util.Optional;
-import org.hibernate.Session;
 import org.hibernate.Query;
+
+import javax.ws.rs.NotFoundException;
 
 /**
  * Implementation of the the ItemDAO
@@ -62,35 +63,22 @@ public class ItemDAO extends AbstractDAO<Item>{
      * Updates the name of the item in the database
      * @param item the item
      */
-    public void updateItem(Item item){
-        long itemId = item.getItemId();
-        Session session = this.currentSession();
-
-        // Create a temp item object to access change data in 'item'
-        Item tempItem = (Item) session.get(Item.class, itemId);
-        // update the item's name with the name form 'item'
-        String updatedName = item.getName();
-        tempItem.setName(updatedName);
-        session.update(tempItem);
-
+    public Item updateItem(long itemId, Item item){
+        item.setItemId(itemId);
         // Produce feedback message and close session
         System.out.println("Item sucessfully updated.");
-        session.close();
+        return persist(item);//long itemId = item.getItemId();
     }
 
     /**
      * Deletes the item from the database
-     * @param id the item's id
+     * @param itemId the item's id
      */
-    public void deleteItem(Long id) {
-        Session session = this.currentSession();
-
-        // Get the item and delete
-        Item itemTobeDeleted = (Item) session.get(Item.class, id);
-        session.delete(itemTobeDeleted);
-
+    public void deleteItem(Long itemId) {
+        Item itemObj = findById(itemId).orElseThrow(() -> new NotFoundException("No such " +
+                "user."));
+        currentSession().delete(itemObj);
         // Produce feedback message and close session
         System.out.print("Item successfully deleted.");
-        session.close();
     }
 }

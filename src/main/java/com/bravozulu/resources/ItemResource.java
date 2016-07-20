@@ -6,12 +6,14 @@ package com.bravozulu.resources;
 
 import com.bravozulu.core.Item;
 import com.bravozulu.db.ItemDAO;
+import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
+import io.dropwizard.jersey.params.LongParam;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
-import java.util.Optional;
 
 @Path("/item")
 @Produces(MediaType.APPLICATION_JSON)
@@ -32,22 +34,37 @@ public class ItemResource {
      * @return the item
      */
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
     public Item create(Item item) {
         return itemDAO.create(item);
     }
-
 
     /**
      * Returns the item given an item's identification
      * @param itemId the item id
      * @return the item in JSON format
      */
-    @GET @Path("/{itemId}")
-    @UnitOfWork
+    @GET
+    @Path("/{itemId}")
     @Produces("application/json")
-    public Optional<Item> findItemById(@PathParam("itemId") long itemId) {
-        return this.itemDAO.findById(itemId);
+    @UnitOfWork
+    public Item findItemById(@PathParam("itemId") LongParam itemId) {
+        return this.itemDAO.findById(itemId.get()).orElseThrow(() -> new
+                NotFoundException("No such item."));
+    }
+
+    /**
+     * Returns information of an item given its name
+     * @param name the name of the item
+     * @return information about the item
+     */
+    @GET
+    @Path("/{name}")
+    @UnitOfWork
+    public Item findItemByName(@PathParam("name") String name) {
+        return this.itemDAO.findByName(name).orElseThrow( () -> new
+                NotFoundException("No such item"));
     }
 
     /**
@@ -55,6 +72,7 @@ public class ItemResource {
      * @return list of all items
      */
     @GET
+    @RolesAllowed("Admin")
     @UnitOfWork
     public List<Item> findAllItems() {
         return itemDAO.findAll();
@@ -65,18 +83,22 @@ public class ItemResource {
      * @param item the item to be updated
      */
     @PUT
+    @Path("/{itemId}")
     @UnitOfWork
-    public void update(Item item) {
-        this.itemDAO.updateItem(item);
+    public void updateItem(@PathParam("itemId") LongParam itemId, @Auth Item
+            item) {
+        this.itemDAO.updateItem(itemId.get(), item);
     }
 
     /**
      * Deletes the item
-     * @param id the item's id
+     * @param itemId the item's id
      */
     @DELETE
+    @Path("/{itemId}")
+    @RolesAllowed("Admin")
     @UnitOfWork
-    public void delete(long id) {
-        this.itemDAO.deleteItem(id);
+    public void delete(@PathParam("itemId") LongParam itemId) {
+        this.itemDAO.deleteItem(itemId.get());
     }
 }
