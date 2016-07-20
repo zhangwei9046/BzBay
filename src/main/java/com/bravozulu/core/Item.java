@@ -64,6 +64,38 @@ public class Item {
     @Column(name = "endDate")
     private Timestamp endDate;
 
+    /**
+     * Constructor for Item
+     * @param name the name of the item
+     * @param available the availability status
+     * @param sellerId the id of the seller of the item
+     * @param model the model
+     * @param shipping the shipping type
+     * @param category the category
+     * @param condition the condition
+     * @param url a url to the item
+     * @param description the description
+     * @param initialPrice the initial price
+     * @param finalPrice the final price at which the item sold
+     * @param startDate the start date of the item's auction
+     * @param endDate the end date of the item's auction
+     */
+    public Item(String name, boolean available, long sellerId, String model, String shipping, String category, String condition, String url, String description, double initialPrice, double finalPrice, Timestamp startDate, Timestamp endDate) {
+        this.name = name;
+        this.available = available;
+        this.sellerId = sellerId;
+        this.model = model;
+        this.shipping = shipping;
+        this.category = category;
+        this.condition = condition;
+        this.url = url;
+        this.description = description;
+        this.initialPrice = initialPrice;
+        this.finalPrice = finalPrice;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
     public long getItemId() {
         return itemId;
     }

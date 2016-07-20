@@ -12,13 +12,16 @@ import io.dropwizard.jackson.Jackson;
 import org.junit.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.sql.Timestamp;
+
 public class ItemTest {
     private static final ObjectMapper MAPPER = Jackson.newObjectMapper();
 
     @Test
     public void serializesToJSON() throws Exception {
-        //TODO create Item test object
-        final Item item = new Item();
+        final Item item = new Item("Macbook Air", true, 12345, "1.0", "Mail",
+                "Computers", "Used", "mymackbook.com", "Works really well.",
+                42.42, 420.20, new Timestamp(2345), new Timestamp(4569));
         final String expected = MAPPER.writeValueAsString(
                 MAPPER.readValue(fixture("fixtures/item.json"), Item.class));
         assertThat(MAPPER.writeValueAsString(item)).isEqualTo(expected);
@@ -26,8 +29,9 @@ public class ItemTest {
 
     @Test
     public void deserializesFromJSON() throws Exception {
-        //TODO create Item test object
-        final Item item = new Item();
+        final Item item = new Item("Macbook Air", true, 12345, "1.0", "Mail",
+                "Computers", "Used", "mymackbook.com", "Works really well.",
+                42.42, 420.20, new Timestamp(2345), new Timestamp(4569));
         assertThat(MAPPER.readValue(fixture("fixtures/item.json"), Item.class))
                 .isEqualTo(item);
     }
