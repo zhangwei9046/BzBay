@@ -28,6 +28,7 @@ public class ItemDAOTest {
     private Transaction tx;
     private ItemDAO dao;
 
+/*
     @BeforeClass
     public static void setUpClass throws LiquibaseException, SQLException {
         SessionFactoryImpl sessionFactorImpl = (SessionFactoryImpl)
@@ -43,5 +44,5 @@ public class ItemDAOTest {
         liquibase = new Liquibase("migrations.xml", new
                 ClassLoaderResourceAccessor(), database));
     }
-
+*/
 }
