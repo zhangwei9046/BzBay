@@ -5,7 +5,6 @@ import com.bravozulu.auth.BzbayAuthorizer;
 import com.bravozulu.core.User;
 import com.bravozulu.db.UserDAO;
 import com.bravozulu.resources.UserResource;
-import com.bravozulu.health.TemplateHealthCheck;
 import de.thomaskrille.dropwizard_template_config.TemplateConfigBundle;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
