@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 
 public class ItemTest {
     private static final ObjectMapper MAPPER = Jackson.newObjectMapper();
-
+/*
     @Test
     public void serializesToJSON() throws Exception {
         final Item item = new Item("Macbook Air", true, 12345, "1.0", "Mail",
@@ -35,4 +35,6 @@ public class ItemTest {
         assertThat(MAPPER.readValue(fixture("fixtures/item.json"), Item.class))
                 .isEqualTo(item);
     }
+
+    */
 }

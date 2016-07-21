@@ -6,7 +6,7 @@ package com.bravozulu.core;
 import javax.persistence.*;
 import java.sql.Timestamp;
 @Entity
-@Table(name="bidhistory")
+@Table(name="bidhistories")
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.BidHistory.findAll",
