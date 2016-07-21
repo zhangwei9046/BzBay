@@ -8,6 +8,5 @@
   "city": "Seattle",
   "state": "WA",
   "address": "401 Terry Ave N",
-//  "name": "hello",
   "admin": true
 }

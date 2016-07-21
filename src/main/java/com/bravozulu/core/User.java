@@ -4,6 +4,10 @@ package com.bravozulu.core;
  * Created by ying on 6/25/16.
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.security.Principal;
 
@@ -20,7 +24,7 @@ import java.security.Principal;
         )
 })
 
-public class User implements Principal {
+public class User implements Principal{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE,
@@ -71,8 +75,11 @@ public class User implements Principal {
         this.lastName = lastName;
     }
 
-    public User(Long userId, String username, String firstName, String lastName, String password, String email,
-                String city, String state, String address, boolean isAdmin) {
+    public User(@JsonProperty("userId") Long userId, @JsonProperty("username") String username,
+                @JsonProperty("firstName") String firstName, @JsonProperty("lastName") String lastName,
+                @JsonProperty("password") String password, @JsonProperty("email") String email,
+                @JsonProperty("city") String city, @JsonProperty("state") String state,
+                @JsonProperty("address") String address, @JsonProperty("isAdmin") boolean isAdmin) {
         this.userId = userId;
         this.username = username;
         this.firstName = firstName;
@@ -85,13 +92,13 @@ public class User implements Principal {
         this.isAdmin = isAdmin;
     }
 
-
-
+    @JsonIgnore
     @Override
     public String getName() {
-        return username;
+        return getUsername();
     }
 
+//    @JsonProperty("userId")
     public long getUserId() {
         return userId;
     }
@@ -100,6 +107,7 @@ public class User implements Principal {
         this.userId = userId;
     }
 
+//    @JsonProperty("password")
     public String getPassword() {
         return password;
     }
@@ -108,6 +116,7 @@ public class User implements Principal {
         this.password = password;
     }
 
+//    @JsonProperty("email")
     public String getEmail() {
         return email;
     }
@@ -116,6 +125,7 @@ public class User implements Principal {
         this.email = email;
     }
 
+//    @JsonProperty("city")
     public String getCity() {
         return city;
     }
@@ -124,6 +134,7 @@ public class User implements Principal {
         this.city = city;
     }
 
+//    @JsonProperty("state")
     public String getState() {
         return state;
     }
@@ -132,6 +143,7 @@ public class User implements Principal {
         this.state = state;
     }
 
+//    @JsonProperty("address")
     public String getAddress() {
         return address;
     }
@@ -140,6 +152,7 @@ public class User implements Principal {
         this.address = address;
     }
 
+//    @JsonProperty("isAdmin")
     public boolean isAdmin() {
         return isAdmin;
     }
@@ -148,6 +161,7 @@ public class User implements Principal {
         isAdmin = admin;
     }
 
+//    @JsonProperty("username")
     public String getUsername() {
         return username;
     }
@@ -156,6 +170,7 @@ public class User implements Principal {
         this.username = username;
     }
 
+//    @JsonProperty("firstName")
     public String getFirstName() {
         return firstName;
     }
@@ -164,6 +179,7 @@ public class User implements Principal {
         this.firstName = firstName;
     }
 
+//    @JsonProperty("lastName")
     public String getLastName() {
         return lastName;
     }
@@ -172,4 +188,54 @@ public class User implements Principal {
         this.lastName = lastName;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", address='" + address + '\'' +
+                ", isAdmin=" + isAdmin +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (userId != user.userId) return false;
+        if (isAdmin != user.isAdmin) return false;
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (city != null ? !city.equals(user.city) : user.city != null) return false;
+        if (state != null ? !state.equals(user.state) : user.state != null) return false;
+        return address != null ? address.equals(user.address) : user.address == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (userId ^ (userId >>> 32));
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (state != null ? state.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (isAdmin ? 1 : 0);
+        return result;
+    }
 }

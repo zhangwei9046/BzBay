@@ -35,9 +35,6 @@ public class UserResourceTest {
         when(dao.findByUsername(eq("hello"))).thenReturn(Optional.of(user));
         when(dao.create(any(User.class))).thenReturn(user);
 
-
-
-
     }
 
     @After
@@ -65,7 +62,7 @@ public class UserResourceTest {
 
     @Test
     public void createUser() {
-
+//        verify(dao).create(user);
     }
 
     @Test
@@ -77,12 +74,15 @@ public class UserResourceTest {
 
     @Test
     public void getUserByUsername() {
-
+        assertThat(resources.client().target("/user/username=hello").request().get(User.class))
+                .isEqualTo(user);
+        verify(dao).findByUsername("hello");
     }
 
     @Test
     public void updateUser() {
 
+//        verify(dao).update();
     }
 
     @Test
