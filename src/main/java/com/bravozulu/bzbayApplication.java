@@ -5,6 +5,7 @@ import com.bravozulu.auth.BzbayAuthorizer;
 import com.bravozulu.core.User;
 import com.bravozulu.db.UserDAO;
 import com.bravozulu.resources.UserResource;
+import de.thomaskrille.dropwizard_template_config.TemplateConfigBundle;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
 import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
@@ -15,6 +16,7 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
+
 
 public class bzbayApplication extends Application<bzbayConfiguration> {
 
@@ -44,6 +46,7 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
             }
         });
         bootstrap.addBundle(hibernate);
+        bootstrap.addBundle(new TemplateConfigBundle());
     }
 
     @Override
@@ -51,6 +54,13 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
                     final Environment environment) {
         final UserDAO userDAO = new UserDAO(hibernate.getSessionFactory());
         environment.jersey().register(new UserResource(userDAO));
+
+        // Adding health check
+        //final TemplateHealthCheck healthCheck =
+        //        new TemplateHealthCheck(configuration.getTemplate());
+
+        //environment.healthChecks().register("template", healthCheck);
+
 
         //Authentication
         environment.jersey().register(new AuthDynamicFeature(

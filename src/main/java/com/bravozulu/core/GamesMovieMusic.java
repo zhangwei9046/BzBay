@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 /** Represents a GamesMovieMusic which is a sublcass of Item
  * Created by bonicma on 6/29/16.
  */
-public class GamesMovieMusic extends Item {
+public class GamesMovieMusic {
     @Column(name ="releaseDate", nullable = false)
     private Timestamp releaseDate;
 

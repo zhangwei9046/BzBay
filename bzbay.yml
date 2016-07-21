@@ -4,6 +4,7 @@ database:
   user: root
   password: password
   url: jdbc:postgresql://localhost:5432/test
+
   # any properties specific to your JDBC driver:
   properties:
     charSet: UTF-8
@@ -27,6 +28,8 @@ database:
 #  use the simple server factory if you only want to run on a single port
 server:
     type: simple
+    applicationContextPath: /api
+    adminContextPath: /admin
     connector:
       type: http
       port: 8080
