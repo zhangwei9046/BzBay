@@ -96,6 +96,13 @@ public class Item {
         this.endDate = endDate;
     }
 
+    /**
+     *
+     */
+    public Item() {
+
+    }
+
     public long getItemId() {
         return itemId;
     }

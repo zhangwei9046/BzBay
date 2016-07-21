@@ -5,7 +5,7 @@ import javax.persistence.Column;
 /**
  * Created by bonicma on 6/29/16.
  */
-public class ComputerTabletSmartphone extends Item {
+public class ComputerTabletSmartphone {
     @Column(name ="size", nullable = false)
     private int size;
 

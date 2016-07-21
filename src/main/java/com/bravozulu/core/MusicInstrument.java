@@ -14,7 +14,7 @@ import javax.persistence.*;
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.MusicInstrument.findAll",
-                query = "SELECT u FROM User u"
+                query = "SELECT u FROM Item u"
         )
 })
 
@@ -32,9 +32,12 @@ public class MusicInstrument extends Item {
      *                       brass, percussion)
      */
     public MusicInstrument(String brand, String classification) {
+        super();
         this.brand = brand;
         this.classification = classification;
     }
+
+
 
     /**
      * Returns the brand
