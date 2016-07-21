@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  */
 
 @Entity
-@Table(name="item")
+@Table(name="items")
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.Item.findAll",

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="ying">
+        <createTable tableName="users">
+            <column name="userid" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="firstname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(255)">
+            </column>
+            <column name="state" type="varchar(255)">
+            </column>
+            <column name="address" type="varchar(255)">
+            </column>
+            <column name="isadmin" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="ying">
+        <createTable tableName="items">
+            <column name="itemid" type="bigint"  autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="available" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sellerid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_users_sellerid"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
+            </column>
+            <column name="model" type="varchar(255)"></column>
+            <column name="shipping" type="varchar(255)"></column>
+            <column name="category" type="varchar(255)"></column>
+            <column name="condition" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type = "varchar(255)"></column>
+            <column name="description" type="varchar(255)"></column>
+            <column name="initialPrice" type="float">
+                <constraints nullable="false"/>
+            </column>
+            <column name="finalPrice" type="float"></column>
+            <column name="startDate" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="endDate" type="timestamp"></column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="ying">
+        <createTable tableName="reviews">
+            <column name="reviewid" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="senderid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_users_senderId"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
+            </column>
+            <column name="receiverid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_users_receiverId"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
+            </column>
+            <column name="content" type="varchar(2048)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="score" type="smallint"/>
+            <column name="date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <comment>A script to create reviews table</comment>
+    </changeSet>
+    <changeSet id="4" author="ying">
+        <createTable tableName="bidHistories">
+            <column name="bidid" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_items_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
+            </column>
+            <column name="userid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_users_userid"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
+            </column>
+            <column name="price" type="float"> //not sure
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="mark">
+        <createTable tableName="musicInstruments">
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_items_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
+            </column>
+            <column name="brand" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="classification" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="6" author="mark">
+        <createTable tableName="wearableTechs">
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
+            </column>
+            <column name="brand" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="7" author="mark">
+        <createTable tableName="gamesMovieMusic">
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
+            </column>
+            <column name="releaseDate" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="8" author="mark">
+        <createTable tableName="computerTabletSmartphone">
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
+            </column>
+            <column name="size" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="storage" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cpu" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="9" author="melody">
+        <createTable tableName="transactions">
+            <column name="transactionId" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
+            </column>
+            <column name="userid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_userid"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
+            </column>
+            <column name="price" type="float"> //not sure
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="10" author="melody">
+        <createTable tableName="creditcards">
+            <column name="creditcardnum" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="userid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_userid"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
+            </column>
+            <column name="expDate" type="varchar(255)">
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

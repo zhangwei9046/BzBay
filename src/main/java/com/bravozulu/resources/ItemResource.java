@@ -6,6 +6,7 @@ package com.bravozulu.resources;
 
 import com.bravozulu.core.Item;
 import com.bravozulu.db.ItemDAO;
+import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
@@ -36,6 +37,7 @@ public class ItemResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
+    @Timed
     public Item create(Item item) {
         return itemDAO.create(item);
     }

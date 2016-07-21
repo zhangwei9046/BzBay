@@ -1,0 +1,10 @@
+com/bravozulu/resources/ItemResourceTest.class
+com/bravozulu/resources/ReviewTest.class
+com/bravozulu/IntegrationTest.class
+com/bravozulu/core/ItemTest.class
+com/bravozulu/resources/ReviewResourceTest.class
+com/bravozulu/resources/UserResourceTest.class
+com/bravozulu/resources/UserResourceTest$1.class
+com/bravozulu/db/HibernateUtil.class
+com/bravozulu/resources/UserTest.class
+com/bravozulu/db/ItemDAOTest.class

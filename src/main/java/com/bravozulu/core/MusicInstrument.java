@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name="MusicInstrument")
+@Table(name="musicInstruments")
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.MusicInstrument.findAll",

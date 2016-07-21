@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="creditcard")
+@Table(name="creditcards")
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.CreditCards.findAll",

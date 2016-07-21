@@ -38,8 +38,8 @@
         </createTable>
     </changeSet>
     <changeSet id="2" author="ying">
-        <createTable tableName="item">
-            <column name="itemId" type="bigint"  autoIncrement="true">
+        <createTable tableName="items">
+            <column name="itemid" type="bigint"  autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
@@ -48,8 +48,8 @@
             <column name="available" type="boolean">
                 <constraints nullable="false"/>
             </column>
-            <column name="sellerId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_users_sellerId"
+            <column name="sellerid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_users_sellerid"
                              referencedTableName="users"
                              referencedColumnNames="userid"/>
             </column>
@@ -97,17 +97,17 @@
         <comment>A script to create reviews table</comment>
     </changeSet>
     <changeSet id="4" author="ying">
-        <createTable tableName="bidHistory">
-            <column name="bidId" type="bigint" autoIncrement="true">
+        <createTable tableName="bidHistories">
+            <column name="bidid" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="itemId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_item_itemId"
-                             referencedTableName="item"
-                             referencedColumnNames="itemId"/>
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_items_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
             </column>
-            <column name="userId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_users_userId"
+            <column name="userid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_users_userid"
                              referencedTableName="users"
                              referencedColumnNames="userid"/>
             </column>
@@ -120,11 +120,11 @@
         </createTable>
     </changeSet>
     <changeSet id="5" author="mark">
-        <createTable tableName="musicInstrument">
-            <column name="itemId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_item_itemId"
-                             referencedTableName="item"
-                             referencedColumnNames="itemId"/>
+        <createTable tableName="musicInstruments">
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_items_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
             </column>
             <column name="brand" type="varchar(255)">
                 <constraints nullable="false"/>
@@ -135,11 +135,11 @@
         </createTable>
     </changeSet>
     <changeSet id="6" author="mark">
-        <createTable tableName="wearableTech">
-            <column name="itemId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_item_itemId"
-                             referencedTableName="item"
-                             referencedColumnNames="itemId"/>
+        <createTable tableName="wearableTechs">
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
             </column>
             <column name="brand" type="varchar(255)">
                 <constraints nullable="false"/>
@@ -151,10 +151,10 @@
     </changeSet>
     <changeSet id="7" author="mark">
         <createTable tableName="gamesMovieMusic">
-            <column name="itemId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_item_itemId"
-                             referencedTableName="item"
-                             referencedColumnNames="itemId"/>
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
             </column>
             <column name="releaseDate" type="timestamp">
                 <constraints nullable="false"/>
@@ -163,10 +163,10 @@
     </changeSet>
     <changeSet id="8" author="mark">
         <createTable tableName="computerTabletSmartphone">
-            <column name="itemId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_item_itemId"
-                             referencedTableName="item"
-                             referencedColumnNames="itemId"/>
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
             </column>
             <column name="size" type="bigint">
                 <constraints nullable="false"/>
@@ -180,19 +180,19 @@
         </createTable>
     </changeSet>
     <changeSet id="9" author="melody">
-        <createTable tableName="transaction">
+        <createTable tableName="transactions">
             <column name="transactionId" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="itemId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_item_itemId"
-                             referencedTableName="item"
-                             referencedColumnNames="itemId"/>
+            <column name="itemid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_item_itemid"
+                             referencedTableName="items"
+                             referencedColumnNames="itemid"/>
             </column>
-            <column name="userId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_user_userId"
-                             referencedTableName="user"
-                             referencedColumnNames="userId"/>
+            <column name="userid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_userid"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
             </column>
             <column name="price" type="float"> //not sure
                 <constraints nullable="false"/>
@@ -203,14 +203,14 @@
         </createTable>
     </changeSet>
     <changeSet id="10" author="melody">
-        <createTable tableName="creditcard">
-            <column name="creditCardNum" type="varchar(255)">
+        <createTable tableName="creditcards">
+            <column name="creditcardnum" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="userId" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_user_userId"
-                             referencedTableName="user"
-                             referencedColumnNames="userId"/>
+            <column name="userid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_userid"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
             </column>
             <column name="expDate" type="varchar(255)">
             </column>
