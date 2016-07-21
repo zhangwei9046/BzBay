@@ -23,7 +23,7 @@ public class UserResource {
     //This method works
     @GET
     @UnitOfWork
-    @RolesAllowed("Admin")
+//    @RolesAllowed("Admin")
     public List<User> findAllUsers() {
         return userDAO.findAll();
     }

@@ -20,7 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dropwizard.version>0.9.2</dropwizard.version>
-        <mainClass>com.bravozulu.bzbayApplication</mainClass>
+        <mainClass>com.bravozulu.BzbayApplication</mainClass>
     </properties>
 
 
@@ -242,7 +242,7 @@
                     <transformers>
                         <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                         <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                            <mainClass>com.bravozulu.bzbayApplication</mainClass>
+                            <mainClass>com.bravozulu.BzbayApplication</mainClass>
                         </transformer>
                     </transformers>
                 </configuration>
