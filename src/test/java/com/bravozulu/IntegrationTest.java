@@ -12,8 +12,8 @@ import javax.ws.rs.client.Client;
  */
 public class IntegrationTest {
 //    @ClassRule
-//    public static final DropwizardAppRule<BzbayConfiguration> RULE =
-//            new DropwizardAppRule<BzbayConfiguration>(BzbayApplication.class, ResourceHelpers.resourceFilePath("my-app-config.yaml"));
+//    public static final DropwizardAppRule<bzbayConfiguration> RULE =
+//            new DropwizardAppRule<bzbayConfiguration>(bzbayApplication.class, ResourceHelpers.resourceFilePath("my-app-config.yaml"));
 //
 //    @Test
 //    public void loginHandlerRedirectsAfterPost() {

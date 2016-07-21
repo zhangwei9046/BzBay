@@ -18,17 +18,17 @@ import io.dropwizard.setup.Environment;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 
-public class BzbayApplication extends Application<BzbayConfiguration> {
+public class bzbayApplication extends Application<bzbayConfiguration> {
 
-    private final HibernateBundle<BzbayConfiguration> hibernate = new HibernateBundle<BzbayConfiguration>(User.class) {
+    private final HibernateBundle<bzbayConfiguration> hibernate = new HibernateBundle<bzbayConfiguration>(User.class) {
         @Override
-        public DataSourceFactory getDataSourceFactory(BzbayConfiguration configuration) {
+        public DataSourceFactory getDataSourceFactory(bzbayConfiguration configuration) {
             return configuration.getDataSourceFactory();
         }
     };
 
     public static void main(final String[] args) throws Exception {
-        new BzbayApplication().run(args);
+        new bzbayApplication().run(args);
     }
 
     @Override
@@ -37,10 +37,10 @@ public class BzbayApplication extends Application<BzbayConfiguration> {
     }
 
     @Override
-    public void initialize(final Bootstrap<BzbayConfiguration> bootstrap) {
-        bootstrap.addBundle(new MigrationsBundle<BzbayConfiguration>() {
+    public void initialize(final Bootstrap<bzbayConfiguration> bootstrap) {
+        bootstrap.addBundle(new MigrationsBundle<bzbayConfiguration>() {
             @Override
-            public DataSourceFactory getDataSourceFactory(BzbayConfiguration
+            public DataSourceFactory getDataSourceFactory(bzbayConfiguration
                                                                   configuration) {
                 return configuration.getDataSourceFactory();
             }
@@ -50,7 +50,7 @@ public class BzbayApplication extends Application<BzbayConfiguration> {
     }
 
     @Override
-    public void run(final BzbayConfiguration configuration,
+    public void run(final bzbayConfiguration configuration,
                     final Environment environment) {
         final UserDAO userDAO = new UserDAO(hibernate.getSessionFactory());
         environment.jersey().register(new UserResource(userDAO));

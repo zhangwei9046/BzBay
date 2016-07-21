@@ -11,12 +11,12 @@ import org.slf4j.LoggerFactory;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-public class BzbayConfiguration extends Configuration {
+public class bzbayConfiguration extends Configuration {
     @Valid
     @NotNull
     private DataSourceFactory database = new DataSourceFactory();
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BzbayConfiguration.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(bzbayConfiguration.class);
 
     @JsonProperty("database")
     public void setDataSourceFactory(DataSourceFactory factory){
