@@ -151,5 +151,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.glassfish.grizzly:grizzly-framework:2.3.23" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.glassfish.jersey.containers:jersey-container-grizzly2-servlet:2.22.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.glassfish.grizzly:grizzly-http-servlet:2.3.23" level="project" />
+    <orderEntry type="library" name="Maven: de.thomaskrille:dropwizard-template-config:1.3.0" level="project" />
   </component>
 </module>
