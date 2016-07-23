@@ -93,6 +93,10 @@ public class Review {
         this.score = score;
     }
 
+    public Timestamp getDate() { return date; }
+
+    public void setDate(Timestamp date) { this.date = date;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

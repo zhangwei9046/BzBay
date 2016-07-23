@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.sql.Timestamp;
+
 import static io.dropwizard.testing.FixtureHelpers.fixture;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
@@ -96,6 +98,17 @@ public class ReviewTest {
     public void setScore() throws Exception {
         review.setScore(4.6);
         assertTrue(review.getScore() == 4.6);
+    }
+
+    @Test
+    public void getDate() {
+        assertEquals(review.getDate(), null);
+    }
+
+    @Test
+    public void setDate() {
+        review.setDate(new Timestamp(8765));
+        assertEquals(review.getDate(), new Timestamp(8765));
     }
 
     @Test

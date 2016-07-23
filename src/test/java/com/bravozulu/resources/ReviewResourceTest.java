@@ -7,6 +7,7 @@ import com.bravozulu.core.Review;
 import com.bravozulu.core.User;
 import com.bravozulu.db.ReviewDAO;
 import com.bravozulu.db.UserDAO;
+import com.google.common.collect.ImmutableList;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.junit.After;
 import org.junit.Before;
@@ -30,11 +31,11 @@ public class ReviewResourceTest {
             .build();
 
     private final User user = new User(100l, "hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
-    private final Review review = new Review();
+    private final Review review = new Review(1L, 2L, "Good!", 4.5);
 
     @Before
     public void setup() {
-
+        review.setReviewId(1);
     }
 
     @After
@@ -48,7 +49,14 @@ public class ReviewResourceTest {
 
     @Test
     public void findAllReviews() {
+        final ImmutableList<Review> reviews = ImmutableList.of(review);
+        when(reviewDao.findAll()).thenReturn(reviews);
 
+        final List<Review> response = resources.client().target("/review")
+                .request().get(new GenericType<List<Review>>() {});
+
+        verify(reviewDao).findAll();
+        assertThat(response).containsAll(reviews);
     }
 
     @Test
