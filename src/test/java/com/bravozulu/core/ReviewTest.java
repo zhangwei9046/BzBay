@@ -1,4 +1,4 @@
-package com.bravozulu.resources;
+package com.bravozulu.core;
 
 /**
  * Created by ying on 7/19/16.
