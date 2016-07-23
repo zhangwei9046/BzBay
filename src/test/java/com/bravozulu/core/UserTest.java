@@ -1,16 +1,22 @@
 package com.bravozulu.core;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.dropwizard.jackson.Jackson;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static io.dropwizard.testing.FixtureHelpers.fixture;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by ying on 7/22/16.
  */
 public class UserTest {
     private User user = new User(100L, "hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+
+    private static final ObjectMapper MAPPER = Jackson.newObjectMapper();
 
     @Before
     public void setUp() throws Exception {
@@ -20,6 +26,22 @@ public class UserTest {
     @After
     public void tearDown() throws Exception {
 
+    }
+
+
+
+    @Test
+    public void serializesToJSON() throws Exception {
+        final String expected = MAPPER.writeValueAsString(
+                MAPPER.readValue(fixture("fixtures/user.json"), User.class));
+
+        assertThat(MAPPER.writeValueAsString(user)).isEqualTo(expected);
+    }
+
+    @Test
+    public void deserializesFromJSON() throws Exception {
+        assertThat(MAPPER.readValue(fixture("fixtures/user.json"), User.class))
+                .isEqualTo(user);
     }
 
     @Test
