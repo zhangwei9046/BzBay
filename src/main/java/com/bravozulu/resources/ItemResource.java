@@ -19,7 +19,7 @@ import java.util.List;
 @Path("/item")
 @Produces(MediaType.APPLICATION_JSON)
 public class ItemResource {
-    private ItemDAO itemDAO;
+    private final ItemDAO itemDAO;
 
     /**
      * Constructor for ItemResource
