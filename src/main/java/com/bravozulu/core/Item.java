@@ -1,5 +1,7 @@
 package com.bravozulu.core;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -80,7 +82,19 @@ public class Item {
      * @param startDate the start date of the item's auction
      * @param endDate the end date of the item's auction
      */
-    public Item(String name, boolean available, long sellerId, String model, String shipping, String category, String condition, String url, String description, double initialPrice, double finalPrice, Timestamp startDate, Timestamp endDate) {
+    public Item(@JsonProperty("name") String name,
+                @JsonProperty("available") boolean available,
+                @JsonProperty("sellerId") long sellerId,
+                @JsonProperty("model") String model,
+                @JsonProperty("shipping") String shipping,
+                @JsonProperty ("category") String category,
+                @JsonProperty("condition") String condition,
+                @JsonProperty("url") String url,
+                @JsonProperty("description") String description,
+                @JsonProperty("initialPrice") double initialPrice,
+                @JsonProperty("finalPrice") double finalPrice,
+                @JsonProperty("startDate") Timestamp startDate,
+                @JsonProperty("endDate") Timestamp endDate) {
         this.name = name;
         this.available = available;
         this.sellerId = sellerId;
