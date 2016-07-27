@@ -62,7 +62,7 @@ public class ItemResource {
      * @return information about the item
      */
     @GET
-    @Path("/{name}")
+    @Path("/name = {name}")
     @UnitOfWork
     public Item findItemByName(@PathParam("name") String name) {
         return this.itemDAO.findByName(name).orElseThrow( () -> new
