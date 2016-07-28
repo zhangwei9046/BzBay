@@ -4,9 +4,15 @@ import com.bravozulu.auth.BzbayAuthenticator;
 import com.bravozulu.auth.BzbayAuthorizer;
 import com.bravozulu.core.Review;
 import com.bravozulu.core.User;
+<<<<<<< HEAD
 import com.bravozulu.db.ReviewDAO;
 import com.bravozulu.db.UserDAO;
 import com.bravozulu.resources.ReviewResource;
+=======
+import com.bravozulu.db.ItemDAO;
+import com.bravozulu.db.UserDAO;
+import com.bravozulu.resources.ItemResource;
+>>>>>>> 99d7063389fc6b115e19de53ffad5129f6f982c8
 import com.bravozulu.resources.UserResource;
 import de.thomaskrille.dropwizard_template_config.TemplateConfigBundle;
 import io.dropwizard.auth.AuthDynamicFeature;
@@ -58,7 +64,12 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
         final UserDAO userDAO = new UserDAO(hibernate.getSessionFactory());
         final ReviewDAO reviewDAO = new ReviewDAO(hibernate.getSessionFactory());
         environment.jersey().register(new UserResource(userDAO));
+
         environment.jersey().register(new ReviewResource(reviewDAO, userDAO));
+
+        final ItemDAO itemDAO = new ItemDAO(hibernate.getSessionFactory());
+        environment.jersey().register(new ItemResource(itemDAO));
+
         // Adding health check
         //final TemplateHealthCheck healthCheck =
         //        new TemplateHealthCheck(configuration.getTemplate());

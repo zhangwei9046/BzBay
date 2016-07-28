@@ -5,7 +5,9 @@ package com.bravozulu.resources;
  */
 
 import com.bravozulu.core.Item;
+import com.bravozulu.core.User;
 import com.bravozulu.db.ItemDAO;
+import com.bravozulu.db.UserDAO;
 import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
@@ -19,14 +21,16 @@ import java.util.List;
 @Path("/item")
 @Produces(MediaType.APPLICATION_JSON)
 public class ItemResource {
-    private ItemDAO itemDAO;
+    private final ItemDAO itemDAO;
+    private final UserDAO userDAO;
 
     /**
      * Constructor for ItemResource
      * @param itemDAO the item DAO
      */
-    public ItemResource(ItemDAO itemDAO) {
+    public ItemResource(ItemDAO itemDAO, UserDAO userDAO) {
         this.itemDAO = itemDAO;
+        this.userDAO = userDAO;
     }
 
     /**
@@ -62,7 +66,7 @@ public class ItemResource {
      * @return information about the item
      */
     @GET
-    @Path("/{name}")
+    @Path("/name = {name}")
     @UnitOfWork
     public Item findItemByName(@PathParam("name") String name) {
         return this.itemDAO.findByName(name).orElseThrow( () -> new
@@ -74,7 +78,7 @@ public class ItemResource {
      * @return list of all items
      */
     @GET
-    @RolesAllowed("Admin")
+    //@RolesAllowed("Admin")
     @UnitOfWork
     public List<Item> findAllItems() {
         return itemDAO.findAll();
@@ -87,8 +91,7 @@ public class ItemResource {
     @PUT
     @Path("/{itemId}")
     @UnitOfWork
-    public void updateItem(@PathParam("itemId") LongParam itemId, @Auth Item
-            item) {
+    public void updateItem(@PathParam("itemId") LongParam itemId, Item item) {
         this.itemDAO.updateItem(itemId.get(), item);
     }
 
@@ -98,7 +101,7 @@ public class ItemResource {
      */
     @DELETE
     @Path("/{itemId}")
-    @RolesAllowed("Admin")
+    //@RolesAllowed("Admin")
     @UnitOfWork
     public void delete(@PathParam("itemId") LongParam itemId) {
         this.itemDAO.deleteItem(itemId.get());
