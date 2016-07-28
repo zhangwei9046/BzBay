@@ -20,11 +20,11 @@ public class UserDAOTest {
     private static final UserDAO dao = mock(UserDAO.class);
 //    private static final UserDAO dao = new UserDAO();
 
-    private User user = new User(100L, "hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+    private User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
 
     @Before
     public void setup() {
-
+        user.setUserId(100L);
     }
 
     @After

@@ -75,12 +75,11 @@ public class User implements Principal{
         this.lastName = lastName;
     }
 
-    public User(@JsonProperty("userId") Long userId, @JsonProperty("username") String username,
+    public User(@JsonProperty("username") String username,
                 @JsonProperty("firstName") String firstName, @JsonProperty("lastName") String lastName,
                 @JsonProperty("password") String password, @JsonProperty("email") String email,
                 @JsonProperty("city") String city, @JsonProperty("state") String state,
                 @JsonProperty("address") String address, @JsonProperty("isAdmin") boolean isAdmin) {
-        this.userId = userId;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;

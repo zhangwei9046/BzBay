@@ -14,13 +14,13 @@ import static org.junit.Assert.assertEquals;
  * Created by ying on 7/22/16.
  */
 public class UserTest {
-    private User user = new User(100L, "hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+    private User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
 
     private static final ObjectMapper MAPPER = Jackson.newObjectMapper();
 
     @Before
     public void setUp() throws Exception {
-
+        user.setUserId(100L);
     }
 
     @After
@@ -167,7 +167,8 @@ public class UserTest {
 
     @Test
     public void equals() throws Exception {
-        User userObj = new User(100L, "hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+        User userObj = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+        userObj.setUserId(100L);
         assertEquals(user, userObj);
     }
 

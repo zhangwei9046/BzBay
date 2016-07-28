@@ -34,10 +34,11 @@ public class UserResourceTest {
 
     @Captor
     private ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User.class);
-    private User user = new User(100L, "hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+    private User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
 
     @Before
     public void setup() {
+        user.setUserId(100L);
         when(dao.findById(100L)).thenReturn(Optional.of(user));
         when(dao.findByUsername(eq("hello"))).thenReturn(Optional.of(user));
         when(dao.create(any(User.class))).thenReturn(user);
