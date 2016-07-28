@@ -28,10 +28,10 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long reviewId;
 
-    @Column(name = "senderId", nullable = false)
+    @Column(name = "senderid", nullable = false)
     private long senderId;
 
-    @Column(name = "receiverId", nullable = false)
+    @Column(name = "receiverid", nullable = false)
     private long receiverId;
 
     @Column(name = "content", nullable = false)
