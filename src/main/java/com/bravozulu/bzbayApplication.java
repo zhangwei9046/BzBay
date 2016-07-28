@@ -2,21 +2,14 @@ package com.bravozulu;
 
 import com.bravozulu.auth.BzbayAuthenticator;
 import com.bravozulu.auth.BzbayAuthorizer;
-<<<<<<< HEAD
 import com.bravozulu.core.Item;
-=======
 import com.bravozulu.core.Review;
->>>>>>> origin/master
 import com.bravozulu.core.User;
-<<<<<<< HEAD
 import com.bravozulu.db.ReviewDAO;
 import com.bravozulu.db.UserDAO;
 import com.bravozulu.resources.ReviewResource;
-=======
 import com.bravozulu.db.ItemDAO;
-import com.bravozulu.db.UserDAO;
 import com.bravozulu.resources.ItemResource;
->>>>>>> 99d7063389fc6b115e19de53ffad5129f6f982c8
 import com.bravozulu.resources.UserResource;
 import de.thomaskrille.dropwizard_template_config.TemplateConfigBundle;
 import io.dropwizard.auth.AuthDynamicFeature;
@@ -33,12 +26,7 @@ import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 public class bzbayApplication extends Application<bzbayConfiguration> {
 
-<<<<<<< HEAD
-    private final HibernateBundle<bzbayConfiguration> hibernate = new
-            HibernateBundle<bzbayConfiguration>(User.class, Item.class) {
-=======
-    private final HibernateBundle<bzbayConfiguration> hibernate = new HibernateBundle<bzbayConfiguration>(User.class, Review.class) {
->>>>>>> origin/master
+    private final HibernateBundle<bzbayConfiguration> hibernate = new HibernateBundle<bzbayConfiguration>(User.class, Review.class, Item.class) {
         @Override
         public DataSourceFactory getDataSourceFactory(bzbayConfiguration configuration) {
             return configuration.getDataSourceFactory();
