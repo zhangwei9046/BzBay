@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by ying on 7/5/16.
  */
-
+@Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 public class ReviewResource {
     private final ReviewDAO reviewDAO;
@@ -27,14 +27,15 @@ public class ReviewResource {
     }
 
     @GET
-    @Path("/review")
+    @Path("review")
     @UnitOfWork
     public List<Review> findAllReviews() {
+        System.out.println("hello zoey");
         return reviewDAO.findAll();
     }
 
     @POST
-    @Path("/review")
+    @Path("review")
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
     public Review createReview(@Auth User user, Review review) {
@@ -42,7 +43,7 @@ public class ReviewResource {
     }
 
     @PUT
-    @Path("/review/{reviewId}")
+    @Path("review/{reviewId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
     public Review updateReview(@Auth User user, @PathParam("reviewId") LongParam reviewId, Review review) {
@@ -50,14 +51,14 @@ public class ReviewResource {
     }
 
     @DELETE
-    @Path("/review/{reviewId}")
+    @Path("review/{reviewId}")
     @UnitOfWork
     public void deleteReview(@Auth User user, @PathParam("reviewId") LongParam reviewId) {
         reviewDAO.delete(reviewId.get());
     }
 
     @GET
-    @Path("/user/sendername={username}/review")
+    @Path("user/sendername={username}/review")
     @UnitOfWork
     public List<Review> findReviewsForSender(@Auth User user, @PathParam("username") String username) {
         User userObj = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
@@ -65,7 +66,7 @@ public class ReviewResource {
     }
 
     @GET
-    @Path("/user/receivername={username}/review")
+    @Path("user/receivername={username}/review")
     @UnitOfWork
     public List<Review> findReviewsForReceiver(@Auth User user, @PathParam("username") String username) {
         User userObj = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));

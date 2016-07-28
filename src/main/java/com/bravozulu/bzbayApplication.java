@@ -2,11 +2,21 @@ package com.bravozulu;
 
 import com.bravozulu.auth.BzbayAuthenticator;
 import com.bravozulu.auth.BzbayAuthorizer;
+<<<<<<< HEAD
 import com.bravozulu.core.Item;
+=======
+import com.bravozulu.core.Review;
+>>>>>>> origin/master
 import com.bravozulu.core.User;
+<<<<<<< HEAD
+import com.bravozulu.db.ReviewDAO;
+import com.bravozulu.db.UserDAO;
+import com.bravozulu.resources.ReviewResource;
+=======
 import com.bravozulu.db.ItemDAO;
 import com.bravozulu.db.UserDAO;
 import com.bravozulu.resources.ItemResource;
+>>>>>>> 99d7063389fc6b115e19de53ffad5129f6f982c8
 import com.bravozulu.resources.UserResource;
 import de.thomaskrille.dropwizard_template_config.TemplateConfigBundle;
 import io.dropwizard.auth.AuthDynamicFeature;
@@ -23,8 +33,12 @@ import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 public class bzbayApplication extends Application<bzbayConfiguration> {
 
+<<<<<<< HEAD
     private final HibernateBundle<bzbayConfiguration> hibernate = new
             HibernateBundle<bzbayConfiguration>(User.class, Item.class) {
+=======
+    private final HibernateBundle<bzbayConfiguration> hibernate = new HibernateBundle<bzbayConfiguration>(User.class, Review.class) {
+>>>>>>> origin/master
         @Override
         public DataSourceFactory getDataSourceFactory(bzbayConfiguration configuration) {
             return configuration.getDataSourceFactory();
@@ -57,7 +71,10 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
     public void run(final bzbayConfiguration configuration,
                     final Environment environment) {
         final UserDAO userDAO = new UserDAO(hibernate.getSessionFactory());
+        final ReviewDAO reviewDAO = new ReviewDAO(hibernate.getSessionFactory());
         environment.jersey().register(new UserResource(userDAO));
+
+        environment.jersey().register(new ReviewResource(reviewDAO, userDAO));
 
         final ItemDAO itemDAO = new ItemDAO(hibernate.getSessionFactory());
         environment.jersey().register(new ItemResource(itemDAO, userDAO));
@@ -72,7 +89,7 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
         //Authentication
         environment.jersey().register(new AuthDynamicFeature(
                 new BasicCredentialAuthFilter.Builder<User>()
-                        .setAuthenticator(new BzbayAuthenticator(userDAO))
+                        .setAuthenticator(new BzbayAuthenticator(userDAO, this.hibernate.getSessionFactory()))
                         .setAuthorizer(new BzbayAuthorizer())
 //                        .setRealm("SUPER SECRET STUFF")
                         .buildAuthFilter()));
