@@ -74,7 +74,7 @@ public class ItemResource {
      * @return list of all items
      */
     @GET
-    @RolesAllowed("Admin")
+    //@RolesAllowed("Admin")
     @UnitOfWork
     public List<Item> findAllItems() {
         return itemDAO.findAll();
@@ -87,8 +87,7 @@ public class ItemResource {
     @PUT
     @Path("/{itemId}")
     @UnitOfWork
-    public void updateItem(@PathParam("itemId") LongParam itemId, @Auth Item
-            item) {
+    public void updateItem(@PathParam("itemId") LongParam itemId, Item item) {
         this.itemDAO.updateItem(itemId.get(), item);
     }
 
@@ -98,7 +97,7 @@ public class ItemResource {
      */
     @DELETE
     @Path("/{itemId}")
-    @RolesAllowed("Admin")
+    //@RolesAllowed("Admin")
     @UnitOfWork
     public void delete(@PathParam("itemId") LongParam itemId) {
         this.itemDAO.deleteItem(itemId.get());
