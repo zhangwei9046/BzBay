@@ -5,7 +5,9 @@ package com.bravozulu.resources;
  */
 
 import com.bravozulu.core.Item;
+import com.bravozulu.core.User;
 import com.bravozulu.db.ItemDAO;
+import com.bravozulu.db.UserDAO;
 import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
@@ -20,13 +22,15 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class ItemResource {
     private final ItemDAO itemDAO;
+    private final UserDAO userDAO;
 
     /**
      * Constructor for ItemResource
      * @param itemDAO the item DAO
      */
-    public ItemResource(ItemDAO itemDAO) {
+    public ItemResource(ItemDAO itemDAO, UserDAO userDAO) {
         this.itemDAO = itemDAO;
+        this.userDAO = userDAO;
     }
 
     /**
