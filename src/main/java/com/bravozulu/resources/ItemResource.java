@@ -42,7 +42,7 @@ public class ItemResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
     @Timed
-    public Item create(Item item) {
+    public Item create(@Auth User user, Item item) {
         return itemDAO.create(item);
     }
 
@@ -55,7 +55,8 @@ public class ItemResource {
     @Path("/{itemId}")
     @Produces("application/json")
     @UnitOfWork
-    public Item findItemById(@PathParam("itemId") LongParam itemId) {
+    public Item findItemById(@Auth User user, @PathParam("itemId") LongParam
+            itemId) {
         return this.itemDAO.findById(itemId.get()).orElseThrow(() -> new
                 NotFoundException("No such item."));
     }
@@ -68,7 +69,8 @@ public class ItemResource {
     @GET
     @Path("/name = {name}")
     @UnitOfWork
-    public Item findItemByName(@PathParam("name") String name) {
+    public Item findItemByName(@Auth User user, @PathParam("name") String
+            name) {
         return this.itemDAO.findByName(name).orElseThrow( () -> new
                 NotFoundException("No such item"));
     }
@@ -91,7 +93,8 @@ public class ItemResource {
     @PUT
     @Path("/{itemId}")
     @UnitOfWork
-    public void updateItem(@PathParam("itemId") LongParam itemId, Item item) {
+    public void updateItem(@Auth User user, @PathParam("itemId") LongParam
+            itemId, Item item) {
         this.itemDAO.updateItem(itemId.get(), item);
     }
 
@@ -103,7 +106,7 @@ public class ItemResource {
     @Path("/{itemId}")
     //@RolesAllowed("Admin")
     @UnitOfWork
-    public void delete(@PathParam("itemId") LongParam itemId) {
+    public void delete(@Auth User user, @PathParam("itemId") LongParam itemId) {
         this.itemDAO.deleteItem(itemId.get());
     }
 }

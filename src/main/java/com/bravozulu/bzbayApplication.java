@@ -2,6 +2,7 @@ package com.bravozulu;
 
 import com.bravozulu.auth.BzbayAuthenticator;
 import com.bravozulu.auth.BzbayAuthorizer;
+import com.bravozulu.core.Item;
 import com.bravozulu.core.User;
 import com.bravozulu.db.ItemDAO;
 import com.bravozulu.db.UserDAO;
@@ -22,7 +23,8 @@ import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 public class bzbayApplication extends Application<bzbayConfiguration> {
 
-    private final HibernateBundle<bzbayConfiguration> hibernate = new HibernateBundle<bzbayConfiguration>(User.class) {
+    private final HibernateBundle<bzbayConfiguration> hibernate = new
+            HibernateBundle<bzbayConfiguration>(User.class, Item.class) {
         @Override
         public DataSourceFactory getDataSourceFactory(bzbayConfiguration configuration) {
             return configuration.getDataSourceFactory();
@@ -58,7 +60,7 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
         environment.jersey().register(new UserResource(userDAO));
 
         final ItemDAO itemDAO = new ItemDAO(hibernate.getSessionFactory());
-        environment.jersey().register(new ItemResource(itemDAO));
+        environment.jersey().register(new ItemResource(itemDAO, userDAO));
 
         // Adding health check
         //final TemplateHealthCheck healthCheck =
