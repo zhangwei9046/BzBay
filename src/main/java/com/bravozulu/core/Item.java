@@ -54,16 +54,16 @@ public class Item {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "initialPrice", nullable = false)
+    @Column(name = "initialprice", nullable = false)
     private double initialPrice;
 
-    @Column(name = "finalPrice")
+    @Column(name = "finalprice")
     private double finalPrice;
 
-    @Column(name = "startDate", nullable = false)
+    @Column(name = "startdate", nullable = false)
     private Timestamp startDate;
 
-    @Column(name = "endDate")
+    @Column(name = "enddate")
     private Timestamp endDate;
 
     /**

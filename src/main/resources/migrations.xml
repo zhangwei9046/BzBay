@@ -61,14 +61,14 @@
             </column>
             <column name="image" type = "varchar(255)"></column>
             <column name="description" type="varchar(255)"></column>
-            <column name="initialPrice" type="float">
+            <column name="initialprice" type="float">
                 <constraints nullable="false"/>
             </column>
-            <column name="finalPrice" type="float"></column>
-            <column name="startDate" type="timestamp">
+            <column name="finalprice" type="float"></column>
+            <column name="startdate" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="endDate" type="timestamp"></column>
+            <column name="enddate" type="timestamp"></column>
         </createTable>
     </changeSet>
     <changeSet id="3" author="ying">
