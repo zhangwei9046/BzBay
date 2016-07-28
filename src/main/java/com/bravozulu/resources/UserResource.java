@@ -23,7 +23,7 @@ public class UserResource {
     //This method works
     @GET
     @UnitOfWork
-//    @RolesAllowed("Admin")
+    @RolesAllowed("Admin")
     public List<User> findAllUsers() {
         return userDAO.findAll();
     }
@@ -40,6 +40,7 @@ public class UserResource {
     @GET
     @Path("/{userId}")
     @UnitOfWork
+    @RolesAllowed("Admin")
     public User getUserById(@PathParam("userId") LongParam userId) {
         return userDAO.findById(userId.get()).orElseThrow(() -> new NotFoundException("No such user."));
     }
@@ -47,6 +48,7 @@ public class UserResource {
     @GET
     @Path("/username={username}")
     @UnitOfWork
+    @RolesAllowed("Admin")
     public User getUserByUsername(@PathParam("username") String username) {
         return userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
     }

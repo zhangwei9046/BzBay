@@ -10,15 +10,15 @@ import java.sql.Timestamp;
 @Table(name="reviews")
 @NamedQueries(value = {
         @NamedQuery(
-                name = "com.bravozulu.core.User.findAll",
+                name = "com.bravozulu.core.Review.findAll",
                 query = "SELECT r FROM Review r"
         ),
         @NamedQuery(
-                name = "com.bravozulu.core.User.findBySenderId",
+                name = "com.bravozulu.core.Review.findBySenderId",
                 query = "SELECT r FROM Review r WHERE r.senderId = :senderId"
         ),
         @NamedQuery(
-                name = "com.bravozulu.core.User.findByReceiverId",
+                name = "com.bravozulu.core.Review.findByReceiverId",
                 query = "SELECT r FROM Review r WHERE r.receiverId = :receiverId"
         )
 })

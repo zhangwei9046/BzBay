@@ -18,6 +18,7 @@ import static org.mockito.Mockito.*;
  */
 public class UserDAOTest {
     private static final UserDAO dao = mock(UserDAO.class);
+//    private static final UserDAO dao = new UserDAO();
 
     private User user = new User(100L, "hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
 
