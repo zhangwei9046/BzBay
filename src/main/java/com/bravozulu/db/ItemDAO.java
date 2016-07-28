@@ -41,9 +41,6 @@ public class ItemDAO extends AbstractDAO<Item>{
      * @return an Item; if there is no item to return, return empty
      */
     public Optional<Item> findByName(String name) {
-        /*return Optional.ofNullable(uniqueResult(namedQuery("com.bravozulu" +
-                ".core.Item" +
-                ".findByName").setParameter("name", name));*/
         Query query = Preconditions.checkNotNull(namedQuery("com.bravozulu" +
                 ".core.Item.findByName"));
         query.setParameter("name", name);
@@ -67,7 +64,7 @@ public class ItemDAO extends AbstractDAO<Item>{
         item.setItemId(itemId);
         // Produce feedback message and close session
         System.out.println("Item sucessfully updated.");
-        return persist(item);//long itemId = item.getItemId();
+        return persist(item);
     }
 
     /**
