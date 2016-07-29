@@ -1,1 +1,0 @@
-web: java $JAVA_OPTS -jar target/bzbay-1.0-SNAPSHOT.jar db migrate bzbay.yml && java $JAVA_OPTS -Ddw.server.connector.port=$PORT -jar target/bzbay-1.0-SNAPSHOT.jar server bzbay.yml
