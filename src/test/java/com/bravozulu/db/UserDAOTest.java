@@ -2,78 +2,101 @@ package com.bravozulu.db;
 
 import com.bravozulu.core.User;
 import com.google.common.collect.ImmutableList;
+import org.hibernate.Query;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Optional;
+import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+
 
 /**
  * Created by ying on 7/22/16.
  */
-public class UserDAOTest {
-    private static final UserDAO dao = mock(UserDAO.class);
-//    private static final UserDAO dao = new UserDAO();
+public class UserDAOTest extends DAOTests {
+    //    private static final UserDAO dao = mock(UserDAO.class);
+    private UserDAO dao;
 
-    private User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+//    private User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
 
     @Before
     public void setup() {
-        user.setUserId(100L);
+        dao = new UserDAO(sessionFactory);
+        getSession().beginTransaction();
+        Query q = getSession().createQuery("delete from User");
+        q.executeUpdate();
+        getSession().getTransaction().commit();
     }
 
     @After
-    public void tearDown(){
-        // we have to reset the mock after each test because of the
-        // @ClassRule, or use a @Rule as mentioned below.
-        reset(dao);
-
+    public void tearDown() {
     }
 
     @Test
     public void findById() {
-        when(dao.findById(100L)).thenReturn(Optional.of(user));
-        assertThat(dao.findById(100L)).isEqualTo(Optional.of(user));
-        verify(dao).findById(100L);
-    }
-
-    @Test
-    public void findByUsername() {
-        when(dao.findByUsername(eq("hello"))).thenReturn(Optional.of(user));
-        assertThat(dao.findByUsername("hello")).isEqualTo(Optional.of(user));
-        verify(dao).findByUsername("hello");
+        getSession().beginTransaction();
+        User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+        User u = dao.create(user);
+        assertEquals(dao.findById(u.getUserId()).get(), user);
     }
 
     @Test
     public void create() {
-        when(dao.create(any(User.class))).thenReturn(user);
-        assertThat(dao.create(user)).isEqualTo(user);
-        verify(dao).create(user);
+        getSession().beginTransaction();
+        User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+        dao.create(user);
+        assertEquals(dao.findByUsername("hello").get(), user);
+        getSession().getTransaction().commit();
+
     }
+
+//    @Test
+//    public void findByUsername() {
+//        getSession().beginTransaction();
+//        User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+//        assertEquals(dao.findByUsername("hello").get(), user);
+//        getSession().getTransaction().commit();
+//    }
 
     @Test
     public void findAll() {
-        final ImmutableList<User> users = ImmutableList.of(user);
-        when(dao.findAll()).thenReturn(users);
-        assertThat(dao.findAll()).isEqualTo(users);
-        verify(dao).findAll();
+        getSession().beginTransaction();
+
+        for (int i = 0; i < 10; i++) {
+            User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+            dao.create(user);
+        }
+
+        assertEquals(dao.findAll().size(), 10);
+
+        getSession().getTransaction().commit();
     }
 
     @Test
     public void delete() {
-        dao.delete(100L);
-        verify(dao).delete(100L);
+        getSession().beginTransaction();
+        User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+        User u = dao.create(user);
+        dao.delete(u.getUserId());
+        getSession().getTransaction().commit();
     }
 
     @Test
     public void update() {
-        when(dao.update(eq(101L), any(User.class))).thenReturn(user);
-        assertThat(dao.update(101L, user)).isEqualTo(user);
-        verify(dao).update(101L, user);
+        getSession().beginTransaction();
+        User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+//        User update_user = new User("alice", "Alice", "Wonderland", "alice", "alice@wonderland.com", "Seattle", "WA", "225 Terry Ave N", false);
+
+        User u = dao.create(user);
+
+        user.setUsername("alice");
+        user.setFirstName("Alice");
+        user.setLastName("Wonderland");
+
+        User updated_u = dao.update(u.getUserId(), user);
+        assertEquals(updated_u, user);
+        getSession().getTransaction().commit();
     }
 }

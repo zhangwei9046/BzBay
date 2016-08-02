@@ -210,7 +210,6 @@ public class User implements Principal{
 
         User user = (User) o;
 
-        if (userId != user.userId) return false;
         if (isAdmin != user.isAdmin) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
