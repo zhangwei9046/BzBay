@@ -4,7 +4,7 @@ package com.bravozulu.core;
  * Created by ying on 6/25/16.
  */
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name="reviews")
@@ -41,7 +41,15 @@ public class Review {
     private double score;
 
     @Column(name = "date", nullable = false)
-    private Timestamp date;
+    private Date date;
+
+    public Review(long senderId, long receiverId, String content, double score, Date date) {
+        this.senderId = senderId;
+        this.receiverId = receiverId;
+        this.content = content;
+        this.score = score;
+        this.date = date;
+    }
 
     public Review(long senderId, long receiverId, String content, double score) {
         this.senderId = senderId;
@@ -93,9 +101,9 @@ public class Review {
         this.score = score;
     }
 
-    public Timestamp getDate() { return date; }
+    public Date getDate() { return date; }
 
-    public void setDate(Timestamp date) { this.date = date;}
+    public void setDate(Date date) { this.date = date;}
 
     @Override
     public boolean equals(Object o) {
@@ -104,7 +112,6 @@ public class Review {
 
         Review review = (Review) o;
 
-        if (reviewId != review.reviewId) return false;
         if (senderId != review.senderId) return false;
         if (receiverId != review.receiverId) return false;
         if (Double.compare(review.score, score) != 0) return false;

@@ -42,13 +42,14 @@ public class ReviewResource {
         return reviewDAO.create(review);
     }
 
-    @PUT
-    @Path("review/{reviewId}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @UnitOfWork
-    public Review updateReview(@Auth User user, @PathParam("reviewId") LongParam reviewId, Review review) {
-        return reviewDAO.update(reviewId.get(), review);
-    }
+    //Deprecated
+//    @PUT
+//    @Path("review/{reviewId}")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @UnitOfWork
+//    public Review updateReview(@Auth User user, @PathParam("reviewId") LongParam reviewId, Review review) {
+//        return reviewDAO.update(reviewId.get(), review);
+//    }
 
     @DELETE
     @Path("review/{reviewId}")

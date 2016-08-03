@@ -33,19 +33,20 @@ public class ReviewDAO extends AbstractDAO<Review> {
         currentSession().delete(reviewObj);
     }
 
-    public Review update(Long reviewId, Review review) {
-        review.setReviewId(reviewId);
-        return persist(review);
-    }
+    //Deprecated
+//    public Review update(Long reviewId, Review review) {
+//        review.setReviewId(reviewId);
+//        return persist(review);
+//    }
 
     public List<Review> findBySenderId(Long senderId) {
-        Query query = Preconditions.checkNotNull(namedQuery("com.bravozulu.core.User.findBySenderId"));
+        Query query = Preconditions.checkNotNull(namedQuery("com.bravozulu.core.Review.findBySenderId"));
         query.setParameter("senderId", senderId);
         return list(query);
     }
 
     public List<Review> findByReceiverId(Long receiverId) {
-        Query query = Preconditions.checkNotNull(namedQuery("com.bravozulu.core.User.findByReceiverId"));
+        Query query = Preconditions.checkNotNull(namedQuery("com.bravozulu.core.Review.findByReceiverId"));
         query.setParameter("receiverId", receiverId);
         return list(query);
     }

@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -37,28 +38,30 @@ public class UserDAOTest extends DAOTests {
     @Test
     public void findById() {
         getSession().beginTransaction();
-        User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+        User user = new User("alice", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
         User u = dao.create(user);
         assertEquals(dao.findById(u.getUserId()).get(), user);
+        getSession().getTransaction().commit();
     }
 
     @Test
     public void create() {
         getSession().beginTransaction();
         User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
-        dao.create(user);
-        assertEquals(dao.findByUsername("hello").get(), user);
+        User u = dao.create(user);
+        assertEquals(dao.findById(u.getUserId()).get(), user);
         getSession().getTransaction().commit();
 
     }
 
-//    @Test
-//    public void findByUsername() {
-//        getSession().beginTransaction();
-//        User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
-//        assertEquals(dao.findByUsername("hello").get(), user);
-//        getSession().getTransaction().commit();
-//    }
+    @Test
+    public void findByUsername() {
+        getSession().beginTransaction();
+        User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+        dao.create(user);
+        assertEquals(dao.findByUsername("hello").get(), user);
+        getSession().getTransaction().commit();
+    }
 
     @Test
     public void findAll() {
@@ -70,7 +73,6 @@ public class UserDAOTest extends DAOTests {
         }
 
         assertEquals(dao.findAll().size(), 10);
-
         getSession().getTransaction().commit();
     }
 
@@ -80,6 +82,7 @@ public class UserDAOTest extends DAOTests {
         User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
         User u = dao.create(user);
         dao.delete(u.getUserId());
+        assertTrue(!dao.findById(u.getUserId()).isPresent());
         getSession().getTransaction().commit();
     }
 

@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import static io.dropwizard.testing.FixtureHelpers.fixture;
@@ -107,7 +108,7 @@ public class ReviewTest {
 
     @Test
     public void setDate() {
-        review.setDate(new Timestamp(8765));
+        review.setDate(new Date(8765));
         assertEquals(review.getDate(), new Timestamp(8765));
     }
 
