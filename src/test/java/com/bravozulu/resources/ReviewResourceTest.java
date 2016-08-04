@@ -30,11 +30,12 @@ public class ReviewResourceTest {
             .addResource(new ReviewResource(reviewDao, userDao))
             .build();
 
-//    private final User user = new User(100l, "hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
-    private final Review review = new Review(1L, 2L, "Good!", 4.5);
+    private final User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+    private Review review = new Review(1L, 2L, "Good!", 4.5);;
 
     @Before
     public void setup() {
+
         review.setReviewId(1);
     }
 
@@ -49,26 +50,20 @@ public class ReviewResourceTest {
 
     @Test
     public void findAllReviews() {
-//        final ImmutableList<Review> reviews = ImmutableList.of(review);
-//        when(reviewDao.findAll()).thenReturn(reviews);
+        final ImmutableList<Review> reviews = ImmutableList.of(review);
+        when(reviewDao.findAll()).thenReturn(reviews);
+
+        final List<Review> response = resources.client().target("/review")
+                .request().get(new GenericType<List<Review>>() {});
+
+        verify(reviewDao).findAll();
+        assertThat(response).containsAll(reviews);
+    }
+
+//    @Test
+//    public void createReview() {
 //
-//        System.out.println(resources.client().target("/review").request().get().toString());
-//        final List<Review> response = resources.client().target("/review")
-//                .request().get(new GenericType<List<Review>>() {});
-//
-//        verify(reviewDao).findAll();
-//        assertThat(response).containsAll(reviews);
-    }
-
-    @Test
-    public void createReview() {
-
-    }
-
-    @Test
-    public void updateReview() {
-
-    }
+//    }
 
     @Test
     public void deleteReview() {

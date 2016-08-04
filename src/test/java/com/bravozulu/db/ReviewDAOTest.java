@@ -30,8 +30,10 @@ public class ReviewDAOTest extends DAOTests {
         dao = new ReviewDAO(sessionFactory);
         userDao = new UserDAO(sessionFactory);
         getSession().beginTransaction();
-        Query q = getSession().createQuery("delete from Review");
-        q.executeUpdate();
+        Query q1 = getSession().createQuery("delete from Review");
+        Query q2 = getSession().createQuery("delete from User");
+        q1.executeUpdate();
+        q2.executeUpdate();
         user1 = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
         user2 = new User("alice", "Alice", "Wonderland", "alice", "alice@wonderland.com","Seattle", "WA", "401 Terry Ave N", true);
         u1 = userDao.create(user1);

@@ -59,9 +59,9 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
     public void run(final bzbayConfiguration configuration,
                     final Environment environment) {
         final UserDAO userDAO = new UserDAO(hibernate.getSessionFactory());
-        final ReviewDAO reviewDAO = new ReviewDAO(hibernate.getSessionFactory());
         environment.jersey().register(new UserResource(userDAO));
 
+        final ReviewDAO reviewDAO = new ReviewDAO(hibernate.getSessionFactory());
         environment.jersey().register(new ReviewResource(reviewDAO, userDAO));
 
         final ItemDAO itemDAO = new ItemDAO(hibernate.getSessionFactory());

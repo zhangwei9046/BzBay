@@ -30,7 +30,6 @@ public class ReviewResource {
     @Path("review")
     @UnitOfWork
     public List<Review> findAllReviews() {
-        System.out.println("hello zoey");
         return reviewDAO.findAll();
     }
 
