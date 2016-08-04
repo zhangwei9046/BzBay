@@ -80,9 +80,9 @@ public class ItemResource {
      * @return list of all items
      */
     @GET
-    //@RolesAllowed("Admin")
+    //@RolesAllowed("ADMIN")
     @UnitOfWork
-    public List<Item> findAllItems() {
+    public List<Item> findAllItems(@Auth User user) {
         return itemDAO.findAll();
     }
 
@@ -106,7 +106,10 @@ public class ItemResource {
     @Path("/{itemId}")
     //@RolesAllowed("Admin")
     @UnitOfWork
+    //TODO: Add a sellerId and password parameter to ensure that only the
+    // seller can delete her own item
     public void delete(@Auth User user, @PathParam("itemId") LongParam itemId) {
-        this.itemDAO.deleteItem(itemId.get());
+         this.itemDAO.deleteItem(itemId.get(), user);
+        //this.itemDAO.deleteItem(itemId.get());
     }
 }

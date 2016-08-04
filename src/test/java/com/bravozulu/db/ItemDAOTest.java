@@ -7,6 +7,8 @@ import org.junit.*;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * Created by bonicma on 7/20/16.
@@ -15,6 +17,8 @@ public class ItemDAOTest extends DAOTests {
     private ItemDAO itemDAO;
     private UserDAO userDAO;
     private String firstItemName = "Casio Watch";
+    private static Logger logger = LoggerFactory.getLogger(ItemDAOTest
+            .class);
 
     @Before
     public void setup() {
@@ -32,6 +36,7 @@ public class ItemDAOTest extends DAOTests {
         User buyer = new User("bkennedy", "Bobby", "Kennedy", "bkennedy1",
                 "1@1.com",
                 "New York", "NY", "401 Terry Ave N", false);
+        this.userDAO.create(buyer);
 
         // Add an item to the database so there is an auction marketplace with
         // at least one item
@@ -182,12 +187,24 @@ public class ItemDAOTest extends DAOTests {
         // Get the required data
         List<Item> list = this.itemDAO.findAll();
         long itemId = list.get(0).getItemId();
+        Optional<User> sellerOptional = this.userDAO.findByUsername("awalker");
+        Optional<User> buyerOptional = this.userDAO.findByUsername("bkennedy");
+        User seller = sellerOptional.get();
+        User buyer = buyerOptional.get();
 
         // Call the method to be tested
-        this.itemDAO.deleteItem(itemId);
+        this.itemDAO.deleteItem(itemId, buyer);
 
         // Run basic tests
         Assert.assertEquals(list.size(), 1);
+        Assert.assertTrue(this.itemDAO.findById(itemId).isPresent());
+
+        // Call the method to be tested
+        this.itemDAO.deleteItem(itemId, seller);
+
+        // Run basic tests
+        List<Item> listAfterDelete = this.itemDAO.findAll();
+        Assert.assertEquals(listAfterDelete.size(), 0);
         Assert.assertFalse(this.itemDAO.findById(itemId).isPresent());
 
         getSession().getTransaction().commit();
