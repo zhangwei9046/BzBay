@@ -2,23 +2,8 @@ package com.bravozulu.db;
 
 import com.bravozulu.core.Item;
 import com.bravozulu.core.User;
-import com.bravozulu.db.HibernateUtil;
-import liquibase.Liquibase;
-import liquibase.database.DatabaseFactory;
-import liquibase.database.jvm.JdbcConnection;
-import liquibase.exception.LiquibaseException;
-import liquibase.resource.ClassLoaderResourceAccessor;
 import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl;
-import org.hibernate.internal.SessionFactoryImpl;
-import org.hibernate.metamodel.relational.Database;
 import org.junit.*;
-
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +14,7 @@ import java.util.Optional;
 public class ItemDAOTest extends DAOTests {
     private ItemDAO itemDAO;
     private UserDAO userDAO;
+    private String firstItemName = "Casio Watch";
 
     @Before
     public void setup() {
@@ -47,11 +33,11 @@ public class ItemDAOTest extends DAOTests {
                 "1@1.com",
                 "New York", "NY", "401 Terry Ave N", false);
 
-        // Add an item to the database so there is an auction with at least
-        // one item
+        // Add an item to the database so there is an auction marketplace with
+        // at least one item
         Optional<User> awalkerSeller = this.userDAO.findByUsername("awalker");
         long sellerid = awalkerSeller.get().getUserId();
-        Item watch = new Item("Casio Watch", true, sellerid,
+        Item watch = new Item(this.firstItemName, true, sellerid,
                 "F-28W",
                 "USPS",
                 "Watches", true, "www.casio.com", "Simple watch for the " +
@@ -65,26 +51,23 @@ public class ItemDAOTest extends DAOTests {
     }
 
     /**
-     * Test for create in ItemDAO class
+     * Test for findAll method in ItemDAO class
      */
     @Test
-    public void testCreate() {
+    public void testFindAll() {
         getSession().beginTransaction();
-        Optional<User> awalkerSeller = this.userDAO.findByUsername("awalker");
-        long sellerid = awalkerSeller.get().getUserId();
-        Item macbook =  new Item("Macbook Air", true, sellerid,
-                "MacBookAir6,2",
-                "USPS",
-                "Computers", true, "www.apple.com", "The best " +
-                "lightweight laptop on the market.", 899.99,
-                0.00, new Timestamp(1470190003), new Timestamp(1472609203));
-        this.itemDAO.create(macbook);
+
+        // Call the method to be tested and store the output
         List<Item> list = this.itemDAO.findAll();
-        Assert.assertEquals(2, list.size());
-        Assert.assertEquals("Macbook Air", this.itemDAO.findByName("Macbook " +
-                "Air").get().getName());
-        //Assert.assertNotNull(findItem);
-        //Item foundMac = findItem.get();
+        Item firstItem = list.get(0);
+
+        // Run basic tests
+        Assert.assertNotNull(list);
+        Assert.assertFalse(list.isEmpty());
+        Assert.assertEquals(list.size(), 1);
+        Assert.assertEquals(firstItem.getName(), this.firstItemName);
+        Assert.assertFalse(firstItem.getName().equals("meatballs"));
+
         getSession().getTransaction().commit();
     }
 
@@ -94,6 +77,19 @@ public class ItemDAOTest extends DAOTests {
     @Test
     public void testFindById() {
         getSession().beginTransaction();
+
+        // Get required data
+        List<Item> list = this.itemDAO.findAll();
+        long firstItemId = list.get(0).getItemId();
+        String firstItemName = list.get(0).getName();
+
+        // Call the method to be tested and store the output
+        Optional<Item> firstItemOptional = this.itemDAO.findById(firstItemId);
+        Item firstItem = firstItemOptional.get();
+
+        // Run basic tests
+        Assert.assertNotNull(firstItem);
+        Assert.assertEquals(firstItemName, firstItem.getName());
 
         getSession().getTransaction().commit();
     }
@@ -105,21 +101,50 @@ public class ItemDAOTest extends DAOTests {
     public void testFindByName() {
         getSession().beginTransaction();
 
+        // Call the method to be tested and store the output
+        Optional<Item> firstItemOptional = this.itemDAO.findByName(this
+                .firstItemName);
+        Item firstItem = firstItemOptional.get();
+
+        // Run basic tests
+        Assert.assertNotNull(firstItem);
+        Assert.assertEquals(firstItem.getName(), this.firstItemName);
+
         getSession().getTransaction().commit();
     }
 
     /**
-     * Test for findAll method in ItemDAO class
+     * Test for create in ItemDAO class
      */
     @Test
-    public void testFindAll() {
-       // getSession().beginTransaction();
+    public void testCreate() {
+        getSession().beginTransaction();
+
+        // Get required data
+        Optional<User> awalkerSeller = this.userDAO.findByUsername("awalker");
+        long sellerid = awalkerSeller.get().getUserId();
+        String addedItemName = "Macbook Air";
+        Item macbook =  new Item(addedItemName, true, sellerid,
+                "MacBookAir6,2",
+                "USPS",
+                "Computers", true, "www.apple.com", "The best " +
+                "lightweight laptop on the market.", 899.99,
+                0.00, new Timestamp(1470190003), new Timestamp(1472609203));
+
+        // Call the method to be tested
+        Item createdItem = this.itemDAO.create(macbook);
+
+        // Run basic tests
         List<Item> list = this.itemDAO.findAll();
-        Assert.assertNotNull(list);
-        Assert.assertFalse(list.isEmpty());
-        Assert.assertEquals(list.size(), 1);
-        Assert.assertEquals(list.get(0).getName(), "Casio Watch");
-        //getSession().getTransaction().commit();
+        Optional<Item> addedItemOptional = this.itemDAO.findByName
+                (addedItemName);
+        Item addedItem = addedItemOptional.get();
+        Assert.assertNotNull(createdItem);
+        Assert.assertEquals(createdItem.getName(), addedItemName);
+        Assert.assertEquals(list.size(), 2);
+        Assert.assertEquals(addedItem.getName(), addedItemName);
+
+        getSession().getTransaction().commit();
     }
 
     /**
@@ -128,6 +153,21 @@ public class ItemDAOTest extends DAOTests {
     @Test
     public void testUpdateItem() {
         getSession().beginTransaction();
+
+        // Get the required data
+        List<Item> list = this.itemDAO.findAll();
+        Item firstItem = list.get(0);
+        long firstItemId = list.get(0).getItemId();
+        firstItem.setName("Rolex");
+
+        // Call the method to be tested
+        Item firstItemUpdated = this.itemDAO.updateItem(firstItemId, firstItem);
+
+        // Run basic tests
+        Assert.assertNotNull(firstItemUpdated);
+        Assert.assertEquals(firstItemUpdated.getName(), "Rolex");
+        String firstItemUpdatedName = list.get(0).getName();
+        Assert.assertEquals(firstItemUpdatedName, "Rolex");
 
         getSession().getTransaction().commit();
     }
@@ -138,6 +178,17 @@ public class ItemDAOTest extends DAOTests {
     @Test
     public void testDeleteItem() {
         getSession().beginTransaction();
+
+        // Get the required data
+        List<Item> list = this.itemDAO.findAll();
+        long itemId = list.get(0).getItemId();
+
+        // Call the method to be tested
+        this.itemDAO.deleteItem(itemId);
+
+        // Run basic tests
+        Assert.assertEquals(list.size(), 1);
+        Assert.assertFalse(this.itemDAO.findById(itemId).isPresent());
 
         getSession().getTransaction().commit();
     }
