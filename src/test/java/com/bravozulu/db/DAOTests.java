@@ -2,6 +2,7 @@ package com.bravozulu.db;
 
 import com.bravozulu.core.Review;
 import com.bravozulu.core.User;
+import com.bravozulu.core.Item;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
 import org.hibernate.SessionFactory;
@@ -23,6 +24,7 @@ public class DAOTests {
         config.setProperty("hibernate.show_sql", "false");
         config.addAnnotatedClass(User.class);
         config.addAnnotatedClass(Review.class);
+        config.addAnnotatedClass(Item.class);
 
         sessionFactory=config.buildSessionFactory();
     }
