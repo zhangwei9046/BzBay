@@ -100,7 +100,7 @@ public class UserResource {
             login(user);
             return user;
         } else {
-            throw new NotAllowedException("User existed!");
+            throw new NotAcceptableException("User existed!");
         }
 
     }
