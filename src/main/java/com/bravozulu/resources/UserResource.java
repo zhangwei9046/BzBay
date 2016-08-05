@@ -69,8 +69,9 @@ public class UserResource {
     @Timed
 //    @Path("/{userId}")
     @UnitOfWork
-    public User updateUser(@Auth User user, User userObj) {
+    public User updateUser(@Auth User u, User userObj) {
 //        user.setUsername(userObj.getUsername());
+        User user = userDAO.findByUsername(u.getUsername()).get();
         user.setFirstName(userObj.getFirstName());
         user.setLastName(userObj.getLastName());
         user.setPassword(userObj.getPassword());
