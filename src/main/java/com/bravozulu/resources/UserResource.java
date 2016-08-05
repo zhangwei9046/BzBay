@@ -79,7 +79,7 @@ public class UserResource {
         user.setState(userObj.getState());
         user.setAddress(userObj.getAddress());
 
-        return userDAO.update(user.getUserId(), user);
+        return userDAO.update(user);
     }
 
     //This method works
