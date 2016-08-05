@@ -66,6 +66,9 @@ public class UserResource {
     @Path("/{userId}")
     @UnitOfWork
     public User updateUser(@PathParam("userId") LongParam userId, @Auth User user) {
+        if (!userId.equals(user.getUserId())) {
+            throw new NotAllowedException("Not allowed!");
+        }
         return userDAO.update(userId.get(), user);
     }
 
@@ -100,7 +103,7 @@ public class UserResource {
             login(user);
             return user;
         } else {
-            throw new NotAcceptableException("User existed!");
+            throw new NotAcceptableException("User already existed!");
         }
 
     }
