@@ -94,12 +94,12 @@ public class UserResourceTest {
 
     @Test
     public void updateUser() {
-        when(dao.update(eq(101L), any(User.class))).thenReturn(user);
+        when(dao.update(any(User.class))).thenReturn(user);
         final Response response = resources.client().target("/user/101")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .put(Entity.entity(user, MediaType.APPLICATION_JSON_TYPE));
 
-        verify(dao).update(eq(101L), userCaptor.capture());
+        verify(dao).update(userCaptor.capture());
         assertThat(userCaptor.getValue()).isEqualTo(user);
     }
 

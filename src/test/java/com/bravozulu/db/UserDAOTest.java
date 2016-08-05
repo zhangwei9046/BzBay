@@ -93,12 +93,13 @@ public class UserDAOTest extends DAOTests {
 //        User update_user = new User("alice", "Alice", "Wonderland", "alice", "alice@wonderland.com", "Seattle", "WA", "225 Terry Ave N", false);
 
         User u = dao.create(user);
-
-        user.setUsername("alice");
+//        User userUpdated = new User("alice", "Alice", "Wonderland", "111",
+//                "1@1",
+//                "Seattle", "WA", "401 Terry Ave N", true);
         user.setFirstName("Alice");
         user.setLastName("Wonderland");
 
-        User updated_u = dao.update(u.getUserId(), user);
+        User updated_u = dao.update(u);
         assertEquals(updated_u, user);
         getSession().getTransaction().commit();
     }
