@@ -1,5 +1,4 @@
 package com.bravozulu.db;
-
 import com.bravozulu.core.Item;
 import com.bravozulu.core.User;
 import org.hibernate.Query;
