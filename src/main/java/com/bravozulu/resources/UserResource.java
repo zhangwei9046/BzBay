@@ -93,14 +93,14 @@ public class UserResource {
     @Timed
     @Path("register")
     @UnitOfWork
-    public User register(User user) throws Exception {
+    public User register(User user) {
         Optional<User> op = userDAO.findByUsername(user.getUsername());
         if (!op.isPresent()) {
             userDAO.create(user);
             login(user);
             return user;
         } else {
-            throw new Exception("User existed!");
+            throw new NotAllowedException("User existed!");
         }
 
     }
