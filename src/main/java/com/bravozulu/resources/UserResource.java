@@ -38,6 +38,10 @@ public class UserResource {
     @UnitOfWork
     @RolesAllowed("Admin")
     public User createUser(User user) {
+        Optional<User> op = userDAO.findByUsername(user.getUsername());
+        if (op.isPresent()) {
+            throw new NotAcceptableException("User already existed!");
+        }
         return userDAO.create(user);
     }
 
@@ -63,20 +67,19 @@ public class UserResource {
     //This method works
     @PUT
     @Timed
-    @Path("/{userId}")
+//    @Path("/{userId}")
     @UnitOfWork
-    public User updateUser(@PathParam("userId") LongParam userId, @Auth User user) {
-        User userObj = userDAO.findByUsername(user.getUsername()).get();
-        if (!userId.equals(userObj.getUserId())) {
-            for (int i = 0; i < 10; i++) {
-                System.out.println("hahaahahhahaah");
-            }
-            throw new NotAllowedException("Not allowed!");
-        }
-        for (int i = 0; i < 10; i++) {
-            System.out.println("PPPPPPPPPPPPPPP");
-        }
-        return userDAO.update(userId.get(), user);
+    public User updateUser(@Auth User user, User userObj) {
+        user.setUsername(userObj.getUsername());
+        user.setFirstName(userObj.getFirstName());
+        user.setLastName(userObj.getLastName());
+        user.setPassword(userObj.getPassword());
+        user.setEmail(userObj.getEmail());
+        user.setCity(userObj.getCity());
+        user.setState(userObj.getState());
+        user.setAddress(userObj.getAddress());
+
+        return userDAO.update(user.getUserId(), user);
     }
 
     //This method works
@@ -106,13 +109,12 @@ public class UserResource {
     public User register(User user) {
         Optional<User> op = userDAO.findByUsername(user.getUsername());
         if (!op.isPresent()) {
+            user.setAdmin(false);
             userDAO.create(user);
             login(user);
             return user;
         } else {
             throw new NotAcceptableException("User already existed!");
         }
-
     }
-
 }
