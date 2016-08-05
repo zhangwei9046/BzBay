@@ -36,6 +36,7 @@ public class UserResource {
     @Timed
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
+    @RolesAllowed("Admin")
     public User createUser(User user) {
         return userDAO.create(user);
     }
@@ -65,8 +66,8 @@ public class UserResource {
     @Path("/{userId}")
     @UnitOfWork
     public User updateUser(@PathParam("userId") LongParam userId, @Auth User user) {
-        if (userId.equals(user.getUserId())) {
-
+        if (!userId.equals(user.getUserId())) {
+            throw new NotAllowedException("Not allowed!");
         }
         return userDAO.update(userId.get(), user);
     }
@@ -95,14 +96,14 @@ public class UserResource {
     @Timed
     @Path("register")
     @UnitOfWork
-    public User register(User user) throws Exception {
+    public User register(User user) {
         Optional<User> op = userDAO.findByUsername(user.getUsername());
         if (!op.isPresent()) {
             userDAO.create(user);
             login(user);
             return user;
         } else {
-            throw new Exception("User existed!");
+            throw new NotAcceptableException("User already existed!");
         }
 
     }

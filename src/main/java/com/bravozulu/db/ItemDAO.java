@@ -1,6 +1,7 @@
 package com.bravozulu.db;
 
 import com.bravozulu.core.Item;
+import com.bravozulu.core.User;
 import com.google.common.base.Preconditions;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
@@ -15,8 +16,15 @@ import javax.ws.rs.NotFoundException;
  * Created by Mark on 7/1/16.
  */
 public class ItemDAO extends AbstractDAO<Item>{
+    private SessionFactory factory;
+
     public ItemDAO (SessionFactory factory) {
-         super(factory);
+        super(factory);
+        this.factory = factory;
+    }
+
+    private UserDAO getUserDAO() {
+        return new UserDAO(factory);
     }
 
     /**
@@ -71,11 +79,24 @@ public class ItemDAO extends AbstractDAO<Item>{
      * Deletes the item from the database
      * @param itemId the item's id
      */
-    public void deleteItem(Long itemId) {
+    public void deleteItem(Long itemId, User seller) {
+        if (checkItemToSeller(itemId, seller)) {
         Item itemObj = findById(itemId).orElseThrow(() -> new NotFoundException("No such " +
                 "user."));
         currentSession().delete(itemObj);
-        // Produce feedback message and close session
-        System.out.print("Item successfully deleted.");
+        }
+    }
+
+    private boolean checkItemToSeller(long itemId, User seller) {
+        Item item = findById(itemId).get();
+        long itemSellerId = item.getSellerId();
+        long sellerId = seller.getUserId();
+
+        UserDAO userDAO = this.getUserDAO();
+        String itemSellerIdPassword = userDAO.findById(itemSellerId).get()
+                .getPassword();
+        String sellerPassword = seller.getPassword();
+
+        return (itemSellerId == sellerId) && itemSellerIdPassword.equals(sellerPassword);
     }
 }
