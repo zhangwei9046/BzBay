@@ -37,8 +37,7 @@ public class UserDAO extends AbstractDAO<User> {
         currentSession().delete(userObj);
     }
 
-    public User update(Long userId, User user) {
-        user.setUserId(userId);
+    public User update(User user) {
         return persist(user);
     }
 }

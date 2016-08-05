@@ -70,7 +70,7 @@ public class UserResource {
 //    @Path("/{userId}")
     @UnitOfWork
     public User updateUser(@Auth User user, User userObj) {
-        user.setUsername(userObj.getUsername());
+//        user.setUsername(userObj.getUsername());
         user.setFirstName(userObj.getFirstName());
         user.setLastName(userObj.getLastName());
         user.setPassword(userObj.getPassword());
