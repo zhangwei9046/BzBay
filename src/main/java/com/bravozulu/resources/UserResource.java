@@ -66,7 +66,8 @@ public class UserResource {
     @Path("/{userId}")
     @UnitOfWork
     public User updateUser(@PathParam("userId") LongParam userId, @Auth User user) {
-        if (!userId.equals(user.getUserId())) {
+        User userObj = userDAO.findByUsername(user.getUsername()).get();
+        if (!userId.equals(userObj.getUserId())) {
             throw new NotAllowedException("Not allowed!");
         }
         return userDAO.update(userId.get(), user);
