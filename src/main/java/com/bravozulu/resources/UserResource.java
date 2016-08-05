@@ -65,6 +65,9 @@ public class UserResource {
     @Path("/{userId}")
     @UnitOfWork
     public User updateUser(@PathParam("userId") LongParam userId, @Auth User user) {
+        if (userId.equals(user.getUserId())) {
+
+        }
         return userDAO.update(userId.get(), user);
     }
 

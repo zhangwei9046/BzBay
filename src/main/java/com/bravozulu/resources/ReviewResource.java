@@ -37,7 +37,7 @@ public class ReviewResource {
     @Path("review")
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public Review createReview(@Auth User user, Review review) {
+    public Review createReview(Review review, @Auth User user) {
         return reviewDAO.create(review);
     }
 
