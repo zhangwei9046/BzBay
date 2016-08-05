@@ -36,6 +36,7 @@ public class UserResource {
     @Timed
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
+    @RolesAllowed("Admin")
     public User createUser(User user) {
         return userDAO.create(user);
     }
