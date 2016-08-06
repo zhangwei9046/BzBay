@@ -43,7 +43,7 @@ public class ItemResource {
     @UnitOfWork
     @Timed
     public Item create(@Auth User user, Item item) {
-        return itemDAO.create(item);
+        return itemDAO.create(item, user);
     }
 
     /**
@@ -80,10 +80,21 @@ public class ItemResource {
      * @return list of all items
      */
     @GET
-    //@RolesAllowed("ADMIN")
+    @RolesAllowed("ADMIN")
     @UnitOfWork
     public List<Item> findAllItems(@Auth User user) {
         return itemDAO.findAll();
+    }
+
+    /**
+     *
+     * @return
+     */
+    @GET
+    @Path("/available")
+    @UnitOfWork
+    public List<Item> findAllAvailableItems() {
+        return this.itemDAO.findAllAvailable();
     }
 
     /**

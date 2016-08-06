@@ -25,7 +25,9 @@ public class ItemDAOTest extends DAOTests {
         this.userDAO = new UserDAO(this.sessionFactory);
         getSession().beginTransaction();
         Query q = getSession().createQuery("delete from Item");
+        Query q2 = getSession().createQuery("delete from User");
         q.executeUpdate();
+        q2.executeUpdate();
 
         // Add two users: Alice as the seller and Bob as the buyer
         User seller = new User("awalker", "Alice", "Walker", "awalker1",
@@ -40,18 +42,25 @@ public class ItemDAOTest extends DAOTests {
         // Add an item to the database so there is an auction marketplace with
         // at least one item
         Optional<User> awalkerSeller = this.userDAO.findByUsername("awalker");
+        User sellerActual = awalkerSeller.get();
         long sellerid = awalkerSeller.get().getUserId();
         Item watch = new Item(this.firstItemName, true, sellerid,
                 "F-28W",
                 "USPS",
                 "Watches", true, "www.casio.com", "Simple watch for the " +
                 "simple person", 9.99, 0.00, new Timestamp(1470190003), new Timestamp(1472609203));
-        this.itemDAO.create(watch);
+        this.itemDAO.create(watch, sellerActual);
         getSession().getTransaction().commit();
     }
 
     @After
     public void tearDown() {
+        getSession().beginTransaction();
+        Query q = getSession().createQuery("delete from Item");
+        Query q2 = getSession().createQuery("delete from User");
+        q.executeUpdate();
+        q2.executeUpdate();
+        getSession().getTransaction().commit();
     }
 
     /**
@@ -128,15 +137,14 @@ public class ItemDAOTest extends DAOTests {
         Optional<User> awalkerSeller = this.userDAO.findByUsername("awalker");
         long sellerid = awalkerSeller.get().getUserId();
         String addedItemName = "Macbook Air";
-        Item macbook =  new Item(addedItemName, true, sellerid,
-                "MacBookAir6,2",
-                "USPS",
+        Item macbook =  new Item(addedItemName, "MacBookAir6,2", "USPS",
                 "Computers", true, "www.apple.com", "The best " +
-                "lightweight laptop on the market.", 899.99,
-                0.00, new Timestamp(1470190003), new Timestamp(1472609203));
+                "lightweight laptop on the market.", 899.99, new Timestamp
+                (1470190003), new Timestamp(1472609203));
 
         // Call the method to be tested
-        Item createdItem = this.itemDAO.create(macbook);
+        User seller = awalkerSeller.get();
+        Item createdItem = this.itemDAO.create(macbook, seller);
 
         // Run basic tests
         List<Item> list = this.itemDAO.findAll();
