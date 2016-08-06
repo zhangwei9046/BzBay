@@ -43,7 +43,7 @@ public class ItemResource {
     @UnitOfWork
     @Timed
     public Item create(@Auth User user, Item item) {
-        return itemDAO.create(item);
+        return itemDAO.create(item, user);
     }
 
     /**

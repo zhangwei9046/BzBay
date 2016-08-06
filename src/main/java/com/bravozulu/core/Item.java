@@ -77,6 +77,45 @@ public class Item {
     /**
      * Constructor for Item
      * @param name the name of the item
+     * @param model the model
+     * @param shipping the shipping type
+     * @param category the category
+     * @param condition the condition
+     * @param url a url to the item
+     * @param description the description
+     * @param initialPrice the initial price
+     * @param startDate the start date of the item's auction
+     * @param endDate the end date of the item's auction
+     */
+    public Item(@JsonProperty("name") String name,
+                @JsonProperty("model") String model,
+                @JsonProperty("shipping") String shipping,
+                @JsonProperty ("category") String category,
+                @JsonProperty("condition") boolean condition,
+                @JsonProperty("url") String url,
+                @JsonProperty("description") String description,
+                @JsonProperty("initialPrice") double initialPrice,
+                @JsonProperty("startDate") Timestamp startDate,
+                @JsonProperty("endDate") Timestamp endDate) {
+        this.name = name;
+        this.available = true;
+        this.sellerId = 42;
+        this.model = model;
+        this.shipping = shipping;
+        this.category = category;
+        this.condition = condition;
+        this.url = url;
+        this.description = description;
+        this.initialPrice = initialPrice;
+        this.finalPrice = 0;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+
+    /**
+     * Constructor for Item
+     * @param name the name of the item
      * @param available the availability status
      * @param sellerId the id of the seller of the item
      * @param model the model

@@ -30,9 +30,14 @@ public class ItemDAO extends AbstractDAO<Item>{
     /**
      * Creates and returns an Item
      * @param item the item
+     * @param seller the seller
      * @return the item
      */
-    public Item create(Item item) {return this.persist(item);}
+    public Item create(Item item, User seller) {
+        long sellerId = seller.getUserId();
+        item.setSellerId(sellerId);
+        return this.persist(item);
+    }
 
     /**
      * Returns the Item if present in the database
@@ -78,8 +83,6 @@ public class ItemDAO extends AbstractDAO<Item>{
      */
     public Item updateItem(long itemId, Item item){
         item.setItemId(itemId);
-        // Produce feedback message and close session
-        System.out.println("Item sucessfully updated.");
         return persist(item);
     }
 
