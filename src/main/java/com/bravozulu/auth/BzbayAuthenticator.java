@@ -35,7 +35,7 @@ public class BzbayAuthenticator implements Authenticator<BasicCredentials, User>
 //    );
 
     @Override
-    public Optional<User> authenticate(BasicCredentials credentials) throws AuthenticationException {
+    public Optional<User> authenticate(BasicCredentials credentials) {
         Session session = this.sessionFactory.openSession();
         ManagedSessionContext.bind(session);
         User user = userDAO.findByUsername(credentials.getUsername()).orElseThrow(() -> new NotFoundException("Sign in fail"));
