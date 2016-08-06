@@ -3,16 +3,23 @@ package com.bravozulu.resources;
 /**
  * Created by ying on 7/19/16.
  */
+import com.bravozulu.auth.BzbayAuthenticator;
 import com.bravozulu.core.Review;
 import com.bravozulu.core.User;
 import com.bravozulu.db.ReviewDAO;
 import com.bravozulu.db.UserDAO;
 import com.google.common.collect.ImmutableList;
+import io.dropwizard.auth.AuthDynamicFeature;
+import io.dropwizard.auth.AuthValueFactoryProvider;
+import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
 import io.dropwizard.testing.junit.ResourceTestRule;
+import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
+import org.glassfish.jersey.test.grizzly.GrizzlyWebTestContainerFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import javax.ws.rs.core.GenericType;
 import java.util.List;
@@ -24,11 +31,22 @@ import static org.mockito.Mockito.*;
 public class ReviewResourceTest {
     private static final ReviewDAO reviewDao = mock(ReviewDAO.class);
     private static final UserDAO userDao = mock(UserDAO.class);
+    private static final BzbayAuthenticator bzbayAuthenticator = Mockito.mock(BzbayAuthenticator.class);
 
     @ClassRule
-    public static final ResourceTestRule resources = ResourceTestRule.builder()
-            .addResource(new ReviewResource(reviewDao, userDao))
-            .build();
+//    public static final ResourceTestRule resources = ResourceTestRule.builder()
+//            .addResource(new ReviewResource(reviewDao, userDao))
+//            .build();
+
+    public static final ResourceTestRule resources =
+            ResourceTestRule.builder().setTestContainerFactory(new GrizzlyWebTestContainerFactory())
+                    .addProvider(new AuthDynamicFeature(new BasicCredentialAuthFilter.Builder<User>()
+                            .setAuthenticator(ReviewResourceTest.bzbayAuthenticator).setRealm("Validate User")
+                            .setPrefix("Basic").buildAuthFilter()))
+                    .addProvider(RolesAllowedDynamicFeature.class)
+                    .addProvider(new AuthValueFactoryProvider.Binder<>(User.class))
+                    .addResource(new ReviewResource(reviewDao, userDao))
+                    .build();
 
     private final User user = new User("hello", "Hello", "World", "111", "1@1", "Seattle", "WA", "401 Terry Ave N", true);
     private Review review = new Review(1L, 2L, "Good!", 4.5);;
@@ -53,7 +71,7 @@ public class ReviewResourceTest {
         final ImmutableList<Review> reviews = ImmutableList.of(review);
         when(reviewDao.findAll()).thenReturn(reviews);
 
-        final List<Review> response = resources.client().target("/review")
+        final List<Review> response = resources.getJerseyTest().target("/review")
                 .request().get(new GenericType<List<Review>>() {});
 
         verify(reviewDao).findAll();
