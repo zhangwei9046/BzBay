@@ -65,6 +65,14 @@ public class ItemDAO extends AbstractDAO<Item>{
     }
 
     /**
+     *
+     * @return
+     */
+    public List<Item> findAllAvailable(){
+        return list(namedQuery("com.bravozulu.core.Item.available"));
+    }
+
+    /**
      * Updates the name of the item in the database
      * @param item the item
      */

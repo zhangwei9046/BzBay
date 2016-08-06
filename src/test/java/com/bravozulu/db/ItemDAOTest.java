@@ -25,7 +25,9 @@ public class ItemDAOTest extends DAOTests {
         this.userDAO = new UserDAO(this.sessionFactory);
         getSession().beginTransaction();
         Query q = getSession().createQuery("delete from Item");
+        Query q2 = getSession().createQuery("delete from User");
         q.executeUpdate();
+        q2.executeUpdate();
 
         // Add two users: Alice as the seller and Bob as the buyer
         User seller = new User("awalker", "Alice", "Walker", "awalker1",
@@ -52,6 +54,12 @@ public class ItemDAOTest extends DAOTests {
 
     @After
     public void tearDown() {
+        getSession().beginTransaction();
+        Query q = getSession().createQuery("delete from Item");
+        Query q2 = getSession().createQuery("delete from User");
+        q.executeUpdate();
+        q2.executeUpdate();
+        getSession().getTransaction().commit();
     }
 
     /**

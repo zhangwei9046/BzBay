@@ -80,10 +80,21 @@ public class ItemResource {
      * @return list of all items
      */
     @GET
-    //@RolesAllowed("ADMIN")
+    @RolesAllowed("ADMIN")
     @UnitOfWork
     public List<Item> findAllItems(@Auth User user) {
         return itemDAO.findAll();
+    }
+
+    /**
+     *
+     * @return
+     */
+    @GET
+    @Path("/available")
+    @UnitOfWork
+    public List<Item> findAllAvailableItems() {
+        return this.itemDAO.findAllAvailable();
     }
 
     /**

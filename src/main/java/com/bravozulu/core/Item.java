@@ -1,5 +1,6 @@
 package com.bravozulu.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -19,6 +20,10 @@ import java.sql.Timestamp;
         @NamedQuery(
                 name = "com.bravozulu.core.Item.findByName",
                 query = "SELECT u FROM Item u WHERE u.name = :name"
+        ),
+        @NamedQuery(
+                name = "com.bravozulu.core.Item.available",
+                query = "SELECT u FROM Item u WHERE u.available = true"
         )
 })
 
@@ -136,6 +141,7 @@ public class Item {
         this.name = name;
     }
 
+    @JsonIgnore
     public boolean isAvailable() {
         return available;
     }
@@ -208,6 +214,7 @@ public class Item {
         this.initialPrice = initialPrice;
     }
 
+    @JsonIgnore
     public double getFinalPrice() {
         return finalPrice;
     }
