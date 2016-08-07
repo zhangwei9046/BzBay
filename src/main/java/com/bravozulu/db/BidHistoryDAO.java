@@ -27,15 +27,8 @@ public class BidHistoryDAO extends AbstractDAO<BidHistory>{
         return Optional.ofNullable(get(id));
     }
 
-    public void delete(Long bidId) {
-        BidHistory bid = findBybidId(bidId).orElseThrow(() -> new NotFoundException("No such bid."));
-        currentSession().delete(bid);
-    }
+ //find by userid, find by item id, find by bitid and userid
+    //notification
 
 
-    public BidHistory update(BidHistory bid,Long bidId) {
-//        bid.setBidId(bidId);
-//        return persist(bidId);
-        return null;
-    }
 }
