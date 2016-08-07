@@ -8,6 +8,7 @@ import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -29,6 +30,7 @@ public class ReviewResource {
     @GET
     @Path("review")
     @UnitOfWork
+    @RolesAllowed("Admin")
     public List<Review> findAllReviews() {
         return reviewDAO.findAll();
     }
@@ -37,7 +39,11 @@ public class ReviewResource {
     @Path("review")
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public Review createReview(Review review, @Auth User user) {
+    public Review leaveAReview(Review review, @Auth User user) {
+        User cur_user = userDAO.findByUsername(user.getUsername()).orElseThrow(() -> new NotFoundException("Please log in first."));
+        if (cur_user.getUserId() != review.getSenderId()) {
+            throw new NotAcceptableException("Please login first.");
+        }
         return reviewDAO.create(review);
     }
 
@@ -54,6 +60,11 @@ public class ReviewResource {
     @Path("review/{reviewId}")
     @UnitOfWork
     public void deleteReview(@Auth User user, @PathParam("reviewId") LongParam reviewId) {
+        Review review = reviewDAO.findById(reviewId.get()).orElseThrow(() -> new NotFoundException("No such review."));
+        User cur_user = userDAO.findByUsername(user.getUsername()).orElseThrow(() -> new NotFoundException("Please log in first."));
+        if (cur_user.getUserId() != review.getSenderId()) {
+            throw new NotAcceptableException("Please login first.");
+        }
         reviewDAO.delete(reviewId.get());
     }
 
@@ -62,6 +73,9 @@ public class ReviewResource {
     @UnitOfWork
     public List<Review> findReviewsForSender(@Auth User user, @PathParam("username") String username) {
         User userObj = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
+        if (!user.getUsername().equals(username)) {
+            throw new NotAcceptableException("Please login first.");
+        }
         return reviewDAO.findBySenderId(userObj.getUserId());
     }
 
@@ -70,6 +84,10 @@ public class ReviewResource {
     @UnitOfWork
     public List<Review> findReviewsForReceiver(@Auth User user, @PathParam("username") String username) {
         User userObj = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
+        if (!userObj.getUsername().equals(username)) {
+            System.out.println("ddd");
+            throw new NotAcceptableException("Please login first.");
+        }
         return reviewDAO.findByReceiverId(userObj.getUserId());
     }
 }

@@ -29,8 +29,8 @@ public class User implements Principal{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE,
 //            generator = "user_id_seq_name")
-    @SequenceGenerator(name = "users_userId_seq_name",
-            sequenceName = "users_userId_seq",
+    @SequenceGenerator(name = "users_userid_seq_name",
+            sequenceName = "users_userid_seq",
             allocationSize = 1)
     private long userId;
 

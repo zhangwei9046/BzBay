@@ -100,7 +100,6 @@ public class UserResourceTest {
         assertThat(response.getStatusInfo()).isEqualTo(Response.Status.OK);
         verify(dao).create(userCaptor.capture());
         assertThat(userCaptor.getValue()).isEqualTo(user1);
-
     }
 
     @Test
