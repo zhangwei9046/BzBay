@@ -12,11 +12,28 @@ import java.sql.Timestamp;
                 name = "com.bravozulu.core.BidHistory.findAll",
                 query = "SELECT u FROM BidHistory u"
         )
+        @NamedQuery(
+            name = "com.bravozulu.core.BidHistory.findByuserId",
+            query = "SELECT u FROM BidHistory u WHERE u.userId = userId"
+        )
+        @NamedQuery(
+            name = "com.bravozulu.core.BidHistory.findByitemId",
+            query = "SELECT u FROM BidHistory u WHERE u.itemId = itemId"
+        )
+        @NamedQuery(
+            name = "com.bravozulu.core.BidHistory.findByHigherPrice",
+            query = "SELECT u FROM BidHistory u WHERE u.itemId = :itemId ORDER BY u.bidPrice DESC")})
+
+
+
 })
 
 public class BidHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "bid_bidId_seq_name",
+            sequenceName = "bid_bidId_seq",
+            allocationSize = 1)
     private long bidId;
 
     @Column(name = "itemId", nullable = false)
@@ -31,13 +48,20 @@ public class BidHistory {
     @Column(name = "time", nullable = false)
     private Timestamp time;
 
-    public BidHistory(long itemId, long userId, float price, Timestamp time) {
+    public BidHistory(){}
+
+    public BidHistory(@JsonProperty("item_id") Long itemId, @JsonProperty("user_id") Long userId,
+                      @JsonProperty("bid_price") Float price),
+                      @JsonProperty("bid_time") @JsonFormat(shape = JsonFormat.Shape.STRING,
+                              pattern = "yyyy-MM-dd HH:mm:ss") Timestamp time
+                      {
         this.itemId = itemId;
         this.userId = userId;
         this.price = price;
         this.time = time;
     }
-
+    @JsonIgnore
+    @Override
     public long getBidId() {
         return bidId;
     }
@@ -78,6 +102,14 @@ public class BidHistory {
         this.time = time;
     }
 
+    @Override
+    public String toString() {
+        return "BidHistory{" + ",bidId = '" + bidId + '\' ' +
+                ",ItemId'" + itemId + '\'' +
+                ",UserId'" + userId + '\'' +
+                ",price'" + price + '\'' +
+                ",time '" + time + '\'' + '}';
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
