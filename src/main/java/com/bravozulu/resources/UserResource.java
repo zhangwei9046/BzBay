@@ -105,7 +105,7 @@ public class UserResource {
 
     @POST
     @Timed
-    @Path("register")
+    @Path("/register")
     @UnitOfWork
     public User register(User user) {
         Optional<User> op = userDAO.findByUsername(user.getUsername());
