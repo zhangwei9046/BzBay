@@ -2,8 +2,10 @@ package com.bravozulu.resources;
 
 
 
+import com.bravozulu.core.BidHistory;
 import com.bravozulu.core.Item;
 import com.bravozulu.core.User;
+import com.bravozulu.db.BidHistoryDAO;
 import com.bravozulu.db.ItemDAO;
 import com.bravozulu.db.UserDAO;
 import com.codahale.metrics.annotation.Timed;
@@ -19,12 +21,12 @@ import java.util.List;
 @Path("/bidhistory")
 @Produces(MediaType.APPLICATION_JSON)
 public class BidHistoryResource {
-    private final BidHistoryDao bidhistoryDao;
+    private final BidHistoryDAO bidhistoryDao;
     private final ItemDAO itemDAO;
     private final UserDAO userDAO;
 
 
-    public BidHistoryResource(BidHistoryDao bidhistoryDao,ItemDAO itemDAO, UserDAO userDAO) {
+    public BidHistoryResource(BidHistoryDAO bidhistoryDao, ItemDAO itemDAO, UserDAO userDAO) {
         this.bidhistoryDao = bidhistoryDao;
         this.itemDAO = itemDAO;
         this.userDAO = userDAO;
@@ -43,7 +45,7 @@ public class BidHistoryResource {
     @Path("/{bidId}")
     @Produces("application/json")
     @UnitOfWork
-    public Item findBidById(@Auth User user, @PathParam("bidId") LongParam
+    public BidHistory findBidById(@Auth User user, @PathParam("bidId") LongParam
             bidId) {
         return this.bidhistoryDao.findBybidId(bidId.get()).orElseThrow(() -> new
                 NotFoundException("No such BidHistory."));
@@ -63,12 +65,12 @@ public class BidHistoryResource {
 
     }
 
-    @DELETE
-    @Path("/{bidId}")
-    @UnitOfWork
-    public void deleteBidHistory(@PathParam("bidId") LongParam bidId) {
-        bidhistoryDao.delete(bidId.get());
-    }
-
+//    @DELETE
+//    @Path("/{bidId}")
+//    @UnitOfWork
+//    public void deleteBidHistory(@PathParam("bidId") LongParam bidId) {
+//        bidhistoryDao.delete(bidId.get());
+//    }
+//
 
 }

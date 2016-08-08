@@ -3,6 +3,9 @@ package com.bravozulu.core;
 /**
  * Created by ying on 6/25/16.
  */
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.jackson.JsonSnakeCase;
 
 import javax.persistence.*;
@@ -13,15 +16,15 @@ import java.sql.Timestamp;
         @NamedQuery(
                 name = "com.bravozulu.core.BidHistory.findAll",
                 query = "SELECT u FROM BidHistory u"
-        )
+        ),
         @NamedQuery(
             name = "com.bravozulu.core.BidHistory.findByuserId",
             query = "SELECT u FROM BidHistory u WHERE u.userId = userId"
-        )
+        ),
         @NamedQuery(
             name = "com.bravozulu.core.BidHistory.findByitemId",
             query = "SELECT u FROM BidHistory u WHERE u.itemId = itemId"
-        )
+        ),
         @NamedQuery(
             name = "com.bravozulu.core.BidHistory.findByHigherPrice",
             query = "SELECT u FROM BidHistory u WHERE u.itemId = :itemId ORDER BY u.bidPrice DESC")})
@@ -58,7 +61,7 @@ public class BidHistory {
 
     public BidHistory(@JsonProperty("itemId") Long itemId,
                       @JsonProperty("userId") Long userId,
-                      @JsonProperty("price") Float price),
+                      @JsonProperty("price") Float price,
                       @JsonProperty("time") @JsonFormat(shape = JsonFormat.Shape.STRING,
                               pattern = "yyyy-MM-dd HH:mm:ss") Timestamp time)
                       {
@@ -68,7 +71,6 @@ public class BidHistory {
         this.time = time;
     }
     @JsonIgnore
-    @Override
     public long getBidId() {
         return bidId;
     }

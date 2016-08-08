@@ -3,6 +3,9 @@ package com.bravozulu.core;
 /**
  * Created by Melody on 7/1/16.
  */
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.jackson.JsonSnakeCase;
 
 import javax.persistence.*;
@@ -15,22 +18,22 @@ import java.sql.Timestamp;
         @NamedQuery(
                 name = "com.bravozulu.core.Transactions.findAll",
                 query = "SELECT u FROM Transactions u"
-        )
+        ),
         @NamedQuery(
         name = "com.bravozulu.core.Transactions.findByuserId",
         query = "SELECT u FROM Transactions u WHERE u.userId = userId"
-        )
+        ),
         @NamedQuery(
         name = "com.bravozulu.core.Transactions.findByitemId",
         query = "SELECT u FROM Transactions u WHERE u.itemId = itemId"
-        )
+        ),
         @NamedQuery(name = "com.bravozulu.core.Transactions.findBybidhistoryId",
         query = "SELECT u FROM Transaction u WHERE u.bidhistoryId = bidhistoryId")
 
 })
 
 @JsonSnakeCase
-public class Transactions {
+public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = "trans_transactionId_seq_name",
@@ -53,18 +56,18 @@ public class Transactions {
     @Column(name = "time", nullable = false)
     private Timestamp time;
 
-    public Transactions(){}
+    public Transaction(){}
 
-    public Transactions(long itemId, long userId, float price){
+    public Transaction(long itemId, long userId, float price){
         this.itemId = itemId;
         this.userId = userId;
         this.price = price;
     }
-    public Transactions(@JsonProperty("bidhistoryId") Long bidhistoryId,
-                        @JsonProperty("itemId") Long itemId,
-                      @JsonProperty("userId") Long userId,
-                      @JsonProperty("price") Float price,
-    @JsonProperty("time") @JsonFormat(shape = JsonFormat.Shape.STRING,
+    public Transaction(@JsonProperty("bidhistoryId") Long bidhistoryId,
+                       @JsonProperty("itemId") Long itemId,
+                       @JsonProperty("userId") Long userId,
+                       @JsonProperty("price") Float price,
+                       @JsonProperty("time") @JsonFormat(shape = JsonFormat.Shape.STRING,
     pattern = "yyyy-MM-dd HH:mm:ss") Timestamp time)
     {
         this.itemId = itemId;
@@ -73,7 +76,6 @@ public class Transactions {
         this.time = time;
     }
     @JsonIgnore
-    @Override
 
     public long getTransactionId() {
         return transactionId;
@@ -84,7 +86,7 @@ public class Transactions {
     }
 
     public Long getBidHistoryId() {
-        return this.bishistoryId;
+        return this.bidhistoryId;
     }
     public void setBidHistoryId(Long bidhistoryId) {
         this.bidhistoryId = bidhistoryId;
@@ -132,7 +134,7 @@ public class Transactions {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Transactions transaction = (Transactions) o;
+        Transaction transaction = (Transaction) o;
         if (transactionId != transaction.transactionId) return false;
         if (bidhistoryId != transaction.bidhistoryId) return false;
 

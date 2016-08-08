@@ -1,7 +1,6 @@
 package com.bravozulu.resources;
 
-import com.bravozulu.core.Transactions;
-import com.bravozulu.core.User;
+import com.bravozulu.core.Transaction;
 import com.bravozulu.db.TransactionsDao;
 
 import io.dropwizard.hibernate.UnitOfWork;
@@ -10,7 +9,6 @@ import io.dropwizard.jersey.params.LongParam;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by Mark on 7/6/16.
@@ -28,13 +26,13 @@ public class TransactionResource {
 
     @GET
     @UnitOfWork
-    public List<Transactions> findAllTransactions() {
+    public List<Transaction> findAllTransactions() {
         return transactionDAO.findAll();
     }
 
     @POST
     @UnitOfWork
-    public Transactions createTransaction(Transactions trans) {
+    public Transaction createTransaction(Transaction trans) {
         return transactionDAO.create(trans);
 
     }
@@ -42,7 +40,7 @@ public class TransactionResource {
     @GET
     @Path("/transactionId={transactionId}")
     @UnitOfWork
-    public Transactions getTransactionById(@PathParam("transactionId") LongParam transactionId) {
+    public Transaction getTransactionById(@PathParam("transactionId") LongParam transactionId) {
         return transactionDAO.findBytransactionId(transactionId.get()).orElseThrow(() -> new NotFoundException("No such transaction."));
 
     }

@@ -3,25 +3,26 @@ package com.bravozulu.core;
 import io.dropwizard.jackson.JsonSnakeCase;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name="notifications")
+@Table(name = "notifications")
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.Notification.findAll",
                 query = "SELECT u FROM Notification u"
-        )
+        ),
         @NamedQuery(
-        name = "com.bravozulu.core.Notification.findBytransactionId",
-        query = "SELECT u FROM Notification u WHERE u.transactionId = transactionId")
+                name = "com.bravozulu.core.Notification.findBytransactionId",
+                query = "SELECT u FROM Notification u WHERE u.transactionId = transactionId"),
 
         @NamedQuery(
-            name = "com.bravozulu.core.Notification.findByuserId",
-            query = "SELECT u FROM Notification u WHERE u.userId = userId"
-        )
-     })
+        name = "com.bravozulu.core.Notification.findByuserId",
+        query = "SELECT u FROM Notification u WHERE u.userId = userId"
+)
+})
 
 
 @JsonSnakeCase
@@ -42,24 +43,23 @@ public class Notification {
     @Column(name = "content", nullable = false)
     private String content;
 
-    public Notification(){}
+    public Notification() {
+    }
 
-    public Notification(long transactionId, long userId, String content){
+    public Notification(long transactionId, long userId, String content) {
         this.transactionId = transactionId;
         this.userId = userId;
         this.content = content;
     }
 
-@JsonCreator
+    @JsonCreator
     public Notification(@JsonProperty("transactionId") Long transactionId,
-                      @JsonProperty("userId") Long userId,
-                        @JsonProperty("content") String content)
-                      {
+                        @JsonProperty("userId") Long userId,
+                        @JsonProperty("content") String content) {
         this.transactionId = transactionId;
         this.userId = userId;
         this.content = content;
     }
-
 
 
     @JsonIgnore
@@ -92,10 +92,9 @@ public class Notification {
         return content;
     }
 
-    public void setContent(String  content) {
+    public void setContent(String content) {
         this.content = content;
     }
-
 
 
     @Override

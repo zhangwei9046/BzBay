@@ -1,47 +1,42 @@
 package com.bravozulu.db;
 
 
-import com.bravozulu.core.Transactions;
-import com.bravozulu.core.Item;
-import com.bravozulu.core.User;
+import com.bravozulu.core.Transaction;
 
-import com.google.common.base.Preconditions;
 import io.dropwizard.hibernate.AbstractDAO;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
-import javax.ws.rs.NotFoundException;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * Created by Melody on 7/1/16.
  */
-public class TransactionsDao extends AbstractDAO<Transactions>{
+public class TransactionsDao extends AbstractDAO<Transaction>{
     public TransactionsDao(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
-    public Transactions create(Transactions transaction) { return persist(transaction); }
+    public Transaction create(Transaction transaction) { return persist(transaction); }
 
-    public Optional<Transactions> findBytransactionId(long id) {
+    public Optional<Transaction> findBytransactionId(long id) {
         return Optional.ofNullable(get(id));
     }
 
-    public List<Transactions> findAll() {
-        return list(namedQuery("com.bravozulu.core.Transactions.findAll"));
+    public List<Transaction> findAll() {
+        return list(namedQuery("com.bravozulu.core.Transaction.findAll"));
     }
 
     public Optional<Transaction> findByBidHistoryId(Long bidhistoryId) {
         return Optional
-                .ofNullable((Transaction) namedQuery("com.bravozulu.core.Transactions.findBybidhistoryId")
+                .ofNullable((Transaction) namedQuery("com.bravozulu.core.Transaction.findBybidhistoryId")
                         .setParameter("bidhistoryId", bidhistoryId).uniqueResult());
     }
     public Optional<Transaction> findByItemId(Long itemId) {
-        return Optional.ofNullable((Transaction) namedQuery("com.bravozulu.core.Transactions.findByitemId")
+        return Optional.ofNullable((Transaction) namedQuery("com.bravozulu.core.Transaction.findByitemId")
                 .setParameter("itemId", itemId).uniqueResult());
     }
     public Optional<Transaction> findByUserId(Long userId) {
-        return Optional.ofNullable((Transaction) namedQuery("com.bravozulu.core.Transactions.findByuserId")
+        return Optional.ofNullable((Transaction) namedQuery("com.bravozulu.core.Transaction.findByuserId")
                 .setParameter("userId", userId).uniqueResult());
     }
 
