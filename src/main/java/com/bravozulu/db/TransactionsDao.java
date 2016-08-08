@@ -1,8 +1,10 @@
 package com.bravozulu.db;
 
-import com.bravozulu.core.CreditCards;
+
 import com.bravozulu.core.Transactions;
+import com.bravozulu.core.Item;
 import com.bravozulu.core.User;
+
 import com.google.common.base.Preconditions;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.Query;

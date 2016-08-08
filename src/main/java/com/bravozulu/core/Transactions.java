@@ -25,7 +25,7 @@ import java.sql.Timestamp;
         query = "SELECT u FROM Transactions u WHERE u.itemId = itemId"
         )
         @NamedQuery(name = "com.bravozulu.core.Transactions.findBybidhistoryId",
-        query = "SELECT u FROM Transaction u WHERE u.bidhistoryId = :bidhistoryId")
+        query = "SELECT u FROM Transaction u WHERE u.bidhistoryId = bidhistoryId")
 
 })
 
@@ -133,9 +133,9 @@ public class Transactions {
         if (o == null || getClass() != o.getClass()) return false;
 
         Transactions transaction = (Transactions) o;
-
-        if (bidhistoryId != transaction.bidhistoryId) return false;
         if (transactionId != transaction.transactionId) return false;
+        if (bidhistoryId != transaction.bidhistoryId) return false;
+
         if (itemId != transaction.itemId) return false;
         if (userId != transaction.userId) return false;
         if (Float.compare(transaction.price, price) != 0) return false;
