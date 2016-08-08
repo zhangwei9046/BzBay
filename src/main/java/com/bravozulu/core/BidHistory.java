@@ -27,15 +27,12 @@ import java.sql.Timestamp;
             query = "SELECT u FROM BidHistory u WHERE u.itemId = :itemId ORDER BY u.bidPrice DESC")})
 
 
-
-})
-
 @JsonSnakeCase
 public class BidHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(name = "bid_bidId_seq_name",
-            sequenceName = "bid_bidId_seq",
+    @SequenceGenerator(name = "bidhistories_bidId_seq_name",
+            sequenceName = "bidhistories_bidId_seq",
             allocationSize = 1)
     private long bidId;
 
@@ -52,6 +49,12 @@ public class BidHistory {
     private Timestamp time;
 
     public BidHistory(){}
+
+    public BidHistory(long itemId, long userId, float price){
+        this.itemId = itemId;
+        this.userId = userId;
+        this.price = price;
+    }
 
     public BidHistory(@JsonProperty("itemId") Long itemId,
                       @JsonProperty("userId") Long userId,
@@ -112,7 +115,7 @@ public class BidHistory {
                 ",ItemId'" + itemId + '\'' +
                 ",UserId'" + userId + '\'' +
                 ",price'" + price + '\'' +
-                ",time '" + time + '\'' + '}';
+                ",time '" + time  + '}';
     }
     @Override
     public boolean equals(Object o) {

@@ -55,6 +55,11 @@ public class Transactions {
 
     public Transactions(){}
 
+    public Transactions(long itemId, long userId, float price){
+        this.itemId = itemId;
+        this.userId = userId;
+        this.price = price;
+    }
     public Transactions(@JsonProperty("bidhistoryId") Long bidhistoryId,
                         @JsonProperty("itemId") Long itemId,
                       @JsonProperty("userId") Long userId,
@@ -120,7 +125,7 @@ public class Transactions {
                 ",ItemId'" + itemId + '\'' +
                 ",UserId'" + userId + '\'' +
                 ",price'" + price + '\'' +
-                ",time '" + time + '\'' + '}';
+                ",time '" + time + '}';
     }
     @Override
     public boolean equals(Object o) {
