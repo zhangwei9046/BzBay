@@ -58,7 +58,8 @@ public class Transaction {
 
     public Transaction(){}
 
-    public Transaction(long itemId, long userId, float price){
+    public Transaction(long bidhistoryId, long itemId, long userId, float price){
+        this.bidhistoryId = bidhistoryId;
         this.itemId = itemId;
         this.userId = userId;
         this.price = price;
@@ -70,6 +71,7 @@ public class Transaction {
                        @JsonProperty("time") @JsonFormat(shape = JsonFormat.Shape.STRING,
     pattern = "yyyy-MM-dd HH:mm:ss") Timestamp time)
     {
+        this.bidhistoryId = bidhistoryId;
         this.itemId = itemId;
         this.userId = userId;
         this.price = price;
@@ -80,7 +82,6 @@ public class Transaction {
     public long getTransactionId() {
         return transactionId;
     }
-
     public void setTransactionId(long transactionId) {
         this.transactionId = transactionId;
     }
@@ -91,16 +92,15 @@ public class Transaction {
     public void setBidHistoryId(Long bidhistoryId) {
         this.bidhistoryId = bidhistoryId;
     }
+
     public long getItemId() {
         return itemId;
     }
-
     public void setItemId(long itemId) {
         this.itemId = itemId;
     }
 
     public long getUserId() { return userId;}
-
     public void setUserId(long userId) {
         this.userId = userId;
     }
@@ -108,7 +108,6 @@ public class Transaction {
     public float getPrice() {
         return price;
     }
-
     public void setPrice(float price) {
         this.price = price;
     }
@@ -116,7 +115,6 @@ public class Transaction {
     public Timestamp getTime() {
         return time;
     }
-
     public void setTime(Timestamp time) {
         this.time = time;
     }

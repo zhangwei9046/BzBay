@@ -110,4 +110,9 @@ public class ItemDAO extends AbstractDAO<Item>{
 
         return (itemSellerId == sellerId) && itemSellerIdPassword.equals(sellerPassword);
     }
+
+    public void updateAvailable(Boolean available, Long itemId) {
+        namedQuery("com.bravozulu.core.item.updateAvailable").setLong("itemId", itemId).setBoolean("available", available)
+                .executeUpdate();
+    }
 }
