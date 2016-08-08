@@ -21,6 +21,8 @@ import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.federecio.dropwizard.swagger.SwaggerBundle;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 
@@ -53,6 +55,14 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
         });
         bootstrap.addBundle(hibernate);
         bootstrap.addBundle(new TemplateConfigBundle());
+
+        //Swagger
+        bootstrap.addBundle(new SwaggerBundle<bzbayConfiguration>() {
+            @Override
+            protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(bzbayConfiguration configuration) {
+                return configuration.swaggerBundleConfiguration;
+            }
+        });
     }
 
     @Override

@@ -5,6 +5,7 @@ import io.dropwizard.db.DataSourceFactory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.db.DatabaseConfiguration;
 
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +13,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 public class bzbayConfiguration extends Configuration {
+    @JsonProperty("swagger")
+    public SwaggerBundleConfiguration swaggerBundleConfiguration;
+
     @Valid
     @NotNull
     private DataSourceFactory database = new DataSourceFactory();

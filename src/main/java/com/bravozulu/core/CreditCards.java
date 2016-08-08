@@ -3,6 +3,8 @@ package com.bravozulu.core;
 /**
  * Created by Melody on 6/29/16.
  * */
+import io.dropwizard.jackson.JsonSnakeCase;
+
 import javax.persistence.*;
 
 
@@ -15,6 +17,7 @@ import javax.persistence.*;
         )
 })
 
+@JsonSnakeCase
 public class CreditCards {
     @Id
     @Column(name = "creditCardNum", nullable = false)

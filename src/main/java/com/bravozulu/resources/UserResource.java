@@ -6,6 +6,10 @@ import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
@@ -99,6 +103,14 @@ public class UserResource {
     @Timed
     @Path("/login")
     @UnitOfWork
+    @ApiOperation(value = "user login",
+            authorizations = {@Authorization(value="UserBasicAuth")},
+            notes = "This returns a string to indicate if a user login successfully or not")
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "Sign in fail",
+                    response = String.class),
+            @ApiResponse(code = 200, message = "Login Successfully! Welcome <user>", response = String.class)
+    })
     public User login(@Auth User user) {
         return user;
     }

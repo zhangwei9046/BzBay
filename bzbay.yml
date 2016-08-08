@@ -1,3 +1,6 @@
+swagger:
+  resourcePackage: com.bzbay
+
 # Database settings.
 database:
   driverClass: org.postgresql.Driver

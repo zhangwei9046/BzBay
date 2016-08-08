@@ -3,6 +3,8 @@ package com.bravozulu.core;
 /**
  * Created by ying on 6/25/16.
  */
+import io.dropwizard.jackson.JsonSnakeCase;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -22,7 +24,7 @@ import java.util.Date;
                 query = "SELECT r FROM Review r WHERE r.receiverId = :receiverId"
         )
 })
-
+@JsonSnakeCase
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

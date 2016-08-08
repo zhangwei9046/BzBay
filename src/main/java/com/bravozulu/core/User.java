@@ -7,6 +7,7 @@ package com.bravozulu.core;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.dropwizard.jackson.JsonSnakeCase;
 
 import javax.persistence.*;
 import java.security.Principal;
@@ -23,7 +24,7 @@ import java.security.Principal;
                 query = "SELECT u FROM User u WHERE u.username = :username"
         )
 })
-
+@JsonSnakeCase
 public class User implements Principal{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

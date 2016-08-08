@@ -2,6 +2,7 @@ package com.bravozulu.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.dropwizard.jackson.JsonSnakeCase;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -27,6 +28,7 @@ import java.sql.Timestamp;
         )
 })
 
+@JsonSnakeCase
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
