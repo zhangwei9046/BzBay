@@ -29,14 +29,18 @@ public class TransactionsDao extends AbstractDAO<Transactions>{
         return list(namedQuery("com.bravozulu.core.Transactions.findAll"));
     }
 
-    public void delete(Long transactionId) {
-        Transactions trans = findBytransactionId(transactionId).orElseThrow(() -> new NotFoundException("No such transactins."));
-        currentSession().delete(trans);
+    public Optional<Transaction> findByBidHistoryId(Long bidhistoryId) {
+        return Optional
+                .ofNullable((Transaction) namedQuery("com.bravozulu.core.Transactions.findBybidhistoryId")
+                        .setParameter("bidhistoryId", bidhistoryId).uniqueResult());
+    }
+    public Optional<Transaction> findByItemId(Long itemId) {
+        return Optional.ofNullable((Transaction) namedQuery("com.bravozulu.core.Transactions.findByitemId")
+                .setParameter("itemId", itemId).uniqueResult());
+    }
+    public Optional<Transaction> findByUserId(Long userId) {
+        return Optional.ofNullable((Transaction) namedQuery("com.bravozulu.core.Transactions.findByuserId")
+                .setParameter("userId", userId).uniqueResult());
     }
 
-
-    public Transactions update(Transactions transaction,Long transactionId) {
-        transaction.settransactionId(transactionId);
-        return persist(transaction);
-    }
 }

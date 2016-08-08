@@ -53,10 +53,11 @@ public class BidHistory {
 
     public BidHistory(){}
 
-    public BidHistory(@JsonProperty("item_id") Long itemId, @JsonProperty("user_id") Long userId,
-                      @JsonProperty("bid_price") Float price),
-                      @JsonProperty("bid_time") @JsonFormat(shape = JsonFormat.Shape.STRING,
-                              pattern = "yyyy-MM-dd HH:mm:ss") Timestamp time
+    public BidHistory(@JsonProperty("itemId") Long itemId,
+                      @JsonProperty("userId") Long userId,
+                      @JsonProperty("price") Float price),
+                      @JsonProperty("time") @JsonFormat(shape = JsonFormat.Shape.STRING,
+                              pattern = "yyyy-MM-dd HH:mm:ss") Timestamp time)
                       {
         this.itemId = itemId;
         this.userId = userId;
@@ -107,7 +108,7 @@ public class BidHistory {
 
     @Override
     public String toString() {
-        return "BidHistory{" + ",bidId = '" + bidId + '\' ' +
+        return "BidHistory{" + ",bidId = '" + bidId + '\'' +
                 ",ItemId'" + itemId + '\'' +
                 ",UserId'" + userId + '\'' +
                 ",price'" + price + '\'' +

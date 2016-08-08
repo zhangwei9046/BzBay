@@ -16,13 +16,30 @@ import java.sql.Timestamp;
                 name = "com.bravozulu.core.Transactions.findAll",
                 query = "SELECT u FROM Transactions u"
         )
+        @NamedQuery(
+        name = "com.bravozulu.core.Transactions.findByuserId",
+        query = "SELECT u FROM Transactions u WHERE u.userId = userId"
+        )
+        @NamedQuery(
+        name = "com.bravozulu.core.Transactions.findByitemId",
+        query = "SELECT u FROM Transactions u WHERE u.itemId = itemId"
+        )
+        @NamedQuery(name = "com.bravozulu.core.Transactions.findBybidhistoryId",
+        query = "SELECT u FROM Transaction u WHERE u.bidhistoryId = :bidhistoryId")
+
 })
 
 @JsonSnakeCase
 public class Transactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "trans_transactionId_seq_name",
+            sequenceName = "trans_transactionId_seq",
+            allocationSize = 1)
     private long transactionId;
+
+    @Column(name = "bidhistoryId", nullable = false)
+    private Long bidhistoryId;
 
     @Column(name = "itemId", nullable = false)
     private long itemId;
@@ -38,21 +55,35 @@ public class Transactions {
 
     public Transactions(){}
 
-    public Transactions(long itemId, long userId, float price, Timestamp time) {
+    public Transactions(@JsonProperty("bidhistoryId") Long bidhistoryId,
+                        @JsonProperty("itemId") Long itemId,
+                      @JsonProperty("userId") Long userId,
+                      @JsonProperty("price") Float price,
+    @JsonProperty("time") @JsonFormat(shape = JsonFormat.Shape.STRING,
+    pattern = "yyyy-MM-dd HH:mm:ss") Timestamp time)
+    {
         this.itemId = itemId;
         this.userId = userId;
         this.price = price;
         this.time = time;
     }
+    @JsonIgnore
+    @Override
 
-    public long gettransactionId() {
+    public long getTransactionId() {
         return transactionId;
     }
 
-    public void settransactionId(long transactionId) {
+    public void setTransactionId(long transactionId) {
         this.transactionId = transactionId;
     }
 
+    public Long getBidHistoryId() {
+        return this.bishistoryId;
+    }
+    public void setBidHistoryId(Long bidhistoryId) {
+        this.bidhistoryId = bidhistoryId;
+    }
     public long getItemId() {
         return itemId;
     }
@@ -84,12 +115,21 @@ public class Transactions {
     }
 
     @Override
+    public String toString() {
+        return "Transaction{" + ",transactionId = '" + transactionId + '\'' +
+                ",ItemId'" + itemId + '\'' +
+                ",UserId'" + userId + '\'' +
+                ",price'" + price + '\'' +
+                ",time '" + time + '\'' + '}';
+    }
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Transactions transaction = (Transactions) o;
 
+        if (bidhistoryId != transaction.bidhistoryId) return false;
         if (transactionId != transaction.transactionId) return false;
         if (itemId != transaction.itemId) return false;
         if (userId != transaction.userId) return false;

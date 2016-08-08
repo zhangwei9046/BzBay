@@ -35,7 +35,7 @@ public class User implements Principal{
             allocationSize = 1)
     private long userId;
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", fnullable = false)
     private String username;
 
     @Column(name = "firstname", nullable = false)
