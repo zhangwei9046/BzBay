@@ -1,7 +1,6 @@
 package com.bravozulu.resources;
 
 
-
 import com.bravozulu.core.BidHistory;
 import com.bravozulu.core.Item;
 import com.bravozulu.core.User;
@@ -14,12 +13,14 @@ import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Date;
 import java.util.Optional;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -41,7 +42,7 @@ public class BidHistoryResource {
         this.userDAO = userDAO;
     }
 
-
+/*
     @POST
     @Path("/createbid")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -50,7 +51,7 @@ public class BidHistoryResource {
     public BidHistory createBid(@Auth User user, long itemId, long userId, float price) {
         return bidhistoryDao.create(itemId, userId,price);
     }
-
+*/
 
     @POST
     @Path("/bidHistory")
@@ -58,12 +59,11 @@ public class BidHistoryResource {
     @UnitOfWork
     @Consumes(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Place a bid",
-            authorizations = {@Authorization(value="UserBasicAuth")},
+            authorizations = {@Authorization(value = "UserBasicAuth")},
             notes = "Place a valid bid",
             response = BidHistory.class)
-    */
     public BidHistory bid(@Auth User user,
-                          @@ApiParam(value = "Place a bid", required = true) BidHistory bidHistory) {
+                          @ApiParam(value = "Place a bid", required = true) BidHistory bidHistory) {
         long itemId = bidHistory.getItemId();
         Optional<Item> item = this.itemDAO.findById(itemId);
         if (item.isPresent()) {
@@ -76,15 +76,20 @@ public class BidHistoryResource {
                                 .findByHighestPriceByItemId(itemId).get() : null;
                 double currentPrice = (bidprice == null) ? item.get().getInitialPrice()
                         : bidprice.getPrice();
-                doule doublePrice = 2*currentPrice;
-                if (bidHistory.getPrice() > currentPrice
-                        if( bidHistory.getPrice()<doublePrice)
-                                this.bidhistoryDao.create(bidHistory);
-                else {new ServiceUnavailableException("Bid price need be lower than double the current price" );}
-                else {new ServiceUnavailableException("Bid price need be higher than current price" );}
-         return bidHistory;
-                }}}
-
+                double doublePrice = 2 * currentPrice;
+                if (bidHistory.getPrice() > currentPrice)
+                    if (bidHistory.getPrice() < doublePrice)
+                        this.bidhistoryDao.create(bidHistory);
+                    else {
+                        new ServiceUnavailableException("Bid price need be lower than double the current price");
+                    }
+                else {
+                    new ServiceUnavailableException("Bid price need be higher than current price");
+                }
+            }
+        }
+        return bidHistory;
+    }
 
 
     @GET
@@ -109,16 +114,14 @@ public class BidHistoryResource {
     @Path("/userId={userId}/bidhistory")
     @UnitOfWork
     public List<BidHistory> findBidByUserId(@Auth User user, @PathParam("userId") Long userId) {
-        return this.bidhistoryDao.findByUserId(userId).orElseThrow( () -> new
-                NotFoundException("No Bid History for this user"));
+        return this.bidhistoryDao.findByUserId(userId);
     }
 
     @GET
     @Path("/itemId={itemId}/bidhistory")
     @UnitOfWork
     public List<BidHistory> findBidByItemId(@Auth User user, @PathParam("itemId") Long itemId) {
-        return this.bidhistoryDao.findByItemId(itemId).orElseThrow( () -> new
-                NotFoundException("No Bid History for this Item"));
+        return this.bidhistoryDao.findByItemId(itemId);
     }
 
 
@@ -127,10 +130,9 @@ public class BidHistoryResource {
     @UnitOfWork
     public BidHistory findHighestPrice(@Auth User user, @PathParam("itemId")
             Long itemId) {
-        return this.bidhistoryDao.findByHighestPriceByItemId(itemId).orElseThrow( () -> new
+        return this.bidhistoryDao.findByHighestPriceByItemId(itemId).orElseThrow(() -> new
                 NotFoundException("No Bid History for this Item"));
     }
-
 
 
 //    @DELETE
