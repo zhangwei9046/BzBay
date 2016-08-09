@@ -118,7 +118,8 @@ public class BidHistoryResource {
 
     @GET
     @UnitOfWork
-    public BitHistory findHighestPrice(@Auth User user, @PathParam("itemId") Long itemId) {
+    public BidHistory findHighestPrice(@Auth User user, @PathParam("itemId")
+            Long itemId) {
         return this.bidhistoryDao.findByHighestPriceByItemId(itemId).orElseThrow( () -> new
                 NotFoundException("No Bid History for this Item"));
     }
