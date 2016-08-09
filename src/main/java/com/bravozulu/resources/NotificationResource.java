@@ -37,7 +37,8 @@ public class NotificationResource {
     private static Logger logger = LoggerFactory.getLogger(NotificationResource.class);
 
 
-    public NotificationResource(NotificationDao NotificationDao , TransactionDao transactionDao , UserDAO userDAO) {
+    public NotificationResource(NotificationDao NotificationDao ,
+                                TransactionsDao transactionDao , UserDAO userDAO) {
         this.NotificationDao = NotificationDao;
         this.transactionDao = transactionDao;
         this.userDAO = userDAO;
