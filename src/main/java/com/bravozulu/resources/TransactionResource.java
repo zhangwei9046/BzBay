@@ -55,7 +55,7 @@ public class TransactionResource {
 
 
     @GET
-    @Path("trans")
+    @Path("{transactionId}")
     @RolesAllowed("ADMIN")
     @UnitOfWork
     public Transactions findBytransactionId(@Auth User user, @PathParam
