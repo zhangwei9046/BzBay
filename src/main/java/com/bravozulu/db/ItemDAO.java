@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 import java.util.Optional;
 import org.hibernate.Query;
-
 import javax.ws.rs.NotFoundException;
 
 /**
@@ -70,20 +69,11 @@ public class ItemDAO extends AbstractDAO<Item>{
     }
 
     /**
-     *
-     * @return
+     * Returns list of all available items
+     * @return list
      */
     public List<Item> findAllAvailable(){
         return list(namedQuery("com.bravozulu.core.Item.available"));
-    }
-
-    /**
-     * Updates the name of the item in the database
-     * @param item the item
-     */
-    public Item updateItem(long itemId, Item item){
-        item.setItemId(itemId);
-        return persist(item);
     }
 
     /**
@@ -99,7 +89,7 @@ public class ItemDAO extends AbstractDAO<Item>{
     }
 
     /**
-     * Helper method for deleteItem()
+     * Checks if item is associated with the seller
      * @param itemId the item id
      * @param seller the seller
      * @return return true if the item belongs to the seller; false otherwise
@@ -117,8 +107,17 @@ public class ItemDAO extends AbstractDAO<Item>{
         return (itemSellerId == sellerId) && itemSellerIdPassword.equals(sellerPassword);
     }
 
-    public void updateAvailable(Boolean available, Long itemId) {
-        namedQuery("com.bravozulu.core.item.updateAvailable").setLong("itemId", itemId).setBoolean("available", available)
+    /**
+     * Updates the item's availability status
+     * @param available the availability status
+     * @param itemId the item's id
+     */
+    public void updateAvailable(Boolean available, Long itemId, User seller) {
+        if (checkItemToSeller(itemId, seller)) {
+         namedQuery("com.bravozulu.core.item.updateAvailable").setLong("itemId", itemId).setBoolean("available", available)
                 .executeUpdate();
+        }
     }
+
+
 }

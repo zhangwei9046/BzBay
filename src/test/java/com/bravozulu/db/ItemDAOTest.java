@@ -1,14 +1,12 @@
 package com.bravozulu.db;
+
 import com.bravozulu.core.Item;
 import com.bravozulu.core.User;
-
 import org.hibernate.Query;
 import org.junit.*;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 
 /**
  * Created by bonicma on 7/20/16.
@@ -17,8 +15,7 @@ public class ItemDAOTest extends DAOTests {
     private ItemDAO itemDAO;
     private UserDAO userDAO;
     private String firstItemName = "Casio Watch";
-    private static Logger logger = LoggerFactory.getLogger(ItemDAOTest
-            .class);
+
 
     @Before
     public void setup() {
@@ -127,6 +124,22 @@ public class ItemDAOTest extends DAOTests {
         getSession().getTransaction().commit();
     }
 
+    @Test
+    public void testFindAllAvailable() {
+        getSession().beginTransaction();
+
+        // Call the method to be tested
+        List<Item> list = this.itemDAO.findAllAvailable();
+
+        // Run basic tests
+        Assert.assertNotNull(list);
+        Assert.assertEquals(list.size(), 1);
+        Assert.assertEquals(list.get(0).getName(), this.firstItemName);
+
+        getSession().getTransaction().commit();
+
+    }
+
     /**
      * Test for create in ItemDAO class
      */
@@ -172,24 +185,21 @@ public class ItemDAOTest extends DAOTests {
      * Test for updateItem in ItemDAO class
      */
     @Test
-    public void testUpdateItem() {
+    public void testUpdateAvailable() {
         getSession().beginTransaction();
 
         // Get the required data
         List<Item> list = this.itemDAO.findAll();
         Item firstItem = list.get(0);
         long firstItemId = list.get(0).getItemId();
-        firstItem.setName("Rolex");
+        Optional<User> awalkerSeller = this.userDAO.findByUsername("awalker");
+
 
         // Call the method to be tested
-        Item firstItemUpdated = this.itemDAO.updateItem(firstItemId, firstItem);
+        this.itemDAO.updateAvailable (false, firstItemId, awalkerSeller.get());
 
         // Run basic tests
-        Assert.assertNotNull(firstItemUpdated);
-        Assert.assertEquals(firstItemUpdated.getName(), "Rolex");
-        String firstItemUpdatedName = list.get(0).getName();
-        Assert.assertEquals(firstItemUpdatedName, "Rolex");
-
+        Assert.assertFalse(firstItem.isAvailable());
         getSession().getTransaction().commit();
     }
 

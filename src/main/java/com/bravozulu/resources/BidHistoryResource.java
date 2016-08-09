@@ -41,19 +41,29 @@ public class BidHistoryResource {
         this.userDAO = userDAO;
     }
 
+
     @POST
-    @Path("/bid")
+    @Path("/createbid")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @UnitOfWork
+    @Timed
+    public BidHistory createBid(@Auth User user, long itemId, long userId, float price) {
+        return bidhistoryDao.create(itemId, userId,price);
+    }
+
+
+    @POST
+    @Path("/bidHistory")
     @Timed
     @UnitOfWork
     @Consumes(MediaType.APPLICATION_JSON)
-    /*@ApiOperation(value = "Place a bid",
+    @ApiOperation(value = "Place a bid",
             authorizations = {@Authorization(value="UserBasicAuth")},
-            notes = "Pass BidHistory json object. Return back object with different status field."+
-                    "Only Succeed will create bid.",
+            notes = "Place a valid bid",
             response = BidHistory.class)
     */
     public BidHistory bid(@Auth User user,
-                          @ApiParam(value = "Place a bid", required = true) BidHistory bidHistory) {
+                          @@ApiParam(value = "Place a bid", required = true) BidHistory bidHistory) {
         long itemId = bidHistory.getItemId();
         Optional<Item> item = this.itemDAO.findById(itemId);
         if (item.isPresent()) {
@@ -66,20 +76,14 @@ public class BidHistoryResource {
                                 .findByHighestPriceByItemId(itemId).get() : null;
                 double currentPrice = (bidprice == null) ? item.get().getInitialPrice()
                         : bidprice.getPrice();
-                if (bidHistory.getPrice() > currentPrice) {
-                    bidHistory.setStatus("Succeed.");
-                    this.bidhistoryDao.create(bidHistory);
-                } else {
-                    bidHistory.setStatus("Failure: bidding price is lower than current price.");
-                }
-            } else {
-                bidHistory.setStatus("Failure: item not able to bid.");
-            }
-        } else {
-            bidHistory.setStatus("Failure: item does not exist.");
-        }
-        return bidHistory;
-    }
+                doule doublePrice = 2*currentPrice;
+                if (bidHistory.getPrice() > currentPrice
+                        if( bidHistory.getPrice()<doublePrice)
+                                this.bidhistoryDao.create(bidHistory);
+                else {new ServiceUnavailableException("Bid price need be lower than double the current price" );}
+                else {new ServiceUnavailableException("Bid price need be higher than current price" );}
+         return bidHistory;
+                }}}
 
 
 
@@ -92,7 +96,7 @@ public class BidHistoryResource {
 
 
     @GET
-    @Path("{bidId}")
+    @Path("/{bidId}")
     @RolesAllowed("ADMIN")
     @UnitOfWork
     public BidHistory findBidById(@Auth User user, @PathParam("bidId") LongParam
@@ -102,7 +106,7 @@ public class BidHistoryResource {
     }
 
     @GET
-    @Path("bid/userId={userId}/bidhistory")
+    @Path("/userId={userId}/bidhistory")
     @UnitOfWork
     public List<BidHistory> findBidByUserId(@Auth User user, @PathParam("userId") Long userId) {
         return this.bidhistoryDao.findByUserId(userId).orElseThrow( () -> new
@@ -110,7 +114,7 @@ public class BidHistoryResource {
     }
 
     @GET
-    @Path("bid/itemId={itemId}/bidhistory")
+    @Path("/itemId={itemId}/bidhistory")
     @UnitOfWork
     public List<BidHistory> findBidByItemId(@Auth User user, @PathParam("itemId") Long itemId) {
         return this.bidhistoryDao.findByItemId(itemId).orElseThrow( () -> new
