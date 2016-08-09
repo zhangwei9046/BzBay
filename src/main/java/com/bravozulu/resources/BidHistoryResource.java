@@ -92,7 +92,7 @@ public class BidHistoryResource {
 
 
     @GET
-    @Path("bid")
+    @Path("{bidId}")
     @RolesAllowed("ADMIN")
     @UnitOfWork
     public BidHistory findBidById(@Auth User user, @PathParam("bidId") LongParam
@@ -119,6 +119,7 @@ public class BidHistoryResource {
 
 
     @GET
+    @Path("{itemId}")
     @UnitOfWork
     public BidHistory findHighestPrice(@Auth User user, @PathParam("itemId")
             Long itemId) {
