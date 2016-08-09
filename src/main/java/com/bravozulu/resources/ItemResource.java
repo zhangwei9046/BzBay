@@ -98,15 +98,17 @@ public class ItemResource {
     }
 
     /**
-     * Updates the item's name
-     * @param item the item to be updated
+     * Updates the item's availability status
+     * @param user the seller
+     * @param itemId the item's id
+     * @param available the new availability status
      */
     @PUT
     @Path("/{itemId}")
     @UnitOfWork
-    public void updateItem(@Auth User user, @PathParam("itemId") LongParam
-            itemId, Item item) {
-        this.itemDAO.updateItem(itemId.get(), item);
+    public void updateAvailable(@Auth User user, @PathParam("itemId") LongParam
+            itemId, boolean available) {
+        this.itemDAO.updateAvailable(available, itemId.get(), user);
     }
 
     /**
@@ -115,12 +117,8 @@ public class ItemResource {
      */
     @DELETE
     @Path("/{itemId}")
-    //@RolesAllowed("Admin")
     @UnitOfWork
-    //TODO: Add a sellerId and password parameter to ensure that only the
-    // seller can delete her own item
     public void delete(@Auth User user, @PathParam("itemId") LongParam itemId) {
          this.itemDAO.deleteItem(itemId.get(), user);
-        //this.itemDAO.deleteItem(itemId.get());
     }
 }

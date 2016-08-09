@@ -172,24 +172,21 @@ public class ItemDAOTest extends DAOTests {
      * Test for updateItem in ItemDAO class
      */
     @Test
-    public void testUpdateItem() {
+    public void testUpdateAvailable() {
         getSession().beginTransaction();
 
         // Get the required data
         List<Item> list = this.itemDAO.findAll();
         Item firstItem = list.get(0);
         long firstItemId = list.get(0).getItemId();
-        firstItem.setName("Rolex");
+        Optional<User> awalkerSeller = this.userDAO.findByUsername("awalker");
+
 
         // Call the method to be tested
-        Item firstItemUpdated = this.itemDAO.updateItem(firstItemId, firstItem);
+        this.itemDAO.updateAvailable (false, firstItemId, awalkerSeller.get());
 
         // Run basic tests
-        Assert.assertNotNull(firstItemUpdated);
-        Assert.assertEquals(firstItemUpdated.getName(), "Rolex");
-        String firstItemUpdatedName = list.get(0).getName();
-        Assert.assertEquals(firstItemUpdatedName, "Rolex");
-
+        Assert.assertFalse(firstItem.isAvailable());
         getSession().getTransaction().commit();
     }
 
