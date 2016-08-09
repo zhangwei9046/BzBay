@@ -9,6 +9,7 @@ import com.bravozulu.db.BidHistoryDAO;
 import com.bravozulu.db.UserDAO;
 import com.bravozulu.db.TransactionsDao;
 import com.bravozulu.core.Notification;
+import com.bravozulu.db.NotificationDao;
 import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
@@ -39,7 +40,7 @@ public class NotificationResource {
 
     public NotificationResource(NotificationDao NotificationDao ,
                                 TransactionsDao transactionDao , UserDAO userDAO) {
-        this.NotificationDao = NotificationDao;
+        this.notificationDao = NotificationDao;
         this.transactionDao = transactionDao;
         this.userDAO = userDAO;
     }
