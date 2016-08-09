@@ -67,34 +67,26 @@ public class TransactionResource {
 
 
     @GET
-    @Path("trans/bidId={bidId}/transactions")
+    @Path("/bidId={bidId}/transactions")
     @RolesAllowed("ADMIN")
     @UnitOfWork
-    public List<Transactions> findTransByBidId(@Auth User user, @PathParam("bidId") Long bidId) {
+    public Transactions findTransByBidId(@Auth User user, @PathParam("bidId") Long bidId) {
         return this.transactionDao.findByBidHistoryId(bidId).orElseThrow( () -> new
                 NotFoundException("No Trans for this Bid History"));
     }
 
     @GET
-    @Path("trans/userId={userId}/transactions")
+    @Path("/userId={userId}/transactions")
     @UnitOfWork
     public List<Transactions> findTransByUserId(@Auth User user, @PathParam("userId") Long userId) {
-        return this.transactionDao.findByUserId(userId).orElseThrow( () -> new
-                NotFoundException("No Trans for this user"));
+        return this.transactionDao.findByUserId(userId);
     }
 
     @GET
-    @Path("trans/itemId={itemId}/transactions")
+    @Path("/itemId={itemId}/transactions")
     @UnitOfWork
-    public List<Transactions> findTransByItemId(@Auth User user, @PathParam("itemId") Long itemId) {
+    public Transactions findTransByItemId(@Auth User user, @PathParam("itemId") Long itemId) {
         return this.transactionDao.findByItemId(itemId).orElseThrow( () -> new
                 NotFoundException("No Trans for this Item"));
     }
-
-
-
-
-
-
-
 }

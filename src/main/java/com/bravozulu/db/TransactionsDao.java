@@ -40,9 +40,9 @@ public class TransactionsDao extends AbstractDAO<Transactions>{
         return Optional.ofNullable((Transactions) namedQuery("com.bravozulu.core.Transactions.findByitemId")
                 .setParameter("itemId", itemId).uniqueResult());
     }
-    public Optional<Transactions> findByUserId(Long userId) {
-        return Optional.ofNullable((Transactions) namedQuery("com.bravozulu.core.Transactions.findByuserId")
-                .setParameter("userId", userId).uniqueResult());
+    public List<Transactions> findByUserId(Long userId) {
+        return list(namedQuery("com.bravozulu.core.Transactions.findByuserId")
+                .setParameter("userId", userId));
     }
 
 }

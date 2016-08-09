@@ -6,6 +6,7 @@ import com.bravozulu.core.BidHistory;
 import com.bravozulu.core.User;
 import com.bravozulu.core.Transactions;
 import com.bravozulu.db.BidHistoryDAO;
+import com.bravozulu.db.NotificationDao;
 import com.bravozulu.db.UserDAO;
 import com.bravozulu.db.TransactionsDao;
 import com.bravozulu.core.Notification;
@@ -37,9 +38,9 @@ public class NotificationResource {
     private static Logger logger = LoggerFactory.getLogger(NotificationResource.class);
 
 
-    public NotificationResource(NotificationDao NotificationDao ,
+    public NotificationResource(NotificationDao notificationDao ,
                                 TransactionsDao transactionDao , UserDAO userDAO) {
-        this.NotificationDao = NotificationDao;
+        this.notificationDao = notificationDao;
         this.transactionDao = transactionDao;
         this.userDAO = userDAO;
     }
@@ -47,7 +48,7 @@ public class NotificationResource {
 
 
     @GET
-    @Path("/notification/findALL")
+    @Path("/findAll")
     @RolesAllowed("ADMIN")
     @Timed
     @UnitOfWork
@@ -59,7 +60,7 @@ public class NotificationResource {
     }
 
     @GET
-    @Path("notification")
+    @Path("/notifyId={notifyId}/notification")
     @RolesAllowed("ADMIN")
     @UnitOfWork
     public Notification findByNotificationId(@Auth User user, @PathParam("notifyId") LongParam
@@ -70,7 +71,7 @@ public class NotificationResource {
 
 
     @GET
-    @Path("/notification/findNotificationByTransactionID/{transaction_id}")
+    @Path("/transactionId={transactionId}/notification")
     @Timed
     @UnitOfWork
     @ApiOperation(value = "search notifications by transactionId",
@@ -83,7 +84,7 @@ public class NotificationResource {
     }
 
     @GET
-    @Path("/notification/findNotificationByUserID/{userId}")
+    @Path("/findNotificationByUserID/{userId}")
     @Timed
     @UnitOfWork
     @ApiOperation(value = "search notifications by user id",
