@@ -40,7 +40,7 @@ public class NotificationResource {
 
     public NotificationResource(NotificationDao NotificationDao ,
                                 TransactionsDao transactionDao , UserDAO userDAO) {
-        this.NotificationDao = NotificationDao;
+        this.notificationDao = NotificationDao;
         this.transactionDao = transactionDao;
         this.userDAO = userDAO;
     }
