@@ -98,6 +98,12 @@ public class ItemDAO extends AbstractDAO<Item>{
         }
     }
 
+    /**
+     * Helper method for deleteItem()
+     * @param itemId the item id
+     * @param seller the seller
+     * @return return true if the item belongs to the seller; false otherwise
+     */
     private boolean checkItemToSeller(long itemId, User seller) {
         Item item = findById(itemId).get();
         long itemSellerId = item.getSellerId();

@@ -1,6 +1,7 @@
 package com.bravozulu.db;
 import com.bravozulu.core.Item;
 import com.bravozulu.core.User;
+
 import org.hibernate.Query;
 import org.junit.*;
 import java.sql.Timestamp;
@@ -139,8 +140,10 @@ public class ItemDAOTest extends DAOTests {
         String addedItemName = "Macbook Air";
         Item macbook =  new Item(addedItemName, "MacBookAir6,2", "USPS",
                 "Computers", true, "www.apple.com", "The best " +
-                "lightweight laptop on the market.", 899.99, new Timestamp
-                (1470190003), new Timestamp(1472609203));
+                "lightweight laptop on the market.", 899.99, Timestamp
+                .valueOf("1999-01-08 04:05:06"), Timestamp.valueOf
+                ("1999-01-15" +
+                " 04:05:06"));
 
         // Call the method to be tested
         User seller = awalkerSeller.get();
@@ -151,10 +154,16 @@ public class ItemDAOTest extends DAOTests {
         Optional<Item> addedItemOptional = this.itemDAO.findByName
                 (addedItemName);
         Item addedItem = addedItemOptional.get();
+
+        // tests on the method output
         Assert.assertNotNull(createdItem);
         Assert.assertEquals(createdItem.getName(), addedItemName);
+        Assert.assertEquals(createdItem, addedItem);
+
+        // tests on the database
         Assert.assertEquals(list.size(), 2);
         Assert.assertEquals(addedItem.getName(), addedItemName);
+        Assert.assertEquals(addedItem, macbook);
 
         getSession().getTransaction().commit();
     }
