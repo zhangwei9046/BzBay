@@ -196,7 +196,7 @@ public class ItemDAOTest extends DAOTests {
 
 
         // Call the method to be tested
-        this.itemDAO.updateAvailable (false, firstItemId, awalkerSeller.get());
+        this.itemDAO.updateAvailable (false, firstItemId);
 
         // Run basic tests
         Assert.assertFalse(firstItem.isAvailable());

@@ -108,7 +108,7 @@ public class ItemResource {
     @UnitOfWork
     public void updateAvailable(@Auth User user, @PathParam("itemId") LongParam
             itemId, boolean available) {
-        this.itemDAO.updateAvailable(available, itemId.get(), user);
+        this.itemDAO.updateAvailable(available, itemId.get());
     }
 
     /**
