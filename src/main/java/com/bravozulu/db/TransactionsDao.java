@@ -33,15 +33,15 @@ public class TransactionsDao extends AbstractDAO<Transactions>{
 
     public Optional<Transactions> findByBidHistoryId(Long bidhistoryId) {
         return Optional
-                .ofNullable((Transaction) namedQuery("com.bravozulu.core.Transactions.findBybidhistoryId")
+                .ofNullable((Transactions) namedQuery("com.bravozulu.core.Transactions.findBybidhistoryId")
                         .setParameter("bidhistoryId", bidhistoryId).uniqueResult());
     }
     public Optional<Transactions> findByItemId(Long itemId) {
-        return Optional.ofNullable((Transaction) namedQuery("com.bravozulu.core.Transactions.findByitemId")
+        return Optional.ofNullable((Transactions) namedQuery("com.bravozulu.core.Transactions.findByitemId")
                 .setParameter("itemId", itemId).uniqueResult());
     }
     public Optional<Transactions> findByUserId(Long userId) {
-        return Optional.ofNullable((Transaction) namedQuery("com.bravozulu.core.Transactions.findByuserId")
+        return Optional.ofNullable((Transactions) namedQuery("com.bravozulu.core.Transactions.findByuserId")
                 .setParameter("userId", userId).uniqueResult());
     }
 

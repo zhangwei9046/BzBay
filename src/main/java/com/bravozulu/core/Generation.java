@@ -16,6 +16,15 @@ import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 
+// update everyTable per min.
+// 1. we check each item in item table, if current time equals startDate, update item available
+// to be true, which means is available to bid;
+// 2. if current time equals enddate:
+// (1) update item status to be false, which means is not available to bid;
+// (2) check BidHistory table to find the highest price bid, recording its userId
+// (3) End the bid: add an new transaction in transaction Table
+// (4) Send notification to bidder and seller.
+
 
 public class Generation {
     NotificationDao notificationDao;
@@ -34,30 +43,21 @@ public class Generation {
         this.sessionFactory = sessionFactory;
     }
 
-    // update everyTable per second.
-    // The logic is: Each second,
-    // 1. we check each item in item table, if current time equals startDate, update item available
-    // to be true, which means is available to bid;
-    // 2. if current time equals enddate:
-    // (1) update item status to be false, which means is not available to bid;
-    // (2) check BidHistory table to find the highest price bid, recording its userId
-    // (3) End the bid: add an new transaction in transaction Table
-    // (4) Send notification to bidder and seller.
 
 
     public void generator() {
-        Timer t = new Timer();
+        Timer time = new Timer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 Session session = Update.this.sessionFactory.openSession();
                 ManagedSessionContext.bind(session);
-                List<Item> Allitem = Update.this.itemDao.findAll();
                 Date currentTime = new Date();
+                List<Item> Allitem = Update.this.itemDao.findAll();
 
+                // check for each
                 for (int i = 0; i < Allitem.size(); i++) {
                     Item thisItem = Allitem.get(i);
-
                     if ((currentTime.getTime() >= thisItem.getStartDate().getTime())
                             && (currentTime.getTime() < thisItem.getEndDate().getTime())) {
                         Update.this.itemDao.updateStatus(true, thisItem.getItemId());
@@ -78,12 +78,10 @@ public class Generation {
                                 Update.this.transactionDao.create(newTransaction);
 
                                 String content = "Bid has end.";
-                                Notification notification_1 =
+                                Notification notification =
                                         new Notification(newTransaction.getTransactionId(), WinBid.get().getUserId(), content);
-                                Notification notification_2 =
-                                        new Notification(newTransaction.getTransactionId(), WinBid.get().getUserId(), content;
-                                Update.this.notificationDao.create(notification_1);
-                                Update.this.notificationDao.create(notification_2);
+
+                                Update.this.notificationDao.create(notification);
                             }
                         }
                     }
@@ -91,7 +89,7 @@ public class Generation {
                 session.close();
             }
         };
-        t.schedule(task, 0, 1000);
+        time.schedule(task, 0, 600000);
     }
 
 }
