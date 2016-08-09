@@ -55,18 +55,20 @@ public class BidHistoryResource {
     public BidHistory bid(@Auth User user,
                           @ApiParam(value = "Place a bid", required = true) BidHistory bidHistory) {
         long itemId = bidHistory.getItemId();
-        Optional<Item> item = this.itemDao.findById(itemId);
+        Optional<Item> item = this.itemDAO.findById(itemId);
         if (item.isPresent()) {
             boolean itemAbleToBid = item.get().isAvailable();
             if (itemAbleToBid) {
                 BidHistory bidprice =
-                        this.bidHistoryDao.findByHighestPriceByItemId(itemId).isPresent()
-                                ? this.bidHistoryDao.findByHighestPriceByItemId(itemId).get() : null;
+                        this.bidhistoryDao.findByHighestPriceByItemId(itemId)
+                                .isPresent()
+                                ? this.bidhistoryDao
+                                .findByHighestPriceByItemId(itemId).get() : null;
                 double currentPrice = (bidprice == null) ? item.get().getInitialPrice()
                         : bidprice.getPrice();
                 if (bidHistory.getPrice() > currentPrice) {
                     bidHistory.setStatus("Succeed.");
-                    this.bidHistoryDao.create(bidHistory);
+                    this.bidhistoryDao.create(bidHistory);
                 } else {
                     bidHistory.setStatus("Failure: bidding price is lower than current price.");
                 }
