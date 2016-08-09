@@ -1,14 +1,15 @@
 package com.bravozulu.core;
 
 
-import com.bravozulu.db.BidHistoryDao;
-import com.bravozulu.db.ItemDao;
+import com.bravozulu.db.BidHistoryDAO;
+import com.bravozulu.db.ItemDAO;
 import com.bravozulu.db.NotificationDao;
 import com.bravozulu.db.TransactionsDao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.context.internal.ManagedSessionContext;
+import org.hibernate.sql.Update;
 
 import java.util.Date;
 import java.util.List;
@@ -29,13 +30,13 @@ import java.util.TimerTask;
 public class Generation {
     NotificationDao notificationDao;
     TransactionsDao transactionDao;
-    BidHistoryDao bidHistoryDao;
-    ItemDao itemDao;
+    BidHistoryDAO bidHistoryDao;
+    ItemDAO itemDao;
     SessionFactory sessionFactory;
 
 
-    public Generation(NotificationDao notificationDao, TransactionsDao transactionsDao,
-                  BidHistoryDao bidHistoryDao, ItemDao itemDao, SessionFactory sessionFactory) {
+    public Generation(NotificationDao notificationDao, TransactionsDao transactionDao,
+                      BidHistoryDAO bidHistoryDao, ItemDAO itemDao, SessionFactory sessionFactory) {
         this.notificationDao = notificationDao;
         this.transactionDao = transactionDao;
         this.bidHistoryDao = bidHistoryDao;
@@ -50,38 +51,38 @@ public class Generation {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                Session session = Update.this.sessionFactory.openSession();
+                Session session = Generation.this.sessionFactory.openSession();
                 ManagedSessionContext.bind(session);
                 Date currentTime = new Date();
-                List<Item> Allitem = Update.this.itemDao.findAll();
+                List<Item> Allitem = Generation.this.itemDao.findAll();
 
                 // check for each
                 for (int i = 0; i < Allitem.size(); i++) {
                     Item thisItem = Allitem.get(i);
                     if ((currentTime.getTime() >= thisItem.getStartDate().getTime())
                             && (currentTime.getTime() < thisItem.getEndDate().getTime())) {
-                        Update.this.itemDao.updateStatus(true, thisItem.getItemId());
+                        Generation.this.itemDao.updateAvailable(true, thisItem.getItemId());
                     } else {
-                        Update.this.itemDao.updateStatus(false, thisItem.getItemId());
+                        Generation.this.itemDao.updateAvailable(false, thisItem.getItemId());
                     }
 
 
-                    if (!Update.this.transactionDao.findByItemId(thisItem.getItemId()).isPresent()) {
+                    if (!Generation.this.transactionDao.findByItemId(thisItem.getItemId()).isPresent()) {
                         if ((currentTime.getTime() >= thisItem.getEndDate().getTime())) {
 
                             Optional<BidHistory> WinBid =
-                                    Update.this.bidHistoryDao.findByHighestPriceByItemId(thisItem.getItemId());
+                                    Generation.this.bidHistoryDao.findByHighestPriceByItemId(thisItem.getItemId());
 
                             if (WinBid.isPresent()) {
                                 Transactions newTransaction = new Transactions(WinBid.get().getBidId(), thisItem.getItemId(),
                                         WinBid.get().getUserId(),WinBid.get().getPrice(), thisItem.getEndDate());
-                                Update.this.transactionDao.create(newTransaction);
+                                Generation.this.transactionDao.create(newTransaction);
 
                                 String content = "Bid has end.";
                                 Notification notification =
                                         new Notification(newTransaction.getTransactionId(), WinBid.get().getUserId(), content);
 
-                                Update.this.notificationDao.create(notification);
+                                Generation.this.notificationDao.create(notification);
                             }
                         }
                     }

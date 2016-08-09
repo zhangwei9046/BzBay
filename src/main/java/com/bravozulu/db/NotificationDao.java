@@ -1,7 +1,7 @@
 package com.bravozulu.db;
 
 import com.bravozulu.core.Notification;
-import com.bravozulu.core.Transaction;
+import com.bravozulu.core.Transactions;
 import com.bravozulu.core.User;
 
 import org.hibernate.SessionFactory;

@@ -28,12 +28,12 @@ import java.sql.Timestamp;
         query = "SELECT u FROM Transactions u WHERE u.itemId = itemId"
         ),
         @NamedQuery(name = "com.bravozulu.core.Transactions.findBybidhistoryId",
-        query = "SELECT u FROM Transaction u WHERE u.bidhistoryId = bidhistoryId")
+        query = "SELECT u FROM Transactions u WHERE u.bidhistoryId = bidhistoryId")
 
 })
 
 @JsonSnakeCase
-public class Transaction {
+public class Transactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = "trans_transactionId_seq_name",
@@ -56,15 +56,15 @@ public class Transaction {
     @Column(name = "time", nullable = false)
     private Timestamp time;
 
-    public Transaction(){}
+    public Transactions(){}
 
-    public Transaction(long bidhistoryId, long itemId, long userId, float price){
+    public Transactions(long bidhistoryId, long itemId, long userId, float price){
         this.bidhistoryId = bidhistoryId;
         this.itemId = itemId;
         this.userId = userId;
         this.price = price;
     }
-    public Transaction(@JsonProperty("bidhistoryId") Long bidhistoryId,
+    public Transactions(@JsonProperty("bidhistoryId") Long bidhistoryId,
                        @JsonProperty("itemId") Long itemId,
                        @JsonProperty("userId") Long userId,
                        @JsonProperty("price") Float price,
@@ -132,7 +132,7 @@ public class Transaction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Transaction transaction = (Transaction) o;
+        Transactions transaction = (Transactions) o;
         if (transactionId != transaction.transactionId) return false;
         if (bidhistoryId != transaction.bidhistoryId) return false;
 

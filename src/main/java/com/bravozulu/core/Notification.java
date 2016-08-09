@@ -1,5 +1,6 @@
 package com.bravozulu.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.dropwizard.jackson.JsonSnakeCase;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -63,7 +64,6 @@ public class Notification {
 
 
     @JsonIgnore
-    @Override
     public long getNotifyId() {
         return notifyId;
     }

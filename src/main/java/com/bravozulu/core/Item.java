@@ -25,7 +25,7 @@ import java.sql.Timestamp;
         @NamedQuery(
                 name = "com.bravozulu.core.Item.available",
                 query = "SELECT u FROM Item u WHERE u.available = true"
-        )
+        ),
         @NamedQuery(name = "com.bravozulu.core.item.updateAvailable",
         query = "UPDATE Item u SET u.available = :available where u.itemId = :itemId")
 })
