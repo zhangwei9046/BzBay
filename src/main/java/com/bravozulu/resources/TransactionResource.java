@@ -1,13 +1,13 @@
 package com.bravozulu.resources;
 
-
-
 import com.bravozulu.core.BidHistory;
 import com.bravozulu.core.Item;
+import com.bravozulu.core.Transactions;
 import com.bravozulu.core.User;
 import com.bravozulu.db.BidHistoryDAO;
 import com.bravozulu.db.ItemDAO;
 import com.bravozulu.db.UserDAO;
+import com.bravozulu.db.TransactionsDao;
 import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
@@ -36,7 +36,8 @@ public class TransactionResource {
     private final UserDAO userDAO;
 
 
-    public TransactionResource(TransactionDao transactionDao , BidHistoryDAO bidhistoryDao, ItemDAO itemDAO, UserDAO userDAO) {
+    public TransactionResource(TransactionsDao transactionDao , BidHistoryDAO
+            bidhistoryDao, ItemDAO itemDAO, UserDAO userDAO) {
         this.transactionDao = transactionDao;
         this.bidhistoryDao = bidhistoryDao;
         this.itemDAO = itemDAO;
@@ -48,7 +49,7 @@ public class TransactionResource {
     @GET
     @RolesAllowed("ADMIN")
     @UnitOfWork
-    public List<Transaction> findAllTransaction(@Auth User user) {
+    public List<Transactions> findAllTransaction(@Auth User user) {
         return transactionDao.findAll();
     }
 
@@ -57,7 +58,8 @@ public class TransactionResource {
     @Path("trans")
     @RolesAllowed("ADMIN")
     @UnitOfWork
-    public Transaction findBytransactionId(@Auth User user, @PathParam("transactionId") LongParam
+    public Transactions findBytransactionId(@Auth User user, @PathParam
+            ("transactionId") LongParam
             transactionId) {
         return this.transactionDao.findBytransactionId(transactionId.get()).orElseThrow(() -> new
                 NotFoundException("No such trans."));
