@@ -1,56 +1,98 @@
 package com.bravozulu.resources;
 
-import com.bravozulu.core.Transaction;
-import com.bravozulu.db.TransactionsDao;
 
+
+import com.bravozulu.core.BidHistory;
+import com.bravozulu.core.Item;
+import com.bravozulu.core.User;
+import com.bravozulu.db.BidHistoryDAO;
+import com.bravozulu.db.ItemDAO;
+import com.bravozulu.db.UserDAO;
+import com.codahale.metrics.annotation.Timed;
+import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.Date;
+import java.util.Optional;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
 
-/**
- * Created by Mark on 7/6/16.
- */
 
 @Path("/transaction")
+@Api(value = "/transaction", description = "Operatin on transaction")
 @Produces(MediaType.APPLICATION_JSON)
 public class TransactionResource {
-    private final TransactionsDao transactionDAO;
+    private final TransactionsDao transactionDao;
+    private final BidHistoryDAO bidhistoryDao;
+    private final ItemDAO itemDAO;
+    private final UserDAO userDAO;
 
-    public TransactionResource(TransactionsDao transactionDAO) {
-        this.transactionDAO = transactionDAO;
+
+    public TransactionResource(TransactionDao transactionDao , BidHistoryDAO bidhistoryDao, ItemDAO itemDAO, UserDAO userDAO) {
+        this.transactionDao = transactionDao;
+        this.bidhistoryDao = bidhistoryDao;
+        this.itemDAO = itemDAO;
+        this.userDAO = userDAO;
+    }
+
+
+
+    @GET
+    @RolesAllowed("ADMIN")
+    @UnitOfWork
+    public List<Transaction> findAllTransaction(@Auth User user) {
+        return transactionDao.findAll();
     }
 
 
     @GET
+    @Path("trans")
+    @RolesAllowed("ADMIN")
     @UnitOfWork
-    public List<Transaction> findAllTransactions() {
-        return transactionDAO.findAll();
+    public Transaction findBytransactionId(@Auth User user, @PathParam("transactionId") LongParam
+            transactionId) {
+        return this.transactionDao.findBytransactionId(transactionId.get()).orElseThrow(() -> new
+                NotFoundException("No such trans."));
     }
 
-    @POST
-    @UnitOfWork
-    public Transaction createTransaction(Transaction trans) {
-        return transactionDAO.create(trans);
 
+    @GET
+    @Path("trans/bidId={bidId}/transactions")
+    @RolesAllowed("ADMIN")
+    @UnitOfWork
+    public List<Transactions> findTransByBidId(@Auth User user, @PathParam("bidId") Long bidId) {
+        return this.transactionDao.findByBidHistoryId(bidId).orElseThrow( () -> new
+                NotFoundException("No Trans for this Bid History"));
     }
 
     @GET
-    @Path("/transactionId={transactionId}")
+    @Path("trans/userId={userId}/transactions")
     @UnitOfWork
-    public Transaction getTransactionById(@PathParam("transactionId") LongParam transactionId) {
-        return transactionDAO.findBytransactionId(transactionId.get()).orElseThrow(() -> new NotFoundException("No such transaction."));
-
+    public List<Transactions> findTransByUserId(@Auth User user, @PathParam("userId") Long userId) {
+        return this.transactionDao.findByUserId(userId).orElseThrow( () -> new
+                NotFoundException("No Trans for this user"));
     }
 
-    @DELETE
-    @Path("/{transactionId}")
+    @GET
+    @Path("trans/itemId={itemId}/transactions")
     @UnitOfWork
-    public void deleteTransaction(@PathParam("transactionId") LongParam transactionId) {
-        transactionDAO.delete(transactionId.get());
+    public List<Transactions> findTransByItemId(@Auth User user, @PathParam("itemId") Long itemId) {
+        return this.transactionDao.findByItemId(itemId).orElseThrow( () -> new
+                NotFoundException("No Trans for this Item"));
     }
+
+
+
+
+
 
 
 }

@@ -47,6 +47,11 @@ public class Notification {
     public Notification() {
     }
 
+    public Notification(long transactionId, long userId) {
+        this.transactionId = transactionId;
+        this.userId = userId;
+    }
+
     public Notification(long transactionId, long userId, String content) {
         this.transactionId = transactionId;
         this.userId = userId;
