@@ -1,5 +1,6 @@
 package com.bravozulu.core;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.jackson.JsonSnakeCase;
@@ -99,8 +100,10 @@ public class Item {
                 @JsonProperty("url") String url,
                 @JsonProperty("description") String description,
                 @JsonProperty("initialPrice") double initialPrice,
-                @JsonProperty("startDate") Timestamp startDate,
-                @JsonProperty("endDate") Timestamp endDate) {
+                @JsonProperty("startDate") @JsonFormat(shape = JsonFormat.Shape.STRING,
+                        pattern = "yyyy-MM-dd HH:mm:ss") Timestamp startDate,
+                @JsonProperty("endDate") @JsonFormat(shape = JsonFormat.Shape.STRING,
+                        pattern = "yyyy-MM-dd HH:mm:ss") Timestamp endDate) {
         this.name = name;
         this.available = true;
         this.sellerId = 42;
@@ -144,8 +147,10 @@ public class Item {
                 @JsonProperty("description") String description,
                 @JsonProperty("initialPrice") double initialPrice,
                 @JsonProperty("finalPrice") double finalPrice,
-                @JsonProperty("startDate") Timestamp startDate,
-                @JsonProperty("endDate") Timestamp endDate) {
+                @JsonProperty("startDate") @JsonFormat(shape = JsonFormat.Shape.STRING,
+                        pattern = "yyyy-MM-dd HH:mm:ss") Timestamp startDate,
+                @JsonProperty("endDate") @JsonFormat(shape = JsonFormat.Shape.STRING,
+                        pattern = "yyyy-MM-dd HH:mm:ss") Timestamp endDate) {
         this.name = name;
         this.available = available;
         this.sellerId = sellerId;
