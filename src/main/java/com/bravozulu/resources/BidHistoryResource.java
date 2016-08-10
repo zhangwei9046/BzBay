@@ -84,7 +84,7 @@ public class BidHistoryResource {
                         new ServiceUnavailableException("Bid price need be lower than double the current price");
                     }
                 else {
-                    new ServiceUnavailableException("Bid price need be higher than current price");
+                    new NotAcceptableException("Bid price need be higher than current price");
                 }
             }
         }

@@ -89,7 +89,7 @@ public class TransactionResource {
     @UnitOfWork
     @ApiOperation(value = "find Transactions by userId",
             notes = "Pass userId",
-            response = Bidhistory.class,
+            response = Transactions.class,
             responseContainer = "List")
     public List<Transactions> findTransByUserId(@Auth User user, @PathParam("userId") Long userId) {
         return this.transactionDao.findByUserId(userId);
@@ -100,7 +100,7 @@ public class TransactionResource {
     @UnitOfWork
     @ApiOperation(value = "find Transactions by bidId",
             notes = "Pass bidId",
-            response = Bidhistory.class)
+            response = Transactions.class)
     public Transactions findTransByItemId(@Auth User user, @PathParam("itemId") Long itemId) {
         return this.transactionDao.findByItemId(itemId).orElseThrow( () -> new
                 NotFoundException("No Trans for this Item"));
