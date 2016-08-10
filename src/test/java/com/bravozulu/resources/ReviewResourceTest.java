@@ -123,7 +123,7 @@ public class ReviewResourceTest {
         final ImmutableList<Review> reviews = ImmutableList.of(review);
         when(reviewDao.findBySenderId(1L)).thenReturn(reviews);
 
-        final List<Review> response = resources.getJerseyTest().target("/user/sendername=hello/review")
+        final List<Review> response = resources.getJerseyTest().target("/review/sendername=hello")
                 .request().header(HttpHeaders.AUTHORIZATION, "Basic aGVsbG86MTEx")
                 .get(new GenericType<List<Review>>() {});
 
@@ -136,7 +136,7 @@ public class ReviewResourceTest {
         final ImmutableList<Review> reviews = ImmutableList.of(review);
         when(reviewDao.findByReceiverId(2L)).thenReturn(reviews);
 
-        final List<Review> response = resources.getJerseyTest().target("/user/receivername=alice/review")
+        final List<Review> response = resources.getJerseyTest().target("/review/receivername=alice")
                 .request().header(HttpHeaders.AUTHORIZATION, "Basic YWxpY2U6MTEx")
                 .get(new GenericType<List<Review>>() {});
 

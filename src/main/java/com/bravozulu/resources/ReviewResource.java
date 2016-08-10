@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Path("/review")
 @Produces(MediaType.APPLICATION_JSON)
-//@Api(value = "/review", description = "This is review.")
+@Api(value = "/review", description = "This is review.")
 public class ReviewResource {
     private final ReviewDAO reviewDAO;
     private final UserDAO userDAO;

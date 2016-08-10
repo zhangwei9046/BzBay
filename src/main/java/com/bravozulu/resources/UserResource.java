@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
-//@Api(value = "/user", description = "This is user.")
+@Api(value = "/user", description = "This is user.")
 public class UserResource {
     private final UserDAO userDAO;
 
