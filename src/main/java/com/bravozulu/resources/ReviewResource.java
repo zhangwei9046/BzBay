@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by ying on 7/5/16.
  */
-@Path("/")
+@Path("/review")
 @Produces(MediaType.APPLICATION_JSON)
 //@Api(value = "/review", description = "This is review.")
 public class ReviewResource {
@@ -30,7 +30,6 @@ public class ReviewResource {
     }
 
     @GET
-    @Path("review")
     @UnitOfWork
     @RolesAllowed("Admin")
     public List<Review> findAllReviews() {
@@ -38,7 +37,6 @@ public class ReviewResource {
     }
 
     @POST
-    @Path("review")
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
     public Review leaveAReview(Review review, @Auth User user) {
@@ -59,7 +57,7 @@ public class ReviewResource {
 //    }
 
     @DELETE
-    @Path("review/{reviewId}")
+    @Path("/{reviewId}")
     @UnitOfWork
     public void deleteReview(@Auth User user, @PathParam("reviewId") LongParam reviewId) {
         Review review = reviewDAO.findById(reviewId.get()).orElseThrow(() -> new NotFoundException("No such review."));
@@ -71,7 +69,7 @@ public class ReviewResource {
     }
 
     @GET
-    @Path("user/sendername={username}/review")
+    @Path("/review/sendername={username}")
     @UnitOfWork
     public List<Review> findReviewsForSender(@Auth User user, @PathParam("username") String username) {
         User userObj = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
@@ -82,7 +80,7 @@ public class ReviewResource {
     }
 
     @GET
-    @Path("user/receivername={username}/review")
+    @Path("/receivername={username}")
     @UnitOfWork
     public List<Review> findReviewsForReceiver(@Auth User user, @PathParam("username") String username) {
         User userObj = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
