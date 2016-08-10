@@ -130,6 +130,10 @@ public class BidHistoryResource {
     @GET
     @Path("/itemId={itemId}/bidhistory")
     @UnitOfWork
+    @ApiOperation(value = "find Bid by itemId",
+            notes = "Pass itemId",
+            response = Bidhistory.class,
+            responseContainer = "List")
     public List<BidHistory> findBidByItemId(@Auth User user, @PathParam("itemId") Long itemId) {
         return this.bidhistoryDao.findByItemId(itemId);
     }
