@@ -181,16 +181,21 @@
     </changeSet>
     <changeSet id="9" author="melody">
         <createTable tableName="transactions">
-            <column name="transactionId" type="bigint" autoIncrement="true">
+            <column name="transactionid" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="bidid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_bidhistories_bidid"
+                             referencedTableName="bidhistories"
+                             referencedColumnNames="bidid"/>
+            </column>
             <column name="itemid" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_item_itemid"
+                <constraints nullable="false" foreignKeyName="fk_items_itemid"
                              referencedTableName="items"
                              referencedColumnNames="itemid"/>
             </column>
             <column name="userid" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_user_userid"
+                <constraints nullable="false" foreignKeyName="fk_users_userid"
                              referencedTableName="users"
                              referencedColumnNames="userid"/>
             </column>
@@ -208,7 +213,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="userid" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_user_userid"
+                <constraints nullable="false" foreignKeyName="fk_users_userid"
                              referencedTableName="users"
                              referencedColumnNames="userid"/>
             </column>
@@ -216,6 +221,24 @@
             </column>
         </createTable>
     </changeSet>
-
+    <changeSet id="11" author="melody">
+        <createTable tableName="notifications">
+            <column name="notifyid" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="transactionid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_transactions_transactionid"
+                             referencedTableName="transactions"
+                             referencedColumnNames="transactionid"/>
+            </column>
+            <column name="userid" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_users_userid"
+                             referencedTableName="users"
+                             referencedColumnNames="userid"/>
+            </column>
+            <column name="content" type="varchar(255)">
+            </column>
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>

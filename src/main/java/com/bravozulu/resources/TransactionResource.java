@@ -58,7 +58,7 @@ public class TransactionResource {
 
 
     @GET
-    @Path("{transactionId}")
+    @Path("/{transactionId}")
     @RolesAllowed("ADMIN")
     @UnitOfWork
     @ApiOperation(value = "find Transaction by transId",

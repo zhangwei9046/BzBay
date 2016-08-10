@@ -54,7 +54,7 @@ public class BidHistoryResource {
 */
 
     @POST
-    @Path("/bidHistory")
+    @Path("/bid")
     @Timed
     @UnitOfWork
     @Consumes(MediaType.APPLICATION_JSON)
@@ -139,7 +139,7 @@ public class BidHistoryResource {
 
 
     @GET
-    @Path("{itemId}")
+    @Path("/{itemId}")
     @UnitOfWork
     @ApiOperation(value = "find highest price by ItemId",
             notes = "Pass itemId",
