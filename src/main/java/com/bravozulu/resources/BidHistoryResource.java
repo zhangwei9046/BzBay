@@ -58,9 +58,9 @@ public class BidHistoryResource {
     @Timed
     @UnitOfWork
     @Consumes(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Place a bid",
+    @ApiOperation(value = "Place a valid bid",
             authorizations = {@Authorization(value = "UserBasicAuth")},
-            notes = "Place a valid bid",
+            notes = "Pass BidHistory",
             response = BidHistory.class)
     public BidHistory bid(@Auth User user,
                           @ApiParam(value = "Place a bid", required = true) BidHistory bidHistory) {
@@ -84,7 +84,7 @@ public class BidHistoryResource {
                         new ServiceUnavailableException("Bid price need be lower than double the current price");
                     }
                 else {
-                    new ServiceUnavailableException("Bid price need be higher than current price");
+                    new NotAcceptableException("Bid price need be higher than current price");
                 }
             }
         }
@@ -95,6 +95,9 @@ public class BidHistoryResource {
     @GET
     @RolesAllowed("ADMIN")
     @UnitOfWork
+    @ApiOperation(value = "find all bithistory by admin",
+            response = BidHistory.class,
+            responseContainer = "List")
     public List<BidHistory> findAllBidHistory(@Auth User user) {
         return bidhistoryDao.findAll();
     }
@@ -104,6 +107,8 @@ public class BidHistoryResource {
     @Path("/{bidId}")
     @RolesAllowed("ADMIN")
     @UnitOfWork
+    @ApiOperation(value = " find Bid by bidid", notes = "pass bidId",
+            response = BidHistory.class)
     public BidHistory findBidById(@Auth User user, @PathParam("bidId") LongParam
             bidId) {
         return this.bidhistoryDao.findBybidId(bidId.get()).orElseThrow(() -> new
@@ -113,6 +118,10 @@ public class BidHistoryResource {
     @GET
     @Path("/userId={userId}/bidhistory")
     @UnitOfWork
+    @ApiOperation(value = "find Bid by userId",
+            notes = "Pass userId",
+            response = BidHistory.class,
+            responseContainer = "List")
     public List<BidHistory> findBidByUserId(@Auth User user, @PathParam("userId") Long userId) {
         return this.bidhistoryDao.findByUserId(userId);
     }
@@ -120,6 +129,10 @@ public class BidHistoryResource {
     @GET
     @Path("/itemId={itemId}/bidhistory")
     @UnitOfWork
+    @ApiOperation(value = "find Bid by itemId",
+            notes = "Pass itemId",
+            response = BidHistory.class,
+            responseContainer = "List")
     public List<BidHistory> findBidByItemId(@Auth User user, @PathParam("itemId") Long itemId) {
         return this.bidhistoryDao.findByItemId(itemId);
     }
@@ -128,6 +141,9 @@ public class BidHistoryResource {
     @GET
     @Path("{itemId}")
     @UnitOfWork
+    @ApiOperation(value = "find highest price by ItemId",
+            notes = "Pass itemId",
+            response = BidHistory.class)
     public BidHistory findHighestPrice(@Auth User user, @PathParam("itemId")
             Long itemId) {
         return this.bidhistoryDao.findByHighestPriceByItemId(itemId).orElseThrow(() -> new
