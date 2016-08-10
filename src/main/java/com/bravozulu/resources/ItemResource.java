@@ -12,9 +12,7 @@ import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Authorization;
+import io.swagger.annotations.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
@@ -23,7 +21,7 @@ import java.util.List;
 
 @Path("/item")
 @Produces(MediaType.APPLICATION_JSON)
-@Api(value = "/item", description = "Post an item on the auction.")
+@Api(value = "/item", description = "Operations on item objects.")
 public class ItemResource {
     private final ItemDAO itemDAO;
     private final UserDAO userDAO;
@@ -48,8 +46,12 @@ public class ItemResource {
     @Timed
     @ApiOperation(value = "Post an item on the auction.",
         authorizations = {@Authorization(value = "UserBasicAuth")},
-        notes = "Post an item to the auction service.",
+        notes = "This API must work in order to meet the client's specs.",
         response = Item.class)
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Your item is now live and on the " +
+                "auction block.")
+    })
     public Item create(@Auth User user, Item item) {
         return itemDAO.create(item, user);
     }
