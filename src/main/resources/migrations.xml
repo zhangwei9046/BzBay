@@ -66,7 +66,7 @@
             </column>
             <column name="finalprice" type="float"></column>
             <column name="startdate" type="timestamp">
-                <constraints nullable="false"/>
+               <!--  <constraints nullable="false"/> -->
             </column>
             <column name="enddate" type="timestamp"></column>
         </createTable>
