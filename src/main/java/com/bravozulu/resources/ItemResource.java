@@ -18,7 +18,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Api(value = "/item", description = "Operations on item objects.")
+//@Api(value = "/item", description = "Operations on item objects.")
 @Path("/item")
 @Produces(MediaType.APPLICATION_JSON)
 public class ItemResource {
