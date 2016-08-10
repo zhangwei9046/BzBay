@@ -96,7 +96,7 @@ public class BidHistoryResource {
     @RolesAllowed("ADMIN")
     @UnitOfWork
     @ApiOperation(value = "find all bithistory by admin",
-            response = BitHistory.class,
+            response = BidHistory.class,
             responseContainer = "List")
     public List<BidHistory> findAllBidHistory(@Auth User user) {
         return bidhistoryDao.findAll();
@@ -107,8 +107,7 @@ public class BidHistoryResource {
     @Path("/{bidId}")
     @RolesAllowed("ADMIN")
     @UnitOfWork
-    @ApiOperation(value = " find Bid by bidid",
-            note = "pass bidId"
+    @ApiOperation(value = " find Bid by bidid", notes = "pass bidId",
             response = BidHistory.class)
     public BidHistory findBidById(@Auth User user, @PathParam("bidId") LongParam
             bidId) {
@@ -121,7 +120,7 @@ public class BidHistoryResource {
     @UnitOfWork
     @ApiOperation(value = "find Bid by userId",
             notes = "Pass userId",
-            response = Bidhistory.class,
+            response = BidHistory.class,
             responseContainer = "List")
     public List<BidHistory> findBidByUserId(@Auth User user, @PathParam("userId") Long userId) {
         return this.bidhistoryDao.findByUserId(userId);
@@ -132,7 +131,7 @@ public class BidHistoryResource {
     @UnitOfWork
     @ApiOperation(value = "find Bid by itemId",
             notes = "Pass itemId",
-            response = Bidhistory.class,
+            response = BidHistory.class,
             responseContainer = "List")
     public List<BidHistory> findBidByItemId(@Auth User user, @PathParam("itemId") Long itemId) {
         return this.bidhistoryDao.findByItemId(itemId);
