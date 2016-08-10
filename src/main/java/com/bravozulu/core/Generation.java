@@ -69,7 +69,7 @@ public class Generation {
 
                     if (!Generation.this.transactionDao.findByItemId(thisItem.getItemId()).isPresent()) {
                         if ((currentTime.getTime() >= thisItem.getEndDate().getTime())) {
-
+                            Generation.this.itemDao.updateAvailable(false, thisItem.getItemId());
                             Optional<BidHistory> WinBid =
                                     Generation.this.bidHistoryDao.findByHighestPriceByItemId(thisItem.getItemId());
 
