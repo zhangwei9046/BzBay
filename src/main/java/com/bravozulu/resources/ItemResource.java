@@ -13,7 +13,6 @@ import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 import io.swagger.annotations.*;
-
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -53,7 +52,7 @@ public class ItemResource {
                 "auction block.")
     })
     public Item create(@Auth User user, Item item) {
-        return itemDAO.create(item, user);
+        return itemDAO.create(item);
     }
 
     /**
