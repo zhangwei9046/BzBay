@@ -6,10 +6,7 @@ import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.Authorization;
+import io.swagger.annotations.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
@@ -19,6 +16,7 @@ import java.util.Optional;
 
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
+@Api(value="/user", description = "This is user.")
 public class UserResource {
     private final UserDAO userDAO;
 
@@ -105,7 +103,7 @@ public class UserResource {
     @UnitOfWork
     @ApiOperation(value = "user login",
             authorizations = {@Authorization(value="UserBasicAuth")},
-            notes = "This returns a string to indicate if a user login successfully or not")
+            notes = "Returns if a user login successfully or not")
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Sign in fail",
                     response = String.class),
@@ -119,6 +117,12 @@ public class UserResource {
     @Timed
     @Path("/register")
     @UnitOfWork
+    @ApiOperation(value = "user register",
+            notes = "This return an Register Object in JSON format")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message="Successfully created User.", response = String.class),
+            @ApiResponse(code = 200, message="Failure : user name already exists.", response = String.class)
+    })
     public User register(User user) {
         Optional<User> op = userDAO.findByUsername(user.getUsername());
         if (!op.isPresent()) {
