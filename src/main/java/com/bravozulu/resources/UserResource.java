@@ -29,6 +29,9 @@ public class UserResource {
     @Timed
     @UnitOfWork
     @RolesAllowed("Admin")
+    @ApiOperation(value = "Finds all Users",
+            response = User.class,
+            responseContainer = "List")
     public List<User> findAllUsers() {
         return userDAO.findAll();
     }
@@ -69,7 +72,6 @@ public class UserResource {
     //This method works
     @PUT
     @Timed
-//    @Path("/{userId}")
     @UnitOfWork
     public User updateUser(@Auth User u, User userObj) {
 //        user.setUsername(userObj.getUsername());
@@ -90,7 +92,6 @@ public class UserResource {
     @Timed
     @Path("/{userId}")
     @UnitOfWork
-    //Need to check admin for all methods.
     @RolesAllowed("Admin")
     public void deleteUser(@PathParam("userId") LongParam userId) {
         userDAO.delete(userId.get());
