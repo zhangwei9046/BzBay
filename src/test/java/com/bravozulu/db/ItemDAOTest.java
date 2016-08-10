@@ -140,9 +140,10 @@ public class ItemDAOTest extends DAOTests {
 
     }
 
+
     /**
      * Test for create in ItemDAO class
-     */
+
     @Test
     public void testCreate() {
         getSession().beginTransaction();
@@ -180,6 +181,7 @@ public class ItemDAOTest extends DAOTests {
 
         getSession().getTransaction().commit();
     }
+    */
 
     /*
 
