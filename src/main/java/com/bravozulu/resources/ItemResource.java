@@ -19,9 +19,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+@Api(value = "/item", description = "Operations on item objects.")
 @Path("/item")
 @Produces(MediaType.APPLICATION_JSON)
-@Api(value = "/item", description = "Operations on item objects.")
 public class ItemResource {
     private final ItemDAO itemDAO;
     private final UserDAO userDAO;
@@ -65,6 +65,10 @@ public class ItemResource {
     @Path("/{itemId}")
     @Produces("application/json")
     @UnitOfWork
+    @ApiOperation(value = "Find item by id",
+            authorizations = {@Authorization(value = "UserBasicAuth")},
+            notes = "This API must work in order to meet the client's specs.",
+            response = Item.class)
     public Item findItemById(@Auth User user, @PathParam("itemId") LongParam
             itemId) {
         return this.itemDAO.findById(itemId.get()).orElseThrow(() -> new
@@ -79,6 +83,10 @@ public class ItemResource {
     @GET
     @Path("/name = {name}")
     @UnitOfWork
+    @ApiOperation(value = "Find item by name",
+            authorizations = {@Authorization(value = "UserBasicAuth")},
+            notes = "This API must work in order to meet the client's specs.",
+            response = Item.class)
     public Item findItemByName(@Auth User user, @PathParam("name") String
             name) {
         return this.itemDAO.findByName(name).orElseThrow( () -> new
@@ -92,17 +100,24 @@ public class ItemResource {
     @GET
     @RolesAllowed("ADMIN")
     @UnitOfWork
+    @ApiOperation(value = "Find all items",
+            authorizations = {@Authorization(value = "UserBasicAuth")},
+            notes = "This API must work in order to meet the client's specs.",
+            response = Item.class, responseContainer = "List")
     public List<Item> findAllItems(@Auth User user) {
         return itemDAO.findAll();
     }
 
     /**
-     *
-     * @return
+     * Finds all available items for sale
+     * @return returns a list of available items
      */
     @GET
     @Path("/available")
     @UnitOfWork
+    @ApiOperation(value = "Find all available items.",
+            notes = "This API must work in order to meet the client's specs.",
+            response = Item.class, responseContainer = "List")
     public List<Item> findAllAvailableItems() {
         return this.itemDAO.findAllAvailable();
     }
@@ -116,6 +131,10 @@ public class ItemResource {
     @PUT
     @Path("/{itemId}")
     @UnitOfWork
+    @ApiOperation(value = "Updates the item's availability.",
+            authorizations = {@Authorization(value = "UserBasicAuth")},
+            notes = "This API must work in order to meet the client's specs.",
+            response = Item.class)
     public void updateAvailable(@Auth User user, @PathParam("itemId") LongParam
             itemId, boolean available) {
         this.itemDAO.updateAvailable(available, itemId.get());
@@ -128,6 +147,10 @@ public class ItemResource {
     @DELETE
     @Path("/{itemId}")
     @UnitOfWork
+    @ApiOperation(value = "Delete an item by id and seller id",
+            authorizations = {@Authorization(value = "UserBasicAuth")},
+            notes = "This API must work in order to meet the client's specs.",
+            response = Item.class)
     public void delete(@Auth User user, @PathParam("itemId") LongParam itemId) {
          this.itemDAO.deleteItem(itemId.get(), user);
     }
