@@ -29,7 +29,9 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Authorization;
 
 
+
 @Path("/notification")
+
 @Api(value = "/notification", description = "Operatin on notification")
 @Produces(MediaType.APPLICATION_JSON)
 public class NotificationResource {
@@ -60,10 +62,14 @@ public class NotificationResource {
         return this.notificationDao.findAll();
     }
 
+
     @GET
     @Path("/notifyId={notifyId}/notification")
     @RolesAllowed("ADMIN")
     @UnitOfWork
+    @ApiOperation(value = "find notification by notifyId",
+            notes = "Pass notifyId",
+            response = Bidhistory.class)
     public Notification findByNotificationId(@Auth User user, @PathParam("notifyId") LongParam
             notifyId) {
         return this.notificationDao.findByNotifyId(notifyId.get()).orElseThrow(() -> new
@@ -75,8 +81,8 @@ public class NotificationResource {
     @Path("/transactionId={transactionId}/notification")
     @Timed
     @UnitOfWork
-    @ApiOperation(value = "search notifications by transactionId",
-            notes = "Pass the transactionId as path parameter",
+    @ApiOperation(value = "Search notifications by transactionId",
+            notes = "Pass transactionId ",
             response = Notification.class,
             responseContainer = "List")
     public List<Notification> findNotificationByTransactionID(
@@ -88,8 +94,8 @@ public class NotificationResource {
     @Path("/findNotificationByUserID/{userId}")
     @Timed
     @UnitOfWork
-    @ApiOperation(value = "search notifications by user id",
-            notes = "Pass the user id as path parameter",
+    @ApiOperation(value = "search notifications by userId",
+            notes = "Pass userId",
             response = Notification.class,
             responseContainer = "List")
     public List<Notification> findNotificationByUserID(

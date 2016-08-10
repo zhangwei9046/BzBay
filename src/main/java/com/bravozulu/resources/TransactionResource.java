@@ -49,6 +49,9 @@ public class TransactionResource {
     @GET
     @RolesAllowed("ADMIN")
     @UnitOfWork
+    @ApiOperation(value = "find transaction by admin",
+            response = Transactions.class,
+            responseContainer = "List")
     public List<Transactions> findAllTransaction(@Auth User user) {
         return transactionDao.findAll();
     }
@@ -58,6 +61,9 @@ public class TransactionResource {
     @Path("{transactionId}")
     @RolesAllowed("ADMIN")
     @UnitOfWork
+    @ApiOperation(value = "find Transaction by transId",
+            notes = "Pass transactinId",
+            response = Transactions.class)
     public Transactions findBytransactionId(@Auth User user, @PathParam
             ("transactionId") LongParam
             transactionId) {
@@ -70,6 +76,9 @@ public class TransactionResource {
     @Path("/bidId={bidId}/transactions")
     @RolesAllowed("ADMIN")
     @UnitOfWork
+    @ApiOperation(value = "find transaction by bidId",
+            notes = "Pass bidId",
+            response = Transactions.class)
     public Transactions findTransByBidId(@Auth User user, @PathParam("bidId") Long bidId) {
         return this.transactionDao.findByBidHistoryId(bidId).orElseThrow( () -> new
                 NotFoundException("No Trans for this Bid History"));
@@ -78,6 +87,10 @@ public class TransactionResource {
     @GET
     @Path("/userId={userId}/transactions")
     @UnitOfWork
+    @ApiOperation(value = "find Transactions by userId",
+            notes = "Pass userId",
+            response = Bidhistory.class,
+            responseContainer = "List")
     public List<Transactions> findTransByUserId(@Auth User user, @PathParam("userId") Long userId) {
         return this.transactionDao.findByUserId(userId);
     }
@@ -85,6 +98,9 @@ public class TransactionResource {
     @GET
     @Path("/itemId={itemId}/transactions")
     @UnitOfWork
+    @ApiOperation(value = "find Transactions by bidId",
+            notes = "Pass bidId",
+            response = Bidhistory.class)
     public Transactions findTransByItemId(@Auth User user, @PathParam("itemId") Long itemId) {
         return this.transactionDao.findByItemId(itemId).orElseThrow( () -> new
                 NotFoundException("No Trans for this Item"));
