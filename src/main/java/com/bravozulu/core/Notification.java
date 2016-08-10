@@ -17,12 +17,11 @@ import java.sql.Timestamp;
         ),
         @NamedQuery(
                 name = "com.bravozulu.core.Notification.findBytransactionId",
-                query = "SELECT u FROM Notification u WHERE u.transactionId = transactionId"),
+                query = "SELECT u FROM Notification u WHERE u.transactionId = :transactionId"),
 
         @NamedQuery(
         name = "com.bravozulu.core.Notification.findByuserId",
-        query = "SELECT u FROM Notification u WHERE u.userId = userId"
-)
+        query = "SELECT u FROM Notification u WHERE u.userId = :userId")
 })
 
 

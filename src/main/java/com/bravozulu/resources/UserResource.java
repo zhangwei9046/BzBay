@@ -28,7 +28,6 @@ public class UserResource {
         this.userDAO = userDAO;
     }
 
-    //This method works
     @GET
     @Timed
     @UnitOfWork
@@ -40,7 +39,6 @@ public class UserResource {
         return userDAO.findAll();
     }
 
-    //This method works
     @POST
     @Timed
     @Consumes(MediaType.APPLICATION_JSON)

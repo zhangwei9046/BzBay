@@ -31,10 +31,10 @@ public class TransactionsDao extends AbstractDAO<Transactions>{
         return list(namedQuery("com.bravozulu.core.Transactions.findAll"));
     }
 
-    public Optional<Transactions> findByBidHistoryId(Long bidhistoryId) {
+    public Optional<Transactions> findByBidHistoryId(Long bidId) {
         return Optional
                 .ofNullable((Transactions) namedQuery("com.bravozulu.core.Transactions.findBybidhistoryId")
-                        .setParameter("bidhistoryId", bidhistoryId).uniqueResult());
+                        .setParameter("bidId", bidId).uniqueResult());
     }
     public Optional<Transactions> findByItemId(Long itemId) {
         return Optional.ofNullable((Transactions) namedQuery("com.bravozulu.core.Transactions.findByitemId")

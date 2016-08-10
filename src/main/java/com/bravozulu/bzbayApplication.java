@@ -2,15 +2,9 @@ package com.bravozulu;
 
 import com.bravozulu.auth.BzbayAuthenticator;
 import com.bravozulu.auth.BzbayAuthorizer;
-import com.bravozulu.core.Item;
-import com.bravozulu.core.Review;
-import com.bravozulu.core.User;
-import com.bravozulu.db.ReviewDAO;
-import com.bravozulu.db.UserDAO;
-import com.bravozulu.resources.ReviewResource;
-import com.bravozulu.db.ItemDAO;
-import com.bravozulu.resources.ItemResource;
-import com.bravozulu.resources.UserResource;
+import com.bravozulu.core.*;
+import com.bravozulu.db.*;
+import com.bravozulu.resources.*;
 import de.thomaskrille.dropwizard_template_config.TemplateConfigBundle;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
@@ -28,7 +22,7 @@ import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 public class bzbayApplication extends Application<bzbayConfiguration> {
 
-    private final HibernateBundle<bzbayConfiguration> hibernate = new HibernateBundle<bzbayConfiguration>(User.class, Review.class, Item.class) {
+    private final HibernateBundle<bzbayConfiguration> hibernate = new HibernateBundle<bzbayConfiguration>(User.class, Review.class, Item.class, BidHistory.class, Transactions.class, Notification.class) {
         @Override
         public DataSourceFactory getDataSourceFactory(bzbayConfiguration configuration) {
             return configuration.getDataSourceFactory();
@@ -76,6 +70,16 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
 
         final ItemDAO itemDAO = new ItemDAO(hibernate.getSessionFactory());
         environment.jersey().register(new ItemResource(itemDAO, userDAO));
+
+        final BidHistoryDAO bidHistoryDAO = new BidHistoryDAO(hibernate.getSessionFactory());
+        environment.jersey().register(new BidHistoryResource(bidHistoryDAO, itemDAO, userDAO));
+
+        final TransactionsDao transactionDAO = new TransactionsDao(hibernate.getSessionFactory());
+        environment.jersey().register(new TransactionResource(transactionDAO, bidHistoryDAO, itemDAO, userDAO));
+
+        final NotificationDao notificationDAO = new NotificationDao(hibernate.getSessionFactory());
+        environment.jersey().register(new NotificationResource(notificationDAO, transactionDAO, userDAO));
+
 
         // Adding health check
         //final TemplateHealthCheck healthCheck =

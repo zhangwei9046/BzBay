@@ -58,14 +58,14 @@ public class TransactionResource {
 
 
     @GET
-    @Path("/{transactionId}")
+    @Path("/{transactionid}")
     @RolesAllowed("ADMIN")
     @UnitOfWork
     @ApiOperation(value = "find Transaction by transId",
             notes = "Pass transactinId",
             response = Transactions.class)
     public Transactions findBytransactionId(@Auth User user, @PathParam
-            ("transactionId") LongParam
+            ("transactionid") LongParam
             transactionId) {
         return this.transactionDao.findBytransactionId(transactionId.get()).orElseThrow(() -> new
                 NotFoundException("No such trans."));
@@ -73,13 +73,13 @@ public class TransactionResource {
 
 
     @GET
-    @Path("/bidId={bidId}/transactions")
+    @Path("/bidid={bidid}/transactions")
     @RolesAllowed("ADMIN")
     @UnitOfWork
     @ApiOperation(value = "find transaction by bidId",
             notes = "Pass bidId",
             response = Transactions.class)
-    public Transactions findTransByBidId(@Auth User user, @PathParam("bidId") Long bidId) {
+    public Transactions findTransByBidId(@Auth User user, @PathParam("bidid") Long bidId) {
         return this.transactionDao.findByBidHistoryId(bidId).orElseThrow( () -> new
                 NotFoundException("No Trans for this Bid History"));
     }

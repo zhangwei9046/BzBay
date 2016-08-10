@@ -19,15 +19,15 @@ import java.sql.Timestamp;
         ),
         @NamedQuery(
             name = "com.bravozulu.core.BidHistory.findByuserId",
-            query = "SELECT u FROM BidHistory u WHERE u.userId = userId"
+            query = "SELECT u FROM BidHistory u WHERE u.userId = :userId"
         ),
         @NamedQuery(
             name = "com.bravozulu.core.BidHistory.findByitemId",
-            query = "SELECT u FROM BidHistory u WHERE u.itemId = itemId"
+            query = "SELECT u FROM BidHistory u WHERE u.itemId = :itemId"
         ),
         @NamedQuery(
             name = "com.bravozulu.core.BidHistory.findByHigherPrice",
-            query = "SELECT u FROM BidHistory u WHERE u.itemId = :itemId ORDER BY u.bidPrice DESC")})
+            query = "SELECT u FROM BidHistory u WHERE u.itemId = :itemId ORDER BY u.price DESC")})
 
 
 @JsonSnakeCase
