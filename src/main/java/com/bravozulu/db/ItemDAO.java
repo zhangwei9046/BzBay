@@ -32,8 +32,7 @@ public class ItemDAO extends AbstractDAO<Item> {
     /**
      * Creates and returns an Item
      *
-     * @param item   the item
-     * @param seller the seller
+     * @param item the item
      * @return the item
      */
     public Item create(Item item) {

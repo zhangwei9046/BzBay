@@ -44,14 +44,13 @@ public class ItemResource {
     @UnitOfWork
     @Timed
     @ApiOperation(value = "Post an item on the auction.",
-        authorizations = {@Authorization(value = "UserBasicAuth")},
         notes = "This API must work in order to meet the client's specs.",
         response = Item.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Your item is now live and on the " +
                 "auction block.")
     })
-    public Item create(@Auth User user, Item item) {
+    public Item create(Item item) {
         return itemDAO.create(item);
     }
 
