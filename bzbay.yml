@@ -1,5 +1,5 @@
 swagger:
-  resourcePackage: com.bravozulu
+  resourcePackage: com.bravozulu.resources
 
 # Database settings.
 database:

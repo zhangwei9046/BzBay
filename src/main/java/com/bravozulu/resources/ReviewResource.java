@@ -7,6 +7,7 @@ import com.bravozulu.db.UserDAO;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
+import io.swagger.annotations.Api;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
+@Api(value = "/review", description = "This is review.")
 public class ReviewResource {
     private final ReviewDAO reviewDAO;
     private final UserDAO userDAO;
