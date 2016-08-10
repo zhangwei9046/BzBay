@@ -97,7 +97,7 @@
         <comment>A script to create reviews table</comment>
     </changeSet>
     <changeSet id="4" author="ying">
-        <createTable tableName="bidHistories">
+        <createTable tableName="bidhistories">
             <column name="bidid" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -111,7 +111,7 @@
                              referencedTableName="users"
                              referencedColumnNames="userid"/>
             </column>
-            <column name="price" type="float"> //not sure
+            <column name="price" type="float">
                 <constraints nullable="false"/>
             </column>
             <column name="time" type="timestamp">
@@ -199,7 +199,7 @@
                              referencedTableName="users"
                              referencedColumnNames="userid"/>
             </column>
-            <column name="price" type="float"> //not sure
+            <column name="price" type="float">
                 <constraints nullable="false"/>
             </column>
             <column name="time" type="datetime">

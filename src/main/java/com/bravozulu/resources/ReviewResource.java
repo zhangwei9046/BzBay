@@ -107,7 +107,6 @@ public class ReviewResource {
     public List<Review> findReviewsForReceiver(@Auth User user, @PathParam("username") String username) {
         User userObj = userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
         if (!userObj.getUsername().equals(username)) {
-            System.out.println("ddd");
             throw new NotAcceptableException("Please login first.");
         }
         return reviewDAO.findByReceiverId(userObj.getUserId());

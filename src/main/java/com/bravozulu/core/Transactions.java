@@ -21,14 +21,14 @@ import java.sql.Timestamp;
         ),
         @NamedQuery(
         name = "com.bravozulu.core.Transactions.findByuserId",
-        query = "SELECT u FROM Transactions u WHERE u.userId = userId"
+        query = "SELECT u FROM Transactions u WHERE u.userId = :userId"
         ),
         @NamedQuery(
         name = "com.bravozulu.core.Transactions.findByitemId",
-        query = "SELECT u FROM Transactions u WHERE u.itemId = itemId"
+        query = "SELECT u FROM Transactions u WHERE u.itemId = :itemId"
         ),
         @NamedQuery(name = "com.bravozulu.core.Transactions.findBybidhistoryId",
-        query = "SELECT u FROM Transactions u WHERE u.bidhistoryId = bidhistoryId")
+        query = "SELECT u FROM Transactions u WHERE u.bidId = :bidId")
 
 })
 
@@ -41,8 +41,8 @@ public class Transactions {
             allocationSize = 1)
     private long transactionId;
 
-    @Column(name = "bidhistoryId", nullable = false)
-    private Long bidhistoryId;
+    @Column(name = "bidId", nullable = false)
+    private Long bidId;
 
     @Column(name = "itemId", nullable = false)
     private long itemId;
@@ -58,20 +58,20 @@ public class Transactions {
 
     public Transactions(){}
 
-    public Transactions(long bidhistoryId, long itemId, long userId, float price){
-        this.bidhistoryId = bidhistoryId;
+    public Transactions(long bidId, long itemId, long userId, float price){
+        this.bidId = bidId;
         this.itemId = itemId;
         this.userId = userId;
         this.price = price;
     }
-    public Transactions(@JsonProperty("bidhistoryId") Long bidhistoryId,
+    public Transactions(@JsonProperty("bidId") Long bidId,
                        @JsonProperty("itemId") Long itemId,
                        @JsonProperty("userId") Long userId,
                        @JsonProperty("price") Float price,
                        @JsonProperty("time") @JsonFormat(shape = JsonFormat.Shape.STRING,
     pattern = "yyyy-MM-dd HH:mm:ss") Timestamp time)
     {
-        this.bidhistoryId = bidhistoryId;
+        this.bidId = bidId;
         this.itemId = itemId;
         this.userId = userId;
         this.price = price;
@@ -87,10 +87,10 @@ public class Transactions {
     }
 
     public Long getBidHistoryId() {
-        return this.bidhistoryId;
+        return this.bidId;
     }
-    public void setBidHistoryId(Long bidhistoryId) {
-        this.bidhistoryId = bidhistoryId;
+    public void setBidHistoryId(Long bidId) {
+        this.bidId = bidId;
     }
 
     public long getItemId() {
@@ -134,7 +134,7 @@ public class Transactions {
 
         Transactions transaction = (Transactions) o;
         if (transactionId != transaction.transactionId) return false;
-        if (bidhistoryId != transaction.bidhistoryId) return false;
+        if (bidId != transaction.bidId) return false;
 
         if (itemId != transaction.itemId) return false;
         if (userId != transaction.userId) return false;

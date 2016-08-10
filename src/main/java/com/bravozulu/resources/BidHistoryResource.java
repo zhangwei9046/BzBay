@@ -139,7 +139,7 @@ public class BidHistoryResource {
 
 
     @GET
-    @Path("/{itemId}")
+    @Path("/highestprice/{itemId}")
     @UnitOfWork
     @ApiOperation(value = "find highest price by ItemId",
             notes = "Pass itemId",
