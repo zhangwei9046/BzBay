@@ -7,6 +7,8 @@ import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 import io.swagger.annotations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
@@ -20,6 +22,8 @@ import java.util.Optional;
 public class UserResource {
     private final UserDAO userDAO;
 
+    private static Logger logger = LoggerFactory.getLogger(ReviewResource.class);
+
     public UserResource(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
@@ -29,7 +33,7 @@ public class UserResource {
     @Timed
     @UnitOfWork
     @RolesAllowed("Admin")
-    @ApiOperation(value = "Finds all Users",
+    @ApiOperation(value = "Find all Users",
             response = User.class,
             responseContainer = "List")
     public List<User> findAllUsers() {
@@ -42,6 +46,7 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
     @RolesAllowed("Admin")
+    @ApiOperation(value = "Create a user")
     public User createUser(User user) {
         Optional<User> op = userDAO.findByUsername(user.getUsername());
         if (op.isPresent()) {
@@ -56,6 +61,8 @@ public class UserResource {
     @Path("/{userId}")
     @UnitOfWork
     @RolesAllowed("Admin")
+    @ApiOperation(value = "get user by userId",
+            response = User.class)
     public User getUserById(@PathParam("userId") LongParam userId) {
         return userDAO.findById(userId.get()).orElseThrow(() -> new NotFoundException("No such user."));
     }
@@ -65,6 +72,8 @@ public class UserResource {
     @Path("/username={username}")
     @UnitOfWork
     @RolesAllowed("Admin")
+    @ApiOperation(value = "get user by username",
+            response = User.class)
     public User getUserByUsername(@PathParam("username") String username) {
         return userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
     }
@@ -73,6 +82,7 @@ public class UserResource {
     @PUT
     @Timed
     @UnitOfWork
+    @ApiOperation(value = "update user information")
     public User updateUser(@Auth User u, User userObj) {
 //        user.setUsername(userObj.getUsername());
         User user = userDAO.findByUsername(u.getUsername()).get();
@@ -93,6 +103,7 @@ public class UserResource {
     @Path("/{userId}")
     @UnitOfWork
     @RolesAllowed("Admin")
+    @ApiOperation(value = "Delete a user")
     public void deleteUser(@PathParam("userId") LongParam userId) {
         userDAO.delete(userId.get());
     }
@@ -104,7 +115,7 @@ public class UserResource {
     @UnitOfWork
     @ApiOperation(value = "user login",
             authorizations = {@Authorization(value="UserBasicAuth")},
-            notes = "Returns if a user login successfully or not")
+            notes = "Returns a user if login successfully")
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Sign in fail",
                     response = String.class),
@@ -118,11 +129,10 @@ public class UserResource {
     @Timed
     @Path("/register")
     @UnitOfWork
-    @ApiOperation(value = "user register",
-            notes = "This return an Register Object in JSON format")
+    @ApiOperation(value = "user register")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message="Successfully created User.", response = String.class),
-            @ApiResponse(code = 200, message="Failure : user name already exists.", response = String.class)
+            @ApiResponse(code = 405, message="Failure : user name already exists.", response = String.class)
     })
     public User register(User user) {
         Optional<User> op = userDAO.findByUsername(user.getUsername());
