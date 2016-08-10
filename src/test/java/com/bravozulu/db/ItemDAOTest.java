@@ -47,7 +47,7 @@ public class ItemDAOTest extends DAOTests {
                 "USPS",
                 "Watches", true, "www.casio.com", "Simple watch for the " +
                 "simple person", 9.99, 0.00, new Timestamp(1470190003), new Timestamp(1472609203));
-        this.itemDAO.create(watch, sellerActual);
+        this.itemDAO.create(watch);
         getSession().getTransaction().commit();
     }
 
