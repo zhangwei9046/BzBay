@@ -38,6 +38,7 @@ public class ItemDAO extends AbstractDAO<Item> {
     public Item create(Item item) {
         //long sellerId = seller.getUserId();
         //item.setSellerId(sellerId);
+        item.setAvailable(true);
         return this.persist(item);
     }
 

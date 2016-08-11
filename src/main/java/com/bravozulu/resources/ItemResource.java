@@ -12,11 +12,15 @@ import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
-import io.swagger.annotations.*;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
+
 
 @Api(value = "/item", description = "Operations on item objects.")
 @Path("/item")
@@ -46,10 +50,6 @@ public class ItemResource {
     @ApiOperation(value = "Post an item on the auction.",
         notes = "This API must work in order to meet the client's specs.",
         response = Item.class)
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Your item is now live and on the " +
-                "auction block.")
-    })
     public Item create(Item item) {
         return itemDAO.create(item);
     }

@@ -30,7 +30,6 @@ import java.sql.Timestamp;
         @NamedQuery(name = "com.bravozulu.core.item.updateAvailable",
         query = "UPDATE Item u SET u.available = :available where u.itemId = :itemId")
 })
-
 @JsonSnakeCase
 public class Item {
     @Id
@@ -43,7 +42,7 @@ public class Item {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "available", nullable = false)
+    @Column(name = "available")
     private boolean available;
 
     @Column(name = "sellerId", nullable = false)
@@ -73,7 +72,7 @@ public class Item {
     @Column(name = "finalprice")
     private double finalPrice;
 
-    @Column(name = "startdate", nullable = false)
+    @Column(name = "startdate")
     private Timestamp startDate;
 
     @Column(name = "enddate")
