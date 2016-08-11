@@ -99,8 +99,8 @@ public class ItemResource {
     @ApiOperation(value = "Find item by name",
             notes = "This API must work in order to meet the client's specs.",
             response = Item.class)
-    public List<Item> search(@QueryParam("category") String
-                                       category) {
+    public List<Item> search(@Auth User user,
+                             @QueryParam("category") String category) {
         return this.itemDAO.search(category);
     }
 
