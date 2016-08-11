@@ -63,6 +63,16 @@ public class ItemDAO extends AbstractDAO<Item> {
     }
 
     /**
+     *
+     * @param category
+     * @return
+     */
+    public List<Item> search(String category) {
+        return list(namedQuery("com.bravozulu.core.item.search").setParameter
+                ("category", category));
+    }
+
+    /**
      * Returns a list of all items in the database
      *
      * @return returns list of all items

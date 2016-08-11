@@ -51,7 +51,8 @@ public class ItemResource {
         notes = "This API must work in order to meet the client's specs.",
         response = Item.class)
     public Item create(@Auth User user, Item item) {
-        //item.setSellerId(user.getUserId());
+        // TODO get the user id and set it to the item : item.setSellerId(user
+        // .getUserId());
         return itemDAO.create(item);
     }
 
@@ -92,21 +93,17 @@ public class ItemResource {
                 NotFoundException("No such item"));
     }
 
-/*
     @GET
     @Path("/search")
     @UnitOfWork
     @ApiOperation(value = "Find item by name",
-            authorizations = {@Authorization(value = "UserBasicAuth")},
             notes = "This API must work in order to meet the client's specs.",
             response = Item.class)
     public List<Item> search(@QueryParam("category") String
                                        category) {
-        //return this.itemDAO.findByName(name).orElseThrow( () -> new
-        //        NotFoundException("No such item"));
-
+        return this.itemDAO.search(category);
     }
-*/
+
 
     /**
      * Returns list of all items
