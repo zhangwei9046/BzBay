@@ -54,7 +54,7 @@ public class Item {
     @Column(name = "shipping")
     private String shipping;
 
-    @Column(name = "category")
+    @Column(name = "category", nullable = false)
     private String category;
 
     @Column(name = "condition", nullable = false)
@@ -72,10 +72,10 @@ public class Item {
     @Column(name = "finalprice")
     private double finalPrice;
 
-    @Column(name = "startdate")
+    @Column(name = "startdate", nullable = false)
     private Timestamp startDate;
 
-    @Column(name = "enddate")
+    @Column(name = "enddate", nullable = false)
     private Timestamp endDate;
 
     /**
@@ -124,9 +124,6 @@ public class Item {
         this.endDate = endDate;
     }
 
-    /**
-     *
-     */
     public Item() {
 
     }
