@@ -51,7 +51,7 @@ public class ItemResource {
         notes = "This API must work in order to meet the client's specs.",
         response = Item.class)
     public Item create(@Auth User user, Item item) {
-        item.setSellerId(user.getUserId());
+        //item.setSellerId(user.getUserId());
         return itemDAO.create(item);
     }
 
