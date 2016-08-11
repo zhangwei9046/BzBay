@@ -25,6 +25,7 @@ import io.swagger.annotations.Authorization;
 @Api(value = "/item", description = "Operations on item objects.")
 @Path("/item")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class ItemResource {
     private final ItemDAO itemDAO;
     private final UserDAO userDAO;
@@ -39,18 +40,18 @@ public class ItemResource {
     }
 
     /**
-     * Creates and adds item
+     * Creates and adds item to auction
      * @param item the item
      * @return the item
      */
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
     @Timed
     @ApiOperation(value = "Post an item on the auction.",
         notes = "This API must work in order to meet the client's specs.",
         response = Item.class)
     public Item create(@Auth User user, Item item) {
+        item.setSellerId(user.getUserId());
         return itemDAO.create(item);
     }
 
