@@ -36,34 +36,31 @@ public class ItemDAO extends AbstractDAO<Item> {
      * @return the item
      */
     public Item create(Item item) {
-        //long sellerId = seller.getUserId();
-        //item.setSellerId(sellerId);
         item.setAvailable(true);
         return this.persist(item);
     }
 
     /**
-     * Returns the Item if present in the database
+     * Returns the Item given it's id
      *
      * @param id the id of the item
-     * @return the item if present in the database; nothing otherwise
+     * @return the item if item exists; appropriate message otherwise
      */
     public Optional<Item> findById(long id) {
         return Optional.ofNullable(this.get(id));
     }
 
     /**
-     * Returns an Item given the name of the item
+     * Returns the Item given its name
      *
      * @param name the name to search for
-     * @return an Item; if there is no item to return, return empty
+     * @return the item if item exists; appropriate message otherwise
      */
     public Optional<Item> findByName(String name) {
         Query query = Preconditions.checkNotNull(namedQuery("com.bravozulu" +
                 ".core.Item.findByName"));
         query.setParameter("name", name);
-        List<Item> items = list(query);
-        return items.size() == 0 ? Optional.empty() : Optional.of(items.get(0));
+        return Optional.ofNullable(this.uniqueResult(query));
     }
 
     /**

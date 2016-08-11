@@ -80,6 +80,7 @@ public class ItemResource {
      */
     @GET
     @Path("/name/{name}")
+    @Produces("application/json")
     @UnitOfWork
     @ApiOperation(value = "Find item by name",
             authorizations = {@Authorization(value = "UserBasicAuth")},
