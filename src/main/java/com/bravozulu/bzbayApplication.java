@@ -80,6 +80,9 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
         final NotificationDao notificationDAO = new NotificationDao(hibernate.getSessionFactory());
         environment.jersey().register(new NotificationResource(notificationDAO, transactionDAO, userDAO));
 
+        Generation generation = new Generation(notificationDAO, transactionDAO, bidHistoryDAO, itemDAO,
+                this.hibernate.getSessionFactory());
+        generation.generator();
 
         // Adding health check
         //final TemplateHealthCheck healthCheck =

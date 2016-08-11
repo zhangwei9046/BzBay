@@ -42,16 +42,7 @@ public class BidHistoryResource {
         this.userDAO = userDAO;
     }
 
-/*
-    @POST
-    @Path("/createbid")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @UnitOfWork
-    @Timed
-    public BidHistory createBid(@Auth User user, long itemId, long userId, float price) {
-        return bidhistoryDao.create(itemId, userId,price);
-    }
-*/
+
 
     @POST
     @Path("/bid")
