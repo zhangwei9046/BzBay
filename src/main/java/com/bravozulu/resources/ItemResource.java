@@ -100,8 +100,10 @@ public class ItemResource {
             notes = "This API must work in order to meet the client's specs.",
             response = Item.class)
     public List<Item> search(@Auth User user,
-                             @QueryParam("category") String category) {
-        return this.itemDAO.search(category);
+                             @QueryParam("category") String category,
+                             @QueryParam("condition") Boolean condition,
+                             @QueryParam("sellerId") long sellerId) {
+        return this.itemDAO.search(category, condition, sellerId);
     }
 
 

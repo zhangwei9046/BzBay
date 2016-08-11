@@ -29,11 +29,14 @@ import java.sql.Timestamp;
         ),
         @NamedQuery(
                 name = "com.bravozulu.core.item.updateAvailable",
-                query = "UPDATE Item u SET u.available = :available where u.itemId = " +
+                query = "UPDATE Item u SET u.available = :available WHERE u" +
+                        ".itemId = " +
                 ":itemId"),
         @NamedQuery(
                 name = "com.bravozulu.core.item.search",
-                query = "SELECT u FROM Item u WHERE u.category = :category")
+                query = "SELECT u FROM Item u WHERE u.category = :category " +
+                        "AND u.condition = :condition AND u.sellerID = " +
+                        ":sellerId")
 })
 @JsonSnakeCase
 public class Item {
