@@ -79,6 +79,11 @@ public class Item {
     private Timestamp endDate;
 
     /**
+     * The required no argument constructor
+     */
+    public Item() {}
+
+    /**
      * Constructor for Item
      * @param name the name of the item
      * @param available the availability status
@@ -122,10 +127,6 @@ public class Item {
         this.finalPrice = finalPrice;
         this.startDate = startDate;
         this.endDate = endDate;
-    }
-
-    public Item() {
-
     }
 
     public long getItemId() {

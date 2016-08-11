@@ -36,7 +36,7 @@ public class ItemDAO extends AbstractDAO<Item> {
      * @return the item
      */
     public Item create(Item item) {
-        item.setAvailable(true);
+        //item.setAvailable(true);
         return this.persist(item);
     }
 
