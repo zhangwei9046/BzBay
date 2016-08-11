@@ -83,10 +83,9 @@ public class ItemResource {
     @Produces("application/json")
     @UnitOfWork
     @ApiOperation(value = "Find item by name",
-            authorizations = {@Authorization(value = "UserBasicAuth")},
             notes = "This API must work in order to meet the client's specs.",
             response = Item.class)
-    public Item findItemByName(@PathParam("name") String
+    public Item findItemByName(@Auth User user, @PathParam("name") String
             name) {
         return this.itemDAO.findByName(name).orElseThrow( () -> new
                 NotFoundException("No such item"));
