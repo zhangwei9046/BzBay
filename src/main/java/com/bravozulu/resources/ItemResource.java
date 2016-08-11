@@ -79,7 +79,7 @@ public class ItemResource {
      * @return information about the item
      */
     @GET
-    @Path("/{name}")
+    @Path("/name/{name}")
     @UnitOfWork
     @ApiOperation(value = "Find item by name",
             authorizations = {@Authorization(value = "UserBasicAuth")},
