@@ -79,13 +79,12 @@ public class ItemResource {
      * @return information about the item
      */
     @GET
-    @Path("/name = {name}")
     @UnitOfWork
     @ApiOperation(value = "Find item by name",
             authorizations = {@Authorization(value = "UserBasicAuth")},
             notes = "This API must work in order to meet the client's specs.",
             response = Item.class)
-    public Item findItemByName(@PathParam("name") String
+    public Item findItemByName(@QueryParam("name") String
             name) {
         return this.itemDAO.findByName(name).orElseThrow( () -> new
                 NotFoundException("No such item"));
@@ -119,6 +118,7 @@ public class ItemResource {
     public List<Item> findAllAvailableItems() {
         return this.itemDAO.findAllAvailable();
     }
+
 
     /**
      * Updates the item's availability status
