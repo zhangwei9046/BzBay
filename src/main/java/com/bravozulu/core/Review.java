@@ -3,13 +3,15 @@ package com.bravozulu.core;
 /**
  * Created by ying on 6/25/16.
  */
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.jackson.JsonSnakeCase;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="reviews")
+@Table(name = "reviews")
 @NamedQueries(value = {
         @NamedQuery(
                 name = "com.bravozulu.core.Review.findAll",
@@ -56,12 +58,13 @@ public class Review {
         this.date = date;
     }
 
-    public Review(long senderId, long receiverId, String content, double score) {
+    public Review(@JsonProperty("senderId") long senderId, @JsonProperty("receiverId") long receiverId, @JsonProperty("content") String content, @JsonProperty("score") double score) {
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.content = content;
         this.score = score;
     }
+
 
     public Review() {
     }
@@ -106,9 +109,13 @@ public class Review {
         this.score = score;
     }
 
-    public Date getDate() { return date; }
+    public Date getDate() {
+        return date;
+    }
 
-    public void setDate(Date date) { this.date = date;}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     @Override
     public boolean equals(Object o) {

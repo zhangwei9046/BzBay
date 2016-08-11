@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,6 +57,7 @@ public class ReviewResource {
         if (cur_user.getUserId() != review.getSenderId()) {
             throw new NotAcceptableException("Please login first.");
         }
+        review.setDate(new Date());
         return reviewDAO.create(review);
     }
 

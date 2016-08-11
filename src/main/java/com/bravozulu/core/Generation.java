@@ -12,6 +12,7 @@ import org.hibernate.context.internal.ManagedSessionContext;
 import org.hibernate.sql.Update;
 
 import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.Timer;
@@ -53,14 +54,14 @@ public class Generation {
             public void run() {
                 Session session = Generation.this.sessionFactory.openSession();
                 ManagedSessionContext.bind(session);
-                Date currentTime = new Date();
+                long currentTime = new Date().getTime();
                 List<Item> Allitem = Generation.this.itemDao.findAll();
 
                 // check for each
                 for (int i = 0; i < Allitem.size(); i++) {
                     Item thisItem = Allitem.get(i);
-                    if ((currentTime.getTime() >= thisItem.getStartDate().getTime())
-                            && (currentTime.getTime() < thisItem.getEndDate().getTime())) {
+                    if ((currentTime >= thisItem.getStartDate().getTime())
+                            && (currentTime < thisItem.getEndDate().getTime())) {
                         Generation.this.itemDao.updateAvailable(true, thisItem.getItemId());
                     } else {
                         Generation.this.itemDao.updateAvailable(false, thisItem.getItemId());
@@ -68,7 +69,7 @@ public class Generation {
 
 
                     if (!Generation.this.transactionDao.findByItemId(thisItem.getItemId()).isPresent()) {
-                        if ((currentTime.getTime() >= thisItem.getEndDate().getTime())) {
+                        if ((currentTime >= thisItem.getEndDate().getTime())) {
                             Generation.this.itemDao.updateAvailable(false, thisItem.getItemId());
                             Optional<BidHistory> WinBid =
                                     Generation.this.bidHistoryDao.findByHighestPriceByItemId(thisItem.getItemId());
