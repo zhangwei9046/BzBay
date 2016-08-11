@@ -79,16 +79,33 @@ public class ItemResource {
      * @return information about the item
      */
     @GET
+    @Path("/{name}")
     @UnitOfWork
     @ApiOperation(value = "Find item by name",
             authorizations = {@Authorization(value = "UserBasicAuth")},
             notes = "This API must work in order to meet the client's specs.",
             response = Item.class)
-    public Item findItemByName(@QueryParam("name") String
+    public Item findItemByName(@PathParam("name") String
             name) {
         return this.itemDAO.findByName(name).orElseThrow( () -> new
                 NotFoundException("No such item"));
     }
+
+/*
+    @GET
+    @Path("/search")
+    @UnitOfWork
+    @ApiOperation(value = "Find item by name",
+            authorizations = {@Authorization(value = "UserBasicAuth")},
+            notes = "This API must work in order to meet the client's specs.",
+            response = Item.class)
+    public List<Item> search(@QueryParam("category") String
+                                       category) {
+        //return this.itemDAO.findByName(name).orElseThrow( () -> new
+        //        NotFoundException("No such item"));
+
+    }
+*/
 
     /**
      * Returns list of all items
