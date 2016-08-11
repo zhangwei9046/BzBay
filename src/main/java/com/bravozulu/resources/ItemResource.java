@@ -50,7 +50,7 @@ public class ItemResource {
     @ApiOperation(value = "Post an item on the auction.",
         notes = "This API must work in order to meet the client's specs.",
         response = Item.class)
-    public Item create(Item item) {
+    public Item create(@Auth User user, Item item) {
         return itemDAO.create(item);
     }
 
