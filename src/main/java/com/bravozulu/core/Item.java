@@ -35,7 +35,7 @@ import java.sql.Timestamp;
         @NamedQuery(
                 name = "com.bravozulu.core.item.search",
                 query = "SELECT u FROM Item u WHERE u.category = :category " +
-                        "AND u.condition = :condition AND u.sellerID = " +
+                        "AND u.condition = :condition AND u.sellerId = " +
                         ":sellerId")
 })
 @JsonSnakeCase
