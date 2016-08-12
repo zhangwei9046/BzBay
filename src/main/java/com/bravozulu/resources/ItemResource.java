@@ -21,8 +21,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Authorization;
 
-
-//@Api(value = "/item", description = "Operations on item objects.")
 @Path("/item")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -70,7 +68,6 @@ public class ItemResource {
         notes = "This API must work in order to meet the client's specs.",
         response = Item.class)
     public Item create(@Auth User user, Item item) {
-        // TODO get the user id and set it to the item
         User tempUser = userDAO.findByUsername(user.getUsername()).get();
         item.setSellerId(tempUser.getUserId());
         return itemDAO.create(item);
