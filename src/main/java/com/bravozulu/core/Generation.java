@@ -70,7 +70,7 @@ public class Generation {
 
                     if (!Generation.this.transactionDao.findByItemId(thisItem.getItemId()).isPresent()) {
                         if ((currentTime >= thisItem.getEndDate().getTime())) {
-                            Generation.this.itemDao.updateAvailable(false, thisItem.getItemId());
+
                             Optional<BidHistory> WinBid =
                                     Generation.this.bidHistoryDao.findByHighestPriceByItemId(thisItem.getItemId());
 
@@ -91,7 +91,7 @@ public class Generation {
                 session.close();
             }
         };
-        time.schedule(task, 0, 600000);
+        time.schedule(task, 0, 5000);
     }
 
 }
