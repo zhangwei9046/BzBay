@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Authorization;
 
 
-@Api(value = "/item", description = "Operations on item objects.")
+//@Api(value = "/item", description = "Operations on item objects.")
 @Path("/item")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -38,6 +38,25 @@ public class ItemResource {
         this.itemDAO = itemDAO;
         this.userDAO = userDAO;
     }
+
+    /* Admin API's */
+
+    /**
+     * Returns list of all available and unavailable items
+     * @return list of all items
+     */
+    @GET
+    @RolesAllowed("ADMIN")
+    @UnitOfWork
+    @ApiOperation(value = "Find all items",
+            authorizations = {@Authorization(value = "UserBasicAuth")},
+            notes = "This API only meant for Admin use.",
+            response = Item.class, responseContainer = "List")
+    public List<Item> findAllItems(@Auth User user) {
+        return itemDAO.findAll();
+    }
+
+    /* Client-only API's */
 
     /**
      * Creates and adds item to auction
@@ -57,9 +76,60 @@ public class ItemResource {
     }
 
     /**
-     * Returns the item given an item's identification
-     * @param itemId the item id
-     * @return the item in JSON format
+     * Returns list of all available items
+     * @return returns a list of available items
+     */
+    @GET
+    @Path("/available")
+    @UnitOfWork
+    @ApiOperation(value = "Find all available items.",
+            notes = "This API must work in order to meet the client's specs.",
+            response = Item.class, responseContainer = "List")
+    public List<Item> findAllAvailableItems() {
+        return this.itemDAO.findAllAvailable();
+    }
+
+    /**
+     * Returns a list of all available items based on category filter
+     * @param user an authorized user
+     * @param category the category to filter
+     * @return a list of items
+     */
+    @GET
+    @Path("/search")
+    @UnitOfWork
+    @ApiOperation(value = "Find item by name",
+            notes = "This API must work in order to meet the client's specs.",
+            response = Item.class)
+    public List<Item> search(@Auth User user,
+                             @QueryParam("category") String category) {
+        return this.itemDAO.search(category);
+    }
+
+    /**
+     * Returns an Item object given its name; if Item not exists, return
+     * appropriate feedback message
+     * @param name the name of the item
+     * @return an Item object
+     */
+    @GET
+    @Path("/name/{name}")
+    @Produces("application/json")
+    @UnitOfWork
+    @ApiOperation(value = "Find item by name",
+            notes = "This API must work in order to meet the client's specs.",
+            response = Item.class)
+    public Item findItemByName(@Auth User user, @PathParam("name") String
+            name) {
+        return this.itemDAO.findByName(name).orElseThrow( () -> new
+                NotFoundException("No such item"));
+    }
+
+    /**
+     * Returns an Item object given an item's id number; if Item not exists,
+     * return appropriate feedback message
+     * @param itemId the item's id
+     * @return an Item object
      */
     @GET
     @Path("/{itemId}")
@@ -75,72 +145,13 @@ public class ItemResource {
                 NotFoundException("No such item."));
     }
 
-    /**
-     * Returns information of an item given its name
-     * @param name the name of the item
-     * @return information about the item
-     */
-    @GET
-    @Path("/name/{name}")
-    @Produces("application/json")
-    @UnitOfWork
-    @ApiOperation(value = "Find item by name",
-            notes = "This API must work in order to meet the client's specs.",
-            response = Item.class)
-    public Item findItemByName(@Auth User user, @PathParam("name") String
-            name) {
-        return this.itemDAO.findByName(name).orElseThrow( () -> new
-                NotFoundException("No such item"));
-    }
-
-    @GET
-    @Path("/search")
-    @UnitOfWork
-    @ApiOperation(value = "Find item by name",
-            notes = "This API must work in order to meet the client's specs.",
-            response = Item.class)
-    public List<Item> search(@Auth User user,
-                             @QueryParam("category") String category) {
-        return this.itemDAO.search(category);
-    }
 
 
-    /**
-     * Returns list of all items
-     * @return list of all items
-     */
-    @GET
-    @RolesAllowed("ADMIN")
-    @UnitOfWork
-    @ApiOperation(value = "Find all items",
-            authorizations = {@Authorization(value = "UserBasicAuth")},
-            notes = "This API must work in order to meet the client's specs.",
-            response = Item.class, responseContainer = "List")
-    public List<Item> findAllItems(@Auth User user) {
-        return itemDAO.findAll();
-    }
+    /*-----------------------------------------------------------------------*/
 
-    /**
-     * Finds all available items for sale
-     * @return returns a list of available items
-     */
-    @GET
-    @Path("/available")
-    @UnitOfWork
-    @ApiOperation(value = "Find all available items.",
-            notes = "This API must work in order to meet the client's specs.",
-            response = Item.class, responseContainer = "List")
-    public List<Item> findAllAvailableItems() {
-        return this.itemDAO.findAllAvailable();
-    }
+    /* EXTRA FEATURES UNDER CONSTRUCTION */
 
-
-    /**
-     * Updates the item's availability status
-     * @param user the seller
-     * @param itemId the item's id
-     * @param available the new availability status
-     */
+    /*
     @PUT
     @Path("/{itemId}")
     @UnitOfWork
@@ -152,11 +163,9 @@ public class ItemResource {
             itemId, boolean available) {
         this.itemDAO.updateAvailable(available, itemId.get());
     }
+    */
 
-    /**
-     * Deletes the item
-     * @param itemId the item's id
-     */
+    /*
     @DELETE
     @Path("/{itemId}")
     @UnitOfWork
@@ -167,4 +176,5 @@ public class ItemResource {
     public void delete(@Auth User user, @PathParam("itemId") LongParam itemId) {
          this.itemDAO.deleteItem(itemId.get(), user);
     }
+    */
 }
