@@ -67,10 +67,9 @@ public class ItemDAO extends AbstractDAO<Item> {
      * @param category
      * @return
      */
-    public List<Item> search(String category, Boolean condition, long
-            sellerId) {
+    public List<Item> search(String category) {
         return list(namedQuery("com.bravozulu.core.item.search").setParameter
-                ("category", category).setParameter("condition", condition));
+                ("category", category));
     }
 
     /**
