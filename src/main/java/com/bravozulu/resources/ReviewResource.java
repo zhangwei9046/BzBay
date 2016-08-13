@@ -85,7 +85,7 @@ public class ReviewResource {
     }
 
     @GET
-    @Path("/review/sendername={username}")
+    @Path("/sendername={username}")
     @UnitOfWork
     @ApiOperation(value = "Find reviews for sender",
             authorizations = {@Authorization(value="UserBasicAuth")},
