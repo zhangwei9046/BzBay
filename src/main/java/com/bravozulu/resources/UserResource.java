@@ -95,7 +95,6 @@ public class UserResource {
         return userDAO.update(user);
     }
 
-    //This method works
     @DELETE
     @Timed
     @Path("/{userId}")
