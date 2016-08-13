@@ -76,7 +76,6 @@ public class UserResource {
         return userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
     }
 
-    //This method works
     @PUT
     @Timed
     @UnitOfWork
