@@ -39,7 +39,7 @@ public class ReviewResource {
     @GET
     @UnitOfWork
     @RolesAllowed("Admin")
-    @ApiOperation(value = "Find all reviews",
+    @ApiOperation(value = "Find all reviews(Admin operation)",
             response = Review.class,
             responseContainer = "List")
     public List<Review> findAllReviews() {
@@ -49,7 +49,7 @@ public class ReviewResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    @ApiOperation(value = "Leave a review for a seller",
+    @ApiOperation(value = "Leave a review for a seller(registered buyer)",
             authorizations = {@Authorization(value="UserBasicAuth")},
             response = Review.class)
     public Review leaveAReview(Review review, @Auth User user) {
@@ -73,7 +73,7 @@ public class ReviewResource {
     @DELETE
     @Path("/{reviewId}")
     @UnitOfWork
-    @ApiOperation(value = "Delete a review",
+    @ApiOperation(value = "Delete a review(User that created the review has the right to delete)",
             authorizations = {@Authorization(value="UserBasicAuth")})
     public void deleteReview(@Auth User user, @PathParam("reviewId") LongParam reviewId) {
         Review review = reviewDAO.findById(reviewId.get()).orElseThrow(() -> new NotFoundException("No such review."));
@@ -87,7 +87,7 @@ public class ReviewResource {
     @GET
     @Path("/sendername={username}")
     @UnitOfWork
-    @ApiOperation(value = "Find reviews for sender",
+    @ApiOperation(value = "Find reviews for sender(Registered buyer)",
             authorizations = {@Authorization(value="UserBasicAuth")},
             response = Review.class,
             responseContainer = "List")
@@ -102,7 +102,7 @@ public class ReviewResource {
     @GET
     @Path("/receivername={username}")
     @UnitOfWork
-    @ApiOperation(value = "Find reviews for sender",
+    @ApiOperation(value = "Find reviews for sender(Registered seller)",
             authorizations = {@Authorization(value="UserBasicAuth")},
             response = Review.class,
             responseContainer = "List")

@@ -32,7 +32,7 @@ public class UserResource {
     @Timed
     @UnitOfWork
     @RolesAllowed("Admin")
-    @ApiOperation(value = "Find all Users",
+    @ApiOperation(value = "Find all Users(Admin operation)",
             response = User.class,
             responseContainer = "List")
     public List<User> findAllUsers() {
@@ -44,7 +44,7 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @UnitOfWork
     @RolesAllowed("Admin")
-    @ApiOperation(value = "Create a user")
+    @ApiOperation(value = "Create a user(Admin operation)")
     public User createUser(User user) {
         Optional<User> op = userDAO.findByUsername(user.getUsername());
         if (op.isPresent()) {
@@ -58,7 +58,7 @@ public class UserResource {
     @Path("/{userId}")
     @UnitOfWork
     @RolesAllowed("Admin")
-    @ApiOperation(value = "get user by userId",
+    @ApiOperation(value = "get user by userId(Admin operation)",
             response = User.class)
     public User getUserById(@PathParam("userId") LongParam userId) {
         return userDAO.findById(userId.get()).orElseThrow(() -> new NotFoundException("No such user."));
@@ -69,7 +69,7 @@ public class UserResource {
     @Path("/username={username}")
     @UnitOfWork
     @RolesAllowed("Admin")
-    @ApiOperation(value = "get user by username",
+    @ApiOperation(value = "get user by username(Admin operation)",
             response = User.class)
     public User getUserByUsername(@PathParam("username") String username) {
         return userDAO.findByUsername(username).orElseThrow(() -> new NotFoundException("No such user."));
@@ -78,7 +78,7 @@ public class UserResource {
     @PUT
     @Timed
     @UnitOfWork
-    @ApiOperation(value = "update user information")
+    @ApiOperation(value = "update user information(Registered User)")
     public User updateUser(@Auth User u, User userObj) {
 //        user.setUsername(userObj.getUsername());
         User user = userDAO.findByUsername(u.getUsername()).get();
@@ -98,7 +98,7 @@ public class UserResource {
     @Path("/{userId}")
     @UnitOfWork
     @RolesAllowed("Admin")
-    @ApiOperation(value = "Delete a user")
+    @ApiOperation(value = "Delete a user(Admin operation)")
     public void deleteUser(@PathParam("userId") LongParam userId) {
         userDAO.delete(userId.get());
     }
