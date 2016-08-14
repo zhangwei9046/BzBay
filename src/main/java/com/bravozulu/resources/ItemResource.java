@@ -24,6 +24,7 @@ import io.swagger.annotations.Authorization;
 @Path("/item")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Api(value = "/item", description = "Item services.")
 public class ItemResource {
     private final ItemDAO itemDAO;
     private final UserDAO userDAO;
