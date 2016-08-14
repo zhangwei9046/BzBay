@@ -31,8 +31,7 @@ import io.swagger.annotations.Authorization;
 @Produces(MediaType.APPLICATION_JSON)
 public class BidHistoryResource {
     private final BidHistoryDAO bidhistoryDao; 
-    private final ItemDAO itemDAO;
-    private final UserDAO userDAO;
+    private final ItemDAO itemDAO;  private final UserDAO userDAO;
     private static Logger logger = LoggerFactory.getLogger(BidHistoryResource.class);
 
     public BidHistoryResource(BidHistoryDAO bidhistoryDao, ItemDAO itemDAO, UserDAO userDAO) {
