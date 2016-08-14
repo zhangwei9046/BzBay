@@ -30,7 +30,8 @@ import io.swagger.annotations.Authorization;
 @Api(value = "/bidhistory", description = "Place a bid")
 @Produces(MediaType.APPLICATION_JSON)
 public class BidHistoryResource {
-    private final BidHistoryDAO bidhistoryDao; private final ItemDAO itemDAO;
+    private final BidHistoryDAO bidhistoryDao; 
+    private final ItemDAO itemDAO;
     private final UserDAO userDAO;
     private static Logger logger = LoggerFactory.getLogger(BidHistoryResource.class);
 
