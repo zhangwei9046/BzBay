@@ -1,6 +1,5 @@
 package com.bravozulu.resources;
 
-
 import com.bravozulu.core.BidHistory;
 import com.bravozulu.core.Item;
 import com.bravozulu.core.User;
@@ -31,9 +30,8 @@ import io.swagger.annotations.Authorization;
 @Api(value = "/bidhistory", description = "Place a bid")
 @Produces(MediaType.APPLICATION_JSON)
 public class BidHistoryResource {
-    private final BidHistoryDAO bidhistoryDao;
-    private final ItemDAO itemDAO;
-    private final UserDAO userDAO;
+    private final BidHistoryDAO bidhistoryDao; 
+    private final ItemDAO itemDAO;  private final UserDAO userDAO;
     private static Logger logger = LoggerFactory.getLogger(BidHistoryResource.class);
 
     public BidHistoryResource(BidHistoryDAO bidhistoryDao, ItemDAO itemDAO, UserDAO userDAO) {
