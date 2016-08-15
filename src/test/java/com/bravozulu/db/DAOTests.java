@@ -1,5 +1,6 @@
 package com.bravozulu.db;
 
+import com.bravozulu.core.BidHistory;
 import com.bravozulu.core.Review;
 import com.bravozulu.core.User;
 import com.bravozulu.core.Item;
@@ -25,6 +26,7 @@ public class DAOTests {
         config.addAnnotatedClass(User.class);
         config.addAnnotatedClass(Review.class);
         config.addAnnotatedClass(Item.class);
+        config.addAnnotatedClass(BidHistory.class);
 
         sessionFactory=config.buildSessionFactory();
     }
