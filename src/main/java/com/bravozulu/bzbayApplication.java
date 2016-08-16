@@ -4,6 +4,8 @@ import com.bravozulu.auth.BzbayAuthenticator;
 import com.bravozulu.auth.BzbayAuthorizer;
 import com.bravozulu.core.*;
 import com.bravozulu.db.*;
+import com.bravozulu.health.AppHealthCheck;
+import com.bravozulu.health.DatabaseHealthCheck;
 import com.bravozulu.resources.*;
 import de.thomaskrille.dropwizard_template_config.TemplateConfigBundle;
 import io.dropwizard.auth.AuthDynamicFeature;
@@ -85,11 +87,12 @@ public class bzbayApplication extends Application<bzbayConfiguration> {
         generation.generator();
 
         // Adding health check
-        //final TemplateHealthCheck healthCheck =
-        //        new TemplateHealthCheck(configuration.getTemplate());
+        AppHealthCheck appHealthCheck = new AppHealthCheck("it's alive");
+        environment.healthChecks().register("it's alive", appHealthCheck);
 
-        //environment.healthChecks().register("template", healthCheck);
-
+        DataSourceFactory database  = configuration.getDataSourceFactory();
+        environment.healthChecks().register("database", new
+                DatabaseHealthCheck(database));
 
         //Authentication
         environment.jersey().register(new AuthDynamicFeature(
