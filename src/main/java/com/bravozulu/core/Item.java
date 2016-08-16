@@ -275,6 +275,26 @@ public class Item {
     }
 
     @Override
+    public String toString() {
+        return "Item{" +
+                "itemId=" + itemId +
+                ", name='" + name + '\'' +
+                ", available=" + available +
+                ", sellerId=" + sellerId +
+                ", model='" + model + '\'' +
+                ", shipping='" + shipping + '\'' +
+                ", category='" + category + '\'' +
+                ", condition=" + condition +
+                ", url='" + url + '\'' +
+                ", description='" + description + '\'' +
+                ", initialPrice=" + initialPrice +
+                ", finalPrice=" + finalPrice +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         int result;
         long temp;

@@ -83,7 +83,8 @@ public class UserResourceTest {
         when(dao.findAll()).thenReturn(users);
 
         final List<User> response = resources.getJerseyTest().target("/user")
-                .request().header(HttpHeaders.AUTHORIZATION, "Basic aGVsbG86MTEx").get(new GenericType<List<User>>() {});
+                .request().header(HttpHeaders.AUTHORIZATION, "Basic " +
+                        "aGVsbG86MTEx").get(new GenericType<List<User>>() {});
 
         verify(dao).findAll();
         assertThat(response).containsAll(users);
