@@ -9,6 +9,7 @@ import com.bravozulu.db.UserDAO;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
 import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
+import io.dropwizard.auth.basic.BasicCredentials;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.test.grizzly.GrizzlyWebTestContainerFactory;
@@ -22,6 +23,8 @@ import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.when;
 
 
 public class BidHistoryResourceTest {
@@ -46,18 +49,24 @@ public class BidHistoryResourceTest {
     @Captor
     private ArgumentCaptor<BidHistory> bidHistoryArgumentCaptor =
             ArgumentCaptor.forClass(BidHistory.class);
-    private BidHistory bh1;
-    private BidHistory bh2;
+    private final User user = new User("hello", "Hello", "World", "111",
+            "1@1", "Seattle", "WA", "401 Terry Ave N", true);
+    private BidHistory bh1 = new BidHistory(1,1L,33);
+    private BidHistory bh2 = new BidHistory(5,1L,89);
 
 
     @Before
     public void setUp() throws Exception {
-
+        user.setUserId(1L);
+        when(auth.authenticate(new BasicCredentials("hello", "111")))
+                .thenReturn(com.google.common.base.Optional.fromNullable(this.user));
     }
 
     @After
     public void tearDown() throws Exception {
-
+        reset(bhDAO);
+        reset((itemDAO));
+        reset(userDAO);
     }
 
     @Test
