@@ -57,9 +57,10 @@ public class ItemDAO extends AbstractDAO<Item> {
      * @return the item if item exists; appropriate message otherwise
      */
     public Optional<Item> findByName(String name) {
-        Query query = namedQuery("com.bravozulu.core.Item.findByName")
-                .setParameter("name", name);
-        return Optional.ofNullable(this.uniqueResult(query));
+        List<Item> list = list(namedQuery("com.bravozulu.core.Item.findByName")
+                .setParameter("name", name));
+        Item firstMatchSortedByItemId = list.get(0);
+        return Optional.ofNullable(firstMatchSortedByItemId);
     }
 
     /**
