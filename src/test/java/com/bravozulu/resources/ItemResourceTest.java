@@ -74,8 +74,7 @@ public class ItemResourceTest {
                         .user));
         when(userDAO.findByUsername(eq("hello"))).thenReturn(Optional.of(user));
         when(itemDAO.findById(3)).thenReturn(Optional.of(item1));
-        when(itemDAO.findByName("Bose Headphones")).thenReturn(Optional.of
-                (item1));
+
     }
 
     @After
@@ -165,16 +164,18 @@ public class ItemResourceTest {
 
     @Test
     public void findItemByName() throws Exception {
-        final Item response = resources.getJerseyTest()
+        final ImmutableList<Item> list = ImmutableList.of(this.item1);
+        when(itemDAO.findByName("Bose Headphones")).thenReturn(list);
+        final List<Item> response = resources.getJerseyTest()
                 .target("/item/name/Bose%20Headphones")
-                .request(MediaType.APPLICATION_JSON)
+                .request()
                 .header(HttpHeaders.AUTHORIZATION, "Basic aGVsbG86MTEx")
-                .get(Item.class);
-        response.setAvailable(true);
-        response.setStartDate(new Timestamp(1471379415));
-        response.setEndDate(new Timestamp(1471379715));
-        assertThat(response).isEqualTo(item1);
+                .get(new GenericType<List<Item>>() {} );
         verify(itemDAO).findByName("Bose Headphones");
+        response.get(0).setAvailable(true);
+        response.get(0).setStartDate(new Timestamp(1471379415));
+        response.get(0).setEndDate(new Timestamp(1471379715));
+        assertThat(response).isEqualTo(list);
     }
 
     @Test

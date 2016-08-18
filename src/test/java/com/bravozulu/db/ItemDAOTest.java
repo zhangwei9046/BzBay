@@ -113,13 +113,12 @@ public class ItemDAOTest extends DAOTests {
         getSession().beginTransaction();
 
         // Call the method to be tested and store the output
-        Optional<Item> firstItemOptional = this.itemDAO.findByName(this
+        List<Item> list = this.itemDAO.findByName(this
                 .firstItemName);
-        Item firstItem = firstItemOptional.get();
 
         // Run basic tests
-        Assert.assertNotNull(firstItem);
-        Assert.assertEquals(firstItem.getName(), this.firstItemName);
+        Assert.assertNotNull(list);
+        Assert.assertEquals(list.get(0).getName(), this.firstItemName);
 
         getSession().getTransaction().commit();
     }
