@@ -97,7 +97,7 @@ public class ItemResource {
     @GET
     @Path("/search")
     @UnitOfWork
-    @ApiOperation(value = "Find item by name",
+    @ApiOperation(value = "Find item by category",
             notes = "This API must work in order to meet the client's specs.",
             response = Item.class)
     public List<Item> search(@Auth User user,
@@ -118,10 +118,9 @@ public class ItemResource {
     @ApiOperation(value = "Find item by name",
             notes = "This API must work in order to meet the client's specs.",
             response = Item.class)
-    public Item findItemByName(@Auth User user, @PathParam("name") String
+    public List<Item> findItemByName(@Auth User user, @PathParam("name") String
             name) {
-        return this.itemDAO.findByName(name).orElseThrow( () -> new
-                NotFoundException("No such item"));
+        return this.itemDAO.findByName(name);
     }
 
     /**
