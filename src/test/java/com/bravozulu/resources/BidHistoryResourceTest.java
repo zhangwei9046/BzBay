@@ -36,7 +36,7 @@ import static org.mockito.Mockito.*;
 
 
 public class BidHistoryResourceTest {
-    private static final BidHistoryDAO bhDAO = mock(BidHistoryDAO.class);
+    private static final BidHistoryDAO bidDAO = mock(BidHistoryDAO.class);
     private static final ItemDAO itemDAO = mock(ItemDAO.class);
     private static final UserDAO userDAO = mock(UserDAO.class);
     private static final BzbayAuthenticator auth = mock (BzbayAuthenticator
@@ -51,7 +51,7 @@ public class BidHistoryResourceTest {
                             .setPrefix("Basic").buildAuthFilter()))
                     .addProvider(RolesAllowedDynamicFeature.class)
                     .addProvider(new AuthValueFactoryProvider.Binder<>(User.class))
-                    .addResource(new BidHistoryResource(bhDAO, itemDAO, userDAO))
+                    .addResource(new BidHistoryResource(bidDAO, itemDAO, userDAO))
                     .build();
 
     @Captor
@@ -76,12 +76,12 @@ public class BidHistoryResourceTest {
                 .thenReturn(com.google.common.base.Optional.fromNullable(this.user));
         when(userDAO.findByUsername(eq("hello"))).thenReturn(Optional.of(user));
         when(itemDAO.findById(2)).thenReturn(Optional.of(item1));
-        when(bhDAO.findBybidId(0)).thenReturn(Optional.of(bid1));
+        when(bidDAO.findBybidId(0)).thenReturn(Optional.of(bid1));
     }
 
     @After
     public void tearDown() throws Exception {
-        reset(bhDAO);
+        reset(bidDAO);
         reset((itemDAO));
         reset(userDAO);
     }
@@ -90,13 +90,13 @@ public class BidHistoryResourceTest {
     @Test
     public void findAllBidHistory() throws Exception {
         final ImmutableList<BidHistory> bid = ImmutableList.of(bid1);
-        when(bhDAO.findAll()).thenReturn(bid);
+        when(bidDAO.findAll()).thenReturn(bid);
 
         final List<BidHistory> response = resources.getJerseyTest().target("/bidhistory")
                 .request().header(HttpHeaders.AUTHORIZATION, "Basic aGVsbG86MTEx")
                 .get(new GenericType<List<BidHistory>>() {});
         response.get(0).setTime(new Timestamp(1313773206));
-        verify(bhDAO).findAll();
+        verify(bidDAO).findAll();
         assertThat(response).containsAll(bid);
 
     }
@@ -110,7 +110,7 @@ public class BidHistoryResourceTest {
                 .get(BidHistory.class);
        response.setTime(new Timestamp(1313773206));
         assertThat(response).isEqualTo(bid1);
-        verify(bhDAO).findBybidId(0);
+        verify(bidDAO).findBybidId(0);
 
     }
 
