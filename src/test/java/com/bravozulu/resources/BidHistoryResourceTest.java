@@ -86,10 +86,6 @@ public class BidHistoryResourceTest {
         reset(userDAO);
     }
 
-    @Test
-    public void bid() throws Exception {
-
-    }
 
     @Test
     public void findAllBidHistory() throws Exception {
@@ -104,7 +100,7 @@ public class BidHistoryResourceTest {
         assertThat(response).containsAll(bid);
 
     }
-/*
+
     @Test
     public void findBidById() throws Exception{
         final BidHistory response = resources.getJerseyTest()
@@ -112,28 +108,11 @@ public class BidHistoryResourceTest {
                 .request(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.AUTHORIZATION, "Basic aGVsbG86MTEx")
                 .get(BidHistory.class);
-        response.get(0).setTime(new Timestamp(1471379415));
+       response.setTime(new Timestamp(1313773206));
         assertThat(response).isEqualTo(bid1);
         verify(bhDAO).findBybidId(0);
 
     }
-    */
-/*
-    @Test
-    public void findBidByItemId() throws Exception {
-        final BidHistory response = resources.getJerseyTest()
-                .target("/bidhistory/item/2")
-                .request(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.AUTHORIZATION, "Basic aGVsbG86MTEx")
-                .get(BidHistory.class);
-
-        response.get(0).setTime(new Timestamp(1471379415));
-        assertThat(response).isEqualTo(bid1);
-        verify(bhDAO).findByItemId(2L);
-    }
-*/
-
-
 
 
 
