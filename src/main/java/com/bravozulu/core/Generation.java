@@ -78,6 +78,8 @@ public class Generation {
                                 Transactions newTransaction = new Transactions(WinBid.get().getBidId(), thisItem.getItemId(),
                                         WinBid.get().getUserId(),WinBid.get().getPrice(), thisItem.getEndDate());
                                 Generation.this.transactionDao.create(newTransaction);
+                                //update the final price for the item for further use.
+                                thisItem.setFinalPrice(WinBid.get().getPrice());
 
                                 String content = "Bid has end.";
                                 Notification notification =

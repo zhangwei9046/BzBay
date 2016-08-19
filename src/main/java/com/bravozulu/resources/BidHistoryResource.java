@@ -55,25 +55,35 @@ public class BidHistoryResource {
                           @ApiParam(value = "Place a bid", required = true) BidHistory bidHistory) {
         long itemId = bidHistory.getItemId();
         Optional<Item> item = this.itemDAO.findById(itemId);
+
         if (item.isPresent()) {
-            boolean itemAbleToBid = item.get().isAvailable();
-            if (itemAbleToBid) {
-                BidHistory bidprice =
-                        this.bidhistoryDao.findByHighestPriceByItemId(itemId)
-                                .isPresent()
-                                ? this.bidhistoryDao
-                                .findByHighestPriceByItemId(itemId).get() : null;
-                double currentPrice = (bidprice == null) ? item.get().getInitialPrice()
-                        : bidprice.getPrice();
-                double doublePrice = 2 * currentPrice;
-                if (bidHistory.getPrice() > currentPrice)
-                    if (bidHistory.getPrice() < doublePrice)
-                        this.bidhistoryDao.create(bidHistory);
+            boolean availableItem = item.get().isAvailable();
+            long userid1 = item.get().getSellerId();
+            long userid2 = user.getUserId();
+            if(userid1 == userid2) {
+                new NotAcceptableException("You can not bid your own item");}
+            else{
+                if (availableItem) {
+                    BidHistory bidprice =
+                            this.bidhistoryDao.findByHighestPriceByItemId(itemId)
+                                    .isPresent()
+                                    ? this.bidhistoryDao
+                                    .findByHighestPriceByItemId(itemId).get() : null;
+                    double currentPrice = (bidprice == null) ? item.get().getInitialPrice()
+                            : bidprice.getPrice();
+                    double doublePrice = 2 * currentPrice;
+                    if (bidHistory.getPrice() > currentPrice)
+                        if (bidHistory.getPrice() < doublePrice)
+                            this.bidhistoryDao.create(bidHistory);
+                        else {
+                            new NotAcceptableException("Bid price need be lower than double the current price");
+                        }
                     else {
-                        new ServiceUnavailableException("Bid price need be lower than double the current price");
+                        new NotAcceptableException("Bid price need be higher than current price or initial price");
                     }
-                else {
-                    new NotAcceptableException("Bid price need be higher than current price");
+
+                } else {
+                    new NotAcceptableException("Item is not available at this time");
                 }
             }
         }
@@ -105,7 +115,7 @@ public class BidHistoryResource {
     }
 
     @GET
-    @Path("/userId={userId}/bidhistory")
+    @Path("/user/userId={userId}/bidhistory")
     @UnitOfWork
     @ApiOperation(value = "find Bid by userId",
             notes = "Pass userId",
@@ -116,7 +126,7 @@ public class BidHistoryResource {
     }
 
     @GET
-    @Path("/itemId={itemId}/bidhistory")
+    @Path("/item/itemId={itemId}/bidhistory")
     @UnitOfWork
     @ApiOperation(value = "find Bid by itemId",
             notes = "Pass itemId",
@@ -140,12 +150,5 @@ public class BidHistoryResource {
     }
 
 
-//    @DELETE
-//    @Path("/{bidId}")
-//    @UnitOfWork
-//    public void deleteBidHistory(@PathParam("bidId") LongParam bidId) {
-//        bidhistoryDao.delete(bidId.get());
-//    }
-//
 
 }
